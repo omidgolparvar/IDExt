@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.7.3)
+  - Moya (12.0.1):
+    - Moya/Core (= 12.0.1)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - PersianSwift (1.7)
+  - PKHUD (5.2.0)
+  - QuickLayout (2.1.1)
+  - Result (4.0.0)
+  - SwiftEntryKit (0.8.4):
+    - QuickLayout (= 2.1.1)
+  - SwiftyJSON (4.2.0)
+  - UIDeviceComplete (2.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Moya (~> 12.0)
+  - PersianSwift
+  - PKHUD (~> 5.0)
+  - SwiftEntryKit (= 0.8.4)
+  - SwiftyJSON
+  - UIDeviceComplete
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Moya
+    - PersianSwift
+    - PKHUD
+    - QuickLayout
+    - Result
+    - SwiftEntryKit
+    - SwiftyJSON
+    - UIDeviceComplete
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  PersianSwift: 62df26448d66d29e0ebe57f988fff4ae1fed204c
+  PKHUD: dd5357ac65f26115c35c4a68e9b328053326c5fe
+  QuickLayout: 9af2b7fd89a6552828f51a5aba28d1bcdb8b340c
+  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  SwiftEntryKit: f0dd54bb0fb9f234738cd15a32365265cb975be8
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  UIDeviceComplete: 7495560e7f7a8e895d48337bd9aad12f7a400f7a
+
+PODFILE CHECKSUM: 97ca7b8dfee818376b12924eb9858bc218ee2090
+
+COCOAPODS: 1.5.3
