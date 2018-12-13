@@ -103,7 +103,7 @@ public final class IDMoya {
 	}
 	
 	public static func PrintData(_ data: AnyObject?) {
-		print("IDAPIManager - " + #function + " : ")
+		print("IDMoya - " + #function + " : ")
 		guard let data = data else { print("--- NO Data.") ; return }
 		print(JSON(data))
 	}

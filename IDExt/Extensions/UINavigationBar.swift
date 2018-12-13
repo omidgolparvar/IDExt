@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UINavigationBar {
+public extension UINavigationBar {
 	
 	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any]) {
 		UINavigationBar.appearance().titleTextAttributes = attributes

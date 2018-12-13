@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension IndexPath {
+public extension IndexPath {
 	
 	public static var ID_First: IndexPath { return IndexPath(row: 0, section: 0) }
 	

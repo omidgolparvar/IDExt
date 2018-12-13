@@ -10,7 +10,7 @@ import Foundation
 
 public extension NSError {
 	
-	var id_ErrorStyleDescription: String {
+	public var id_ErrorStyleDescription: String {
 		return String(format: "Domain: %@ - Code: %@ - Description: %@", self.domain, self.code, self.description)
 	}
 	

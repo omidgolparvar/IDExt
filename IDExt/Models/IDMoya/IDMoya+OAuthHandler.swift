@@ -14,7 +14,7 @@ extension IDMoya {
 	
 	public final class OAuthHandler: RequestAdapter, RequestRetrier {
 		
-		private static let LogPrefixString		= "IDAPIManager.OAuthHandler - "
+		private static let LogPrefixString		= "IDMoya.OAuthHandler - "
 		
 		public static var LogoutClosure				: () -> Void			= { }
 		public static var OAuthObjectClosure		: (OAuthObject) -> Void	= { _ in }
@@ -34,20 +34,15 @@ extension IDMoya {
 		private var baseURLString			: String
 		private var refreshTokenURLString	: String
 		private var oauthObject				: OAuthObject
+		private var isRefreshing			: Bool = false
+		private var requestsToRetry			: [RequestRetryCompletion] = []
 		
-		private var isRefreshing	: Bool = false
-		private var requestsToRetry	: [RequestRetryCompletion] = []
-		
-		// MARK: - Initialization
-		
-		internal init(clientID: String, baseURLString: String, refreshTokenURLString: String?, oauthObject: OAuthObject) {
+		public init(clientID: String, baseURLString: String, refreshTokenURLString: String?, oauthObject: OAuthObject) {
 			self.clientID				= clientID
 			self.baseURLString			= baseURLString
 			self.refreshTokenURLString	= refreshTokenURLString ?? "\(baseURLString)api/oauth2/token"
 			self.oauthObject			= oauthObject
 		}
-		
-		// MARK: - RequestAdapter
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
 			if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(baseURLString) {
@@ -57,8 +52,6 @@ extension IDMoya {
 			}
 			return urlRequest
 		}
-		
-		// MARK: - RequestRetrier
 		
 		public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
 			IDMoya.IsVerbose.id_IfIsTrue {
@@ -104,7 +97,10 @@ extension IDMoya {
 			}
 		}
 		
-		// MARK: - Private - Refresh Tokens
+		public func setURLStrings(baseURLString: String, refreshTokenURLString: String?) {
+			self.baseURLString			= baseURLString
+			self.refreshTokenURLString	= refreshTokenURLString ?? "\(baseURLString)api/oauth2/token"
+		}
 		
 		private func refreshTokens(completion: @escaping RefreshCompletion) {
 			guard !isRefreshing else { return }

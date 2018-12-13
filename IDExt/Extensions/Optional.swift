@@ -8,16 +8,16 @@
 
 import Foundation
 
-extension Optional {
+public extension Optional {
 	
-	func id_CheckAndUse(_ closure: (Wrapped) -> Void) {
+	public func id_CheckAndUse(_ closure: (Wrapped) -> Void) {
 		guard let _self = self else { return }
 		closure(_self)
 	}
 	
 }
 
-extension Optional where Wrapped: Collection {
+public extension Optional where Wrapped: Collection {
 	
 	public var id_IsNilOrEmpty: Bool {
 		return self?.isEmpty ?? true

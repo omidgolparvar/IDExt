@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UserDefaults {
+public extension UserDefaults {
 	
 	public func id_Store(_ value: Any?, forKey key: String) {
 		self.set(value, forKey: key)

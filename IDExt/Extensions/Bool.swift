@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Bool {
+public extension Bool {
 	
 	public func id_IfIsTrue(_ block: () -> Void) {
 		guard self else { return }

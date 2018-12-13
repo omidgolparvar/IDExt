@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Locale {
+public extension Locale {
 	
 	public static var ID_Farsi	: Locale { return Locale(identifier: "fa-IR") }
 	

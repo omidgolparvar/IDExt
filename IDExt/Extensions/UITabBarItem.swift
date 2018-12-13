@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UITabBarItem {
+public extension UITabBarItem {
 	
 	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any], for state: UIControl.State = UIControl.State()) {
 		UITabBarItem.appearance().setTitleTextAttributes(attributes, for: state)

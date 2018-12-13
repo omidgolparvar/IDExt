@@ -11,7 +11,41 @@ import SwiftEntryKit
 
 public final class IDPresenter {
 	
-	public typealias ActionSheetButtonItem = (title: String, color: UIColor, action: () -> Void)
+	public typealias TextAndColor			= (text: String, color: UIColor?)
+	public typealias ActionSheetButtonItem	= (title: String, color: UIColor, action: () -> Void)
+	public typealias Attributes				= EKAttributes
+	public typealias BackgroundStyle		= EKAttributes.BackgroundStyle
+	public typealias DisplayDuration		= EKAttributes.DisplayDuration
+	
+	public static func DisplayNotifiaction(image: UIImage?, title: TextAndColor, message: TextAndColor, textAlign: NSTextAlignment = .right, entryBackground: BackgroundStyle? = nil, displayDuration: DisplayDuration? = nil) {
+		
+		var attributes = Notification_EKAttributes
+		if let entryBackground = entryBackground {
+			attributes.entryBackground = entryBackground
+		}
+		if let displayDuration = displayDuration {
+			attributes.displayDuration = displayDuration
+		}
+		
+		var imageContent: EKProperty.ImageContent?
+		if let image = image {
+			imageContent = EKProperty.ImageContent(image: image)
+		}
+		
+		let titleContent = EKProperty.LabelContent(
+			text: title.text,
+			style: .init(font: Notification_TitleFont, color: title.color ?? .black, alignment: .center)
+		)
+		let descriptionContent = EKProperty.LabelContent(
+			text: message.text,
+			style: .init(font: Notification_MessageFont, color: message.color ?? .darkGray, alignment: .center)
+		)
+		
+		let simpleMessage = EKSimpleMessage(image: imageContent, title: titleContent, description: descriptionContent)
+		let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+		let contentView = EKNotificationMessageView(with: notificationMessage)
+		SwiftEntryKit.display(entry: contentView, using: attributes)
+	}
 	
 	public static func DisplayError(_ error: IDErrorProtocol) {
 		DisplayMessage(icon: "😕", title: "بروز خطا", message: error.message)
@@ -243,11 +277,11 @@ public final class IDPresenter {
 		SwiftEntryKit.display(entry: contentView, using: Alert_EKAttributes)
 	}
 	
-	public static func DisplayViewController(_ viewController: UIViewController, using attributes: EKAttributes = IDPresenter.DefaultEKAttributes) {
+	public static func DisplayViewController(_ viewController: UIViewController, using attributes: Attributes = IDPresenter.DefaultEKAttributes) {
 		SwiftEntryKit.display(entry: viewController, using: attributes)
 	}
 	
-	public static func DisplayView(_ view: UIView, using attribures: EKAttributes = IDPresenter.DefaultEKAttributes) {
+	public static func DisplayView(_ view: UIView, using attribures: Attributes = IDPresenter.DefaultEKAttributes) {
 		SwiftEntryKit.display(entry: view, using: attribures)
 	}
 	

@@ -10,37 +10,21 @@ import Foundation
 
 public extension UIApplication {
 	
-	public static func ID_GetUUID(userDefaults: UserDefaults = .standard) -> String {
-		let key = "ID.Application.UUID"
-		if let uuid = userDefaults.string(forKey: key) {
-			return uuid
-		}
-		let uuid = UUID().uuidString
-		userDefaults.id_Store(uuid, forKey: key)
-		return uuid
-	}
-	
 	public static var ID_StatusBarView: UIView? {
 		return UIApplication.shared.value(forKey: "statusBar") as? UIView
 	}
 	
-	
-	
-	public func id_TopMostViewController() -> UIViewController? {
-		return self.keyWindow?.rootViewController?.id_TopMostViewController()
+	public static var ID_TopMostViewController: UIViewController? {
+		return UIApplication.shared.keyWindow?.rootViewController?.id_TopMostViewController()
 	}
 	
-	public func id_Open(url: URL, completionHandler: ((Bool) -> Void)? = nil) {
-		guard self.canOpenURL(url) else { return }
-		self.open(url, options: [:], completionHandler: completionHandler)
+	public static func ID_Open(url: URL, completionHandler: ((Bool) -> Void)? = nil) {
+		guard UIApplication.shared.canOpenURL(url) else { return }
+		UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
 	}
 	
-	public func id_RemoveAllNotificationsAndBadge() {
-		self.applicationIconBadgeNumber = 1
-		self.applicationIconBadgeNumber = 0
+	public static func ID_RemoveAllNotificationsAndBadge() {
+		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
-	
-	
-	
 	
 }

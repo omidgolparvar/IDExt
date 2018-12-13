@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Error {
+public extension Error {
 	
 	public func id_PrintDescription (prefixMessage: String? = nil) {
 		print("⚠️ IDExt - Error: \(prefixMessage.id_IsNilOrEmpty ? "" : "\(prefixMessage!) : ") \(self.localizedDescription)")

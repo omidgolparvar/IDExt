@@ -20,15 +20,23 @@ public extension UIViewController {
 		self.view.endEditing(true)
 	}
 	
-	public typealias ID_NotificationObserver	= (notification: Notification.Name, selector: Selector)
+	public typealias ID_NotificationObserver	= (notificationName: Notification.Name, selector: Selector)
 	public func id_AddObservers(_ items: [ID_NotificationObserver]) {
 		items.forEach {
-			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notification, object: nil)
+			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notificationName, object: nil)
 		}
+	}
+	
+	public func id_ObservationBlock(for notificationName: Notification.Name, closure: @escaping (Notification) -> Void) {
+		NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil, using: closure)
 	}
 	
 	public func id_RemoveAllObservers() {
 		NotificationCenter.default.removeObserver(self)
+	}
+	
+	public func id_RemoveObserver(for notificationName: Notification.Name) {
+		NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
 	}
 	
 	public func id_TopMostViewController() -> UIViewController {

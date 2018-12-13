@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UIToolbar {
+public extension UIToolbar {
 	
 	public convenience init(dismissToolbarForViewController viewController: UIViewController, doneButtonTitle title: String, font: UIFont, color: UIColor) {
 		self.init(frame: CGRect(x: 0, y: 0,  width: viewController.view.frame.size.width, height: 30))

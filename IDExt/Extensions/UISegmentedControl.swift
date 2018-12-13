@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension UISegmentedControl {
+public extension UISegmentedControl {
 	
 	public func id_SetFont(_ font: UIFont) {
 		self.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)

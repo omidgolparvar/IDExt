@@ -9,9 +9,39 @@
 import Foundation
 import SwiftEntryKit
 
-extension IDPresenter {
+public extension IDPresenter {
 	
-	public static var Alert_EKAttributes	: EKAttributes = {
+	public static var Notification_EKAttributes	: EKAttributes = {
+		var attributes = EKAttributes.toast
+		
+		if #available(iOS 11, *) {
+			attributes.entryBackground = .visualEffect(style: .light)
+		} else {
+			attributes.entryBackground = .color(color: .white)
+		}
+		
+		attributes.entranceAnimation = .init(
+			translate	: .init(duration: 0.5, anchorPosition: .top, delay: 0, spring: .init(damping: 1.0, initialVelocity: 1)),
+			scale		: nil,
+			fade		: nil
+		)
+		attributes.displayDuration = 5
+		attributes.shadow = .none
+		attributes.entryInteraction = .dismiss
+		attributes.screenInteraction = .absorbTouches
+		attributes.screenBackground = .clear
+		attributes.exitAnimation = .init(
+			translate	: .init(duration: 0.5, anchorPosition: .top, delay: 0, spring: .init(damping: 1.0, initialVelocity: 1)),
+			scale		: nil,
+			fade		: nil
+		)
+		
+		return attributes
+	}()
+	public static var Notification_TitleFont	: UIFont	= UIFont.boldSystemFont(ofSize: 16)
+	public static var Notification_MessageFont	: UIFont	= UIFont.systemFont(ofSize: 14)
+	
+	public static var Alert_EKAttributes		: EKAttributes = {
 		var attributes = EKAttributes.centerFloat
 		
 		if #available(iOS 11, *) {
@@ -44,14 +74,12 @@ extension IDPresenter {
 		
 		return attributes
 	}()
-	
-	public static var Alert_TitleFont		: UIFont	= UIFont.boldSystemFont(ofSize: 16)
-	public static var Alert_MessageFont		: UIFont	= UIFont.systemFont(ofSize: 14)
-	public static var Alert_ButtonFont		: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
-	
+	public static var Alert_TitleFont			: UIFont	= UIFont.boldSystemFont(ofSize: 16)
+	public static var Alert_MessageFont			: UIFont	= UIFont.systemFont(ofSize: 14)
+	public static var Alert_ButtonFont			: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
 	
 	
-	public static var Sheet_EKAttributes	: EKAttributes = {
+	public static var Sheet_EKAttributes		: EKAttributes = {
 		var attributes = EKAttributes.bottomFloat
 		if #available(iOS 11, *) {
 			attributes.entryBackground = .visualEffect(style: .extraLight)
@@ -83,14 +111,12 @@ extension IDPresenter {
 		
 		return attributes
 	}()
-	
-	public static var Sheet_TitleFont		: UIFont	= UIFont.boldSystemFont(ofSize: 16)
-	public static var Sheet_MessageFont		: UIFont	= UIFont.systemFont(ofSize: 14)
-	public static var Sheet_ButtonFont		: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
-	
+	public static var Sheet_TitleFont			: UIFont	= UIFont.boldSystemFont(ofSize: 16)
+	public static var Sheet_MessageFont			: UIFont	= UIFont.systemFont(ofSize: 14)
+	public static var Sheet_ButtonFont			: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
 	
 	
-	public static var Message_EKAttributes	: EKAttributes = {
+	public static var Message_EKAttributes		: EKAttributes = {
 		var attributes = EKAttributes.centerFloat
 		
 		if #available(iOS 11, *) {
@@ -121,11 +147,10 @@ extension IDPresenter {
 		
 		return attributes
 	}()
-	
-	public static var Message_TitleFont		: UIFont	= UIFont.boldSystemFont(ofSize: 16)
-	public static var Message_MessageFont	: UIFont	= UIFont.systemFont(ofSize: 14)
-	public static var Message_ButtonFont	: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
-	public static var Message_ButtonTitle	: String	= "بازگشت"
+	public static var Message_TitleFont			: UIFont	= UIFont.boldSystemFont(ofSize: 16)
+	public static var Message_MessageFont		: UIFont	= UIFont.systemFont(ofSize: 14)
+	public static var Message_ButtonFont		: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
+	public static var Message_ButtonTitle		: String	= "بازگشت"
 	
 	
 	
