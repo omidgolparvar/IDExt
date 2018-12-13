@@ -18,8 +18,8 @@ public extension UIDevice {
 		switch deviceFamily {
 		case .iPad		: return iPadValue
 		case .iPhone	: return iPhoneValue
-		case .simulator where DefaultDeviceType == .iPhone	: return iPhoneValue
-		case .simulator where DefaultDeviceType == .iPad	: return iPadValue
+		case .simulator where ID_DefaultDeviceType == .iPhone	: return iPhoneValue
+		case .simulator where ID_DefaultDeviceType == .iPad		: return iPadValue
 		default			: return iPhoneValue
 		}
 	}
