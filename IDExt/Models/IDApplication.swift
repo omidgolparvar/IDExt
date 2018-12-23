@@ -10,7 +10,19 @@ import Foundation
 
 public final class IDApplication {
 	
-	public static func GetUUID(storedInUserDefaults userDefaults: UserDefaults = .standard) -> String {
+	public static var UsingUserDefaultsGetter: () -> UserDefaults = { return .standard }
+	
+	public static var OneSignalPlayerIDGetter: () -> String? = { return nil }
+	
+	public static var IsInDebugMode: Bool {
+		#if DEBUG
+		return true
+		#else
+		return false
+		#endif
+	}
+	
+	public static func GetUUID(storedInUserDefaults userDefaults: UserDefaults = UsingUserDefaultsGetter()) -> String {
 		let key = "__ID.Application.UUID"
 		if let uuid = userDefaults.string(forKey: key) {
 			return uuid
@@ -20,12 +32,8 @@ public final class IDApplication {
 		return uuid
 	}
 	
-	public static var IsInDebugMode: Bool {
-		#if DEBUG
-			return true
-		#else
-			return false
-		#endif
+	public static func Value<T>(development: T?, production: T?) -> T? {
+		return IsInDebugMode ? development : production
 	}
 	
 	public static func OnlyInProductionMode(closure: () -> Void) {
@@ -37,4 +45,5 @@ public final class IDApplication {
 		guard IsInDebugMode else { return }
 		closure()
 	}
+	
 }

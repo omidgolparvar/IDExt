@@ -13,11 +13,13 @@ import SystemConfiguration
 
 public final class IDMoya {
 	
-	public typealias Method			= Alamofire.HTTPMethod
-	public typealias Encoding		= Alamofire.URLEncoding
-	public typealias Parameters		= Alamofire.Parameters
-	public typealias Header			= [String : String]
-	public typealias Callback		= (_ result: ResultStatus, _ data: Any?) -> Void
+	public typealias Method				= Alamofire.HTTPMethod
+	public typealias Encoding			= Alamofire.URLEncoding
+	public typealias Progress			= Alamofire.Progress
+	public typealias Parameters			= Alamofire.Parameters
+	public typealias UploadParameter	= (name: String, data: Data, mimeType: String)
+	public typealias Header				= [String: String]
+	public typealias Callback			= (_ result: ResultStatus, _ data: AnyObject?) -> Void
 	
 	internal static var RequestsDictionary	: [ObjectIdentifier : DataRequest] = [:]
 	internal static var OAuthSessionManager	: SessionManager?
@@ -94,9 +96,9 @@ public final class IDMoya {
 		return (isReachable && !needsConnection)
 	}
 	
-	public static func SetupOAuthSessionManager(clientID: String, baseURLString: String, refreshTokenURLString: String?, oauthObject: OAuthObject) {
+	public static func SetupOAuthSessionManager(oauthObject: OAuthObject) {
 		let sessionManager = SessionManager()
-		let oauthHandler = OAuthHandler(clientID: clientID, baseURLString: baseURLString, refreshTokenURLString: refreshTokenURLString, oauthObject: oauthObject)
+		let oauthHandler = OAuthHandler(oauthObject: oauthObject)
 		sessionManager.adapter = oauthHandler
 		sessionManager.retrier = oauthHandler
 		OAuthSessionManager = sessionManager

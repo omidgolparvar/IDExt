@@ -26,7 +26,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 			• Status = \(status)
 			• Page   = \(currentPage)
 			• Items  = \(items?.count ?? 0)
-			/.
+			
 			"""
 	}
 	
@@ -45,7 +45,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		
 		let endpointObject = delegate.idPaginator_EndpointObject(self)
 		let pageParameterName = delegate.idPaginator_PageParameterName(self)
-		endpointObject.addParameters(params: [pageParameterName: currentPage])
+		endpointObject.addParameters([pageParameterName: currentPage])
 		
 		IDMoya.Perform(endpointObject) { [weak self] (resultStatus, data) in
 			guard let _self = self else { return }

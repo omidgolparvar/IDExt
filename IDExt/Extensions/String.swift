@@ -20,7 +20,7 @@ public extension String {
 		}
 	}
 	
-	public func id_ReplacedFirstOccurrence(ofString target: String, withString replaceString: String) -> String {
+	public func id_ReplacedFirstOccurrence(of target: String, with replaceString: String) -> String {
 		var temp = self
 		temp.id_ReplaceFirstOccurrence(ofString: target, withString: replaceString)
 		return temp

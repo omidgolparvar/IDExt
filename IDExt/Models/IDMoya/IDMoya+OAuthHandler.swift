@@ -16,9 +16,13 @@ extension IDMoya {
 		
 		private static let LogPrefixString		= "IDMoya.OAuthHandler - "
 		
-		public static var LogoutClosure				: () -> Void			= { }
-		public static var OAuthObjectClosure		: (OAuthObject) -> Void	= { _ in }
-		public static var CustomParametersClosure	: () -> [String: Any]?	= { return nil }
+		private static var ClientID					: String				= ""
+		private static var BaseURLString			: String				= ""
+		private static var RefreshTokenURLString	: String?				= nil
+		
+		private static var LogoutClosure			: () -> Void			= { }
+		private static var OAuthObjectClosure		: (OAuthObject) -> Void	= { _ in }
+		private static var CustomParametersClosure	: () -> [String: Any]?	= { return nil }
 		
 		private typealias RefreshCompletion = (_ succeeded: Bool, _ result: OAuthObject?) -> Void
 		
@@ -30,22 +34,16 @@ extension IDMoya {
 		
 		private let lock = NSLock()
 		
-		private var clientID				: String
-		private var baseURLString			: String
-		private var refreshTokenURLString	: String
 		private var oauthObject				: OAuthObject
 		private var isRefreshing			: Bool = false
 		private var requestsToRetry			: [RequestRetryCompletion] = []
 		
-		public init(clientID: String, baseURLString: String, refreshTokenURLString: String?, oauthObject: OAuthObject) {
-			self.clientID				= clientID
-			self.baseURLString			= baseURLString
-			self.refreshTokenURLString	= refreshTokenURLString ?? "\(baseURLString)api/oauth2/token"
-			self.oauthObject			= oauthObject
+		public init(oauthObject: OAuthObject) {
+			self.oauthObject = oauthObject
 		}
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-			if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(baseURLString) {
+			if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(IDMoya.OAuthHandler.BaseURLString) {
 				var urlRequest = urlRequest
 				urlRequest.setValue("Bearer " + oauthObject.accessToken, forHTTPHeaderField: "Authorization")
 				return urlRequest
@@ -97,11 +95,6 @@ extension IDMoya {
 			}
 		}
 		
-		public func setURLStrings(baseURLString: String, refreshTokenURLString: String?) {
-			self.baseURLString			= baseURLString
-			self.refreshTokenURLString	= refreshTokenURLString ?? "\(baseURLString)api/oauth2/token"
-		}
-		
 		private func refreshTokens(completion: @escaping RefreshCompletion) {
 			guard !isRefreshing else { return }
 			
@@ -110,7 +103,7 @@ extension IDMoya {
 			var parameters: [String: Any] = [
 				"access_token"	: oauthObject.accessToken,
 				"refresh_token"	: oauthObject.refreshToken,
-				"client_id"		: clientID,
+				"client_id"		: IDMoya.OAuthHandler.ClientID,
 				"grant_type"	: "refresh_token",
 				]
 			
@@ -119,6 +112,8 @@ extension IDMoya {
 					parameters[key] = value
 				}
 			}
+			
+			let refreshTokenURLString = IDMoya.OAuthHandler.RefreshTokenURLString ?? "\(IDMoya.OAuthHandler.BaseURLString)api/oauth2/token"
 			
 			sessionManager
 				.request(refreshTokenURLString, method: .post, parameters: parameters, encoding: JSONEncoding.default)
@@ -142,6 +137,26 @@ extension IDMoya {
 }
 
 extension IDMoya.OAuthHandler {
+	
+	public static func SetupRequiredInfo(
+			clientID				: String,
+			baseURLString			: String,
+			refreshTokenURLString	: String?
+		) {
+		IDMoya.OAuthHandler.ClientID				= clientID
+		IDMoya.OAuthHandler.BaseURLString			= baseURLString
+		IDMoya.OAuthHandler.RefreshTokenURLString	= refreshTokenURLString
+	}
+	
+	public static func SetupClosures(
+			logoutClosure			: @escaping () -> Void,
+			oauthObjectClosure		: @escaping (IDMoya.OAuthObject) -> Void,
+			customParametersClosure	: @escaping () -> [String: Any]?
+		) {
+		IDMoya.OAuthHandler.LogoutClosure			= logoutClosure
+		IDMoya.OAuthHandler.OAuthObjectClosure		= oauthObjectClosure
+		IDMoya.OAuthHandler.CustomParametersClosure	= customParametersClosure
+	}
 	
 	public final class NotificationKeys {
 		

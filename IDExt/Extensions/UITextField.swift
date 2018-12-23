@@ -19,4 +19,29 @@ public extension UITextField {
 		self.inputAccessoryView = toolbar
 	}
 	
+	public func id_SetRightView(_ view: UIView, mode: UITextField.ViewMode = .always) {
+		self.rightView = view
+		self.rightViewMode = mode
+	}
+	
+	public func id_SetLeftView(_ view: UIView, mode: UITextField.ViewMode = .always) {
+		self.leftView = view
+		self.leftViewMode = mode
+	}
+	
+	public func id_SetRightPadding(_ padding: CGFloat) {
+		let view = UIView(frame: .init(x: 0, y: 0, width: padding, height: self.frame.height))
+		self.id_SetRightView(view)
+	}
+	
+	public func id_SetLeftPadding(_ padding: CGFloat) {
+		let view = UIView(frame: .init(x: 0, y: 0, width: padding, height: self.frame.height))
+		self.id_SetLeftView(view)
+	}
+	
+	public func id_SetSidePadding(_ padding: CGFloat) {
+		self.id_SetLeftPadding(padding)
+		self.id_SetRightPadding(padding)
+	}
+	
 }

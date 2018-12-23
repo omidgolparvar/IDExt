@@ -29,9 +29,9 @@ extension IDMoya {
 		switch response.result {
 		case .success(let data):
 			if let result = ResultStatus(rawValue: response.response!.statusCode) {
-				callback(result, data)
+				callback(result, data as AnyObject)
 			} else {
-				callback(.unknown, data)
+				callback(.unknown, data as AnyObject)
 			}
 		case .failure(let error):
 			let nsError = error as NSError

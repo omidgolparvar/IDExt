@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
 	
@@ -15,24 +16,29 @@ public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
 	case noConnection
 	case withData(AnyObject?)
 	case unAuthorized
-	
 	case unknownError
 	
 	public var description: String {
 		switch self {
-		case .requestWithInvalidResponse				: return "اطلاعات دریافتی معتبر نمی‌باشد"
-		case .unknownError								: return "خطای غیر منتظره‌ای رخ داده است. کمی صبر کنید، و مجدد تلاش نمایید"
-		case .errorWithCustomMessage(let message)		: return message
+		case .requestWithInvalidResponse:
+			return "اطلاعات دریافتی معتبر نمی‌باشد"
+		case .unknownError:
+			return "خطای غیر منتظره‌ای رخ داده است. کمی صبر کنید، و مجدد تلاش نمایید"
+		case .errorWithCustomMessage(let message):
+			return message
 		case .noConnection:
 			return "ارتباط با سامانه برقرار نشد. لطفا تنظیمات اینترنت را بررسی نمایید"
 		case .withData(let data):
-//			if let messages = Requester.GetErrorMessages(from: data) {
-//				return Errors.errorMessages(messages).description
-//			} else {
-//				let message = Requester.GetErrorMessage(from: data)
-//				return message
-//			}
-			return ""
+			guard let data = data else { return IDError.unknownError.description }
+			let jsonObject = JSON(data)
+			if let array = jsonObject.array {
+				let messages = array.compactMap({ $0["message"].string?.id_Trimmed }).filter({ !$0.isEmpty })
+				return messages.isEmpty ? IDError.unknownError.description : messages.joined(separator: "\n")
+			}
+			if let message = jsonObject["message"].string {
+				return message
+			}
+			return IDError.unknownError.description
 		case .unAuthorized:
 			return "می‌بایست مجدد وارد حساب کاربری خود شوید"
 		}

@@ -10,6 +10,17 @@ import Foundation
 
 public extension UIApplication {
 	
+	public static var ID_ApplicationVersion: (version: String, buildNumber: String) {
+		let _version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+		let _buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+		return (_version ?? "", _buildNumber ?? "")
+	}
+	
+	public static var ID_FullVersionAndBuildNumber: String {
+		let version = ID_ApplicationVersion
+		return version.version + "[\(version.buildNumber)]"
+	}
+	
 	public static var ID_StatusBarView: UIView? {
 		return UIApplication.shared.value(forKey: "statusBar") as? UIView
 	}

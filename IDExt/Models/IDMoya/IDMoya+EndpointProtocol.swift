@@ -10,19 +10,13 @@ import Foundation
 
 public protocol IDMoyaEndpoint {
 	
-	var baseURL		: URL { get }
-	
-	var path		: String { get }
-	
-	var method		: IDMoya.Method { get }
-	
-	var encoding	: IDMoya.Encoding { get }
-	
-	var parameters	: IDMoya.Parameters? { get }
-	
-	var headers		: IDMoya.Header? { get }
-	
-	var useOAuth	: Bool { get }
+	var baseURL		: URL					{ get }
+	var path		: String				{ get }
+	var method		: IDMoya.Method			{ get }
+	var encoding	: IDMoya.Encoding		{ get }
+	var parameters	: IDMoya.Parameters?	{ get }
+	var headers		: IDMoya.Header?		{ get }
+	var useOAuth	: Bool					{ get }
 	
 }
 
@@ -66,13 +60,17 @@ public final class IDMoyaEndpointObject: IDMoyaEndpoint {
 		self._useOAuth		= useOAuth
 	}
 	
-	public func addParameters(params: [String: Any]) {
+	public func addParameters(_ params: [String: Any]) {
 		if self._parameters == nil {
 			self._parameters = [:]
 		}
 		for (key, value) in params {
 			self._parameters![key] = value
 		}
+	}
+	
+	public func setParameters(_ params: [String: Any]) {
+		self._parameters = params
 	}
 	
 }
