@@ -28,8 +28,18 @@
 برای این مدل، چند نوع سازنده یا <code>initializer</code> پیاده‌سازی شده تا بشه با <code>JSON</code> و یا <code>Dictionary</code> کار کرد. البته کلیدها بصورت پیشفرض در نظر گرفته شدن، که توی کد کاملا مشخص هستن.
 </p>
 
+
+
+
+
+
 <br>
 <h3 dir='rtl'>مدل <code>OAuthHandler</code><h3>
+
+
+
+
+
 
 
 <br>
@@ -59,8 +69,8 @@ public func idMoyaOAuthHanlder_RefreshTokenEndpoint(_ oauthHandler: IDMoya.OAuth
     parameters    : [
       "access_token"  : oauthHandler.oauthObject.accessToken,
       "refresh_token" : oauthHandler.oauthObject.refreshToken,
-      "client_id"   : oauthHandler.clientID,
-      "grant_type"  : "refresh_token",
+      "client_id"     : oauthHandler.clientID,
+      "grant_type"    : "refresh_token",
     ],
     headers       : nil,
     useOAuth      : false
@@ -122,10 +132,10 @@ public var idMoyaOAuthHandler_StoredOAuthObject: IDMoya.OAuthObject? {
     createdAt    : "IDAM.UDK.AO.CA"
   )
   guard
-    let _accessToken		= userDefaults.object(forKey: userDefaultsKeys.accessToken) as? String,
-    let _refreshToken		= userDefaults.object(forKey: userDefaultsKeys.refreshToken) as? String,
-    let _createdAt_Double	= userDefaults.object(forKey: userDefaultsKeys.createdAt) as? Double,
-    let _expiresIn			= userDefaults.object(forKey: userDefaultsKeys.expiresIn) as? Int
+    let _accessToken      = userDefaults.object(forKey: userDefaultsKeys.accessToken) as? String,
+    let _refreshToken     = userDefaults.object(forKey: userDefaultsKeys.refreshToken) as? String,
+    let _createdAt_Double = userDefaults.object(forKey: userDefaultsKeys.createdAt) as? Double,
+    let _expiresIn        = userDefaults.object(forKey: userDefaultsKeys.expiresIn) as? Int
     else { return nil }
   return IDMoya.OAuthObject(
     accessToken  : _accessToken,
@@ -152,7 +162,7 @@ public func idMoyaOAuthHandler_StoreNewOAuthObject(oauthObject: IDMoya.OAuthObje
   userDefaults.set(oauthObject.accessToken, forKey: userDefaultsKeys.accessToken)
   userDefaults.set(oauthObject.refreshToken, forKey: userDefaultsKeys.refreshToken)
   userDefaults.set(oauthObject.expiresIn, forKey: userDefaultsKeys.expiresIn)
-  userDefaults.set(oauthObject.createdAt.timeIntervalSince1970	, forKey: userDefaultsKeys.createdAt)
+  userDefaults.set(oauthObject.createdAt.timeIntervalSince1970, forKey: userDefaultsKeys.createdAt)
   userDefaults.synchronize()
 }
 ```
@@ -177,7 +187,7 @@ public func idMoyaOAuthHandler_RemoveCurrentOAuthObject(_ oauthHandler: IDMoya.O
 }
 ```
 
-<h3 dir='rtl'><b>نکات مهم</b></h3>
+<h2 dir='rtl'><b>نکات مهم</b></h2>
 
 <p dir='rtl'> 👈
 هیچ‌کدوم از مشخصه‌های پروتکل، اجباری نیستن؛ چون همه‌شون پیاده‌سازی پیشفرض دارن.
@@ -192,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    IDMoya.OAuthHandler.SharedDelegate = self
+    IDMoya.OAuthHandler.Delegate = self
     
     return true
   }
