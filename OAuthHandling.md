@@ -214,8 +214,36 @@ extension AppDelegate: IDMoyaOAuthHandlerDelegate {
 }
 ```
 
+<p dir='rtl'>👈
+شما باید یه شیء از نوع <code>SessionManager</code> بسازین و بعدش یه شیء از <code>OAuthHandler</code> بسازین و بعنوان <code>adapter</code> و <code>retrier</code> بدین به این <code>SessionManager</code> ساخته‌شده. توجه داشته باشین که اون شیء <code>SessionManager</code> رو جایی ذخیره کنین و نگه‌داریش کنین. این کار برای اینه که اگه این شیء از بین بره، امکان <code>retry</code> درخواست‌های متوقف‌شده یا خطادار هم از بین خواهد رفت. همچنین موقعی که از اون <code>SessionManager</code> ساخته‌شده استفاده میشه، باید از متد <code>validate</code> آلاموفایر هم استفاده بشه. مثالش بصورت زیر خواهد بود:
+</p>
 
+```swift
+MySingleton.OAuthSessionManager?
+  .request(...)
+  .validate(statusCode: ...) 👈
+  .responseJSON { response in ... }
+```
 
+<p dir='rtl'>
+اون مقدار <code>statusCode</code> باید برابر کدهای مورد قبول بعنوان درخواست موفقیت‌آمیز باشه. ما از این استفاده می‌کنیم: (که میشه همه کدها، بجز کد <code>401</code>)
+</p>
+
+```swift
+Array(200...400) + Array(402..<600)
+```
+
+<p dir='rtl'>
+مثال ساخت <code>SessionManager</code> هم بصورت زیر هست:
+</p>
+
+```swift
+let sessionManager = SessionManager()
+let oauthHandler = IDMoya.OAuthHandler(clientID: "cliendID", baseURLString: "baseURLString", oauthObject: oauthObject)
+sessionManager.adapter = oauthHandler
+sessionManager.retrier = oauthHandler
+MySingleton.OAuthSessionManager = sessionManager
+```
 
 
 
