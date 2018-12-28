@@ -178,13 +178,31 @@ public func idMoyaOAuthHandler_RemoveCurrentOAuthObject(_ oauthHandler: IDMoya.O
 ```
 
 <h3 dir='rtl'><b>نکات مهم</b></h3>
-<p dir='rtl'>
-<ul dir='rtl'>
-  <li>هیچ‌کدوم از مشخصه‌های پروتکل، اجباری نیستن؛ چون همه‌شون پیاده‌سازی پیشفرض دارن.</li>
-  <li>مدل <code>OAuthHandler</code> یه مشخصه از نوع <code>static</code> داره، که اون <span style='color:blue;'><b>⚠️ حتما ⚠️</b></span> مقداردهی بشه. پیشنهاد من اینه که مقدارش رو برابر <code>AppDelegate</code> قرار بدین. اینجوری هم مدیریتش آسون‌تره، و هم می‌دونیم که تا وقتی اپ باز هست، مقدار اون مشخصه برابر <code>nil</code> نخواهد شد.
-  </li>
-</ul>
+
+<p dir='rtl'> 👈
+هیچ‌کدوم از مشخصه‌های پروتکل، اجباری نیستن؛ چون همه‌شون پیاده‌سازی پیشفرض دارن.
 </p>
+<p dir='rtl'>👈
+مدل <code>OAuthHandler</code> یه مشخصه از نوع <code>static</code> داره، که اون <span style='color:blue;'><b>⚠️ حتما ⚠️</b></span> مقداردهی بشه. پیشنهاد من اینه که مقدارش رو برابر <code>AppDelegate</code> قرار بدین. اینجوری هم مدیریتش آسون‌تره، و هم می‌دونیم که تا وقتی اپ باز هست، مقدار اون مشخصه برابر <code>nil</code> نخواهد شد.<br>
+برای این کار توی <code>AppDelegate</code> این رو کار کنین:
+</p>
+
+```swift
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+    IDMoya.OAuthHandler.SharedDelegate = self
+    
+    return true
+  }
+
+}
+
+extension AppDelegate: IDMoyaOAuthHandlerDelegate {
+
+}
+```
 
 
 
