@@ -19,15 +19,14 @@ open class IDUser {
 	}
 	
 	
-	public var oauthObject				: IDMoya.OAuthObject?	= nil
-	public var isChecked				: Bool					= false
-	
-	public var isLoggedIn				: Bool { return oauthObject != nil }
-	open var accountingBaseURLString	: String? { fatalError("IDUser.BaseURL not implemented.") }
+	public var oauthObject	: IDMoya.OAuthObject?	= nil
+	public var isChecked	: Bool					= false
+	public var isLoggedIn	: Bool		{ return oauthObject != nil }
+	open var baseURLString	: String	{ fatalError("IDUser.BaseURL not implemented.") }
 	
 	open var checkAccountEndpoint	: IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
-			baseURLString	: accountingBaseURLString!,
+			baseURLString	: baseURLString,
 			path			: "user/account",
 			method			: .get,
 			encoding		: URLEncoding.default,
@@ -39,7 +38,7 @@ open class IDUser {
 	
 	open var logoutEndpoint			: IDMoyaEndpointObject? {
 		return IDMoyaEndpointObject(
-			baseURLString	: accountingBaseURLString!,
+			baseURLString	: baseURLString,
 			path			: "user/logout",
 			method			: .post,
 			encoding		: URLEncoding.default,
@@ -70,19 +69,19 @@ open class IDUser {
 		guard flag else { return nil }
 		guard let oauthObject = IDMoya.OAuthHandler.SharedDelegate?.idMoyaOAuthHandler_StoredOAuthObject else { return nil }
 		self.oauthObject = oauthObject
-		IDMoya.SetupOAuthSessionManager(oauthObject: oauthObject)
+		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: oauthObject)
 	}
 	
 	public init(fromOAthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
 		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
-		IDMoya.SetupOAuthSessionManager(oauthObject: object)
+		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
 	}
 	
 	open func setup(oauthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
 		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
-		IDMoya.SetupOAuthSessionManager(oauthObject: object)
+		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
 	}
 	
 	open func logout(callback: @escaping (Error?, AnyObject?) -> Void = { _,_  in }) {

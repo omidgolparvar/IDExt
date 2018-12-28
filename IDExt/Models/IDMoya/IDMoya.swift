@@ -96,9 +96,9 @@ public final class IDMoya {
 		return (isReachable && !needsConnection)
 	}
 	
-	public static func SetupOAuthSessionManager(oauthObject: OAuthObject) {
+	public static func SetupOAuthSessionManager(cliendID: String, baseURLString: String, oauthObject: OAuthObject) {
 		let sessionManager = SessionManager()
-		let oauthHandler = OAuthHandler(oauthObject: oauthObject)
+		let oauthHandler = OAuthHandler(clientID: cliendID, baseURLString: baseURLString, oauthObject: oauthObject)
 		sessionManager.adapter = oauthHandler
 		sessionManager.retrier = oauthHandler
 		OAuthSessionManager = sessionManager

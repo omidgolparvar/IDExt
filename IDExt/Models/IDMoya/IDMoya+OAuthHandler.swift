@@ -14,8 +14,6 @@ public extension IDMoya {
 	
 	public final class OAuthHandler: RequestAdapter, RequestRetrier {
 		
-		public typealias OAuthObjectUserDefaultsKeys = (accessToken: String, refreshToken: String, expiresIn: String, createdAt: String)
-		
 		public static var SharedDelegate		: IDMoyaOAuthHandlerDelegate?	= nil
 		
 		private let sessionManager: SessionManager = {
@@ -24,22 +22,26 @@ public extension IDMoya {
 			return SessionManager(configuration: configuration)
 		}()
 		
-		private let lock = NSLock()
+		private let lock				: NSLock					= NSLock()
+		private var isRefreshing		: Bool						= false
+		private var requestsToRetry		: [RequestRetryCompletion]	= []
 		
-		private var isRefreshing			: Bool = false
+		public var clientID				: String
+		public var baseURLString		: String
+		public var oauthObject			: OAuthObject
 		
-		private var oauthObject				: OAuthObject
-		private var requestsToRetry			: [RequestRetryCompletion] = []
 		
-		public init(oauthObject: OAuthObject) {
-			self.oauthObject = oauthObject
+		public init(clientID: String, baseURLString: String, oauthObject: OAuthObject) {
+			self.clientID		= clientID
+			self.baseURLString	= baseURLString
+			self.oauthObject	= oauthObject
 		}
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
 			guard let sharedDelegate = OAuthHandler.SharedDelegate else {
 				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
-			return sharedDelegate.idMoyaOAuthHandler_AdaptURLRequest(urlRequest: urlRequest, with: oauthObject)
+			return sharedDelegate.idMoyaOAuthHandler_AdaptURLRequest(self, urlRequest: urlRequest)
 		}
 		
 		public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
@@ -64,7 +66,7 @@ public extension IDMoya {
 				
 				if let oauthObject = oauthObject {
 					sharedDelegate.idMoyaOAuthHandler_StoreNewOAuthObject(oauthObject)
-					sharedDelegate.idMoyaOAuthHandler_DidSuccessfullyRefreshed(withNewOAuthObject: oauthObject)
+					sharedDelegate.idMoyaOAuthHandler_DidSuccessfullyRefreshed(strongSelf, withNewOAuthObject: oauthObject)
 					strongSelf.oauthObject = oauthObject
 				} else {
 					NotificationCenter.default.post(name: NotificationKeys.RefreshTokenFailed, object: nil)
@@ -82,7 +84,7 @@ public extension IDMoya {
 			guard !isRefreshing else { return }
 			isRefreshing = true
 			
-			let refreshTokenEndpoint = sharedDelegate.idMoyaOAuthHanlder_RefreshTokenEndpoint(basedOn: oauthObject)
+			let refreshTokenEndpoint = sharedDelegate.idMoyaOAuthHanlder_RefreshTokenEndpoint(self)
 			sessionManager
 				.request(refreshTokenEndpoint.fullPath, method: refreshTokenEndpoint.method, parameters: refreshTokenEndpoint.parameters, encoding: refreshTokenEndpoint.encoding)
 				.responseJSON { [weak self] response in
@@ -92,7 +94,7 @@ public extension IDMoya {
 						let oauthObject = OAuthObject(fromDictionary: json) {
 						completion(true, oauthObject)
 					} else {
-						sharedDelegate.idMoyaOAuthHandler_DidFailedToRefresh(response: response)
+						sharedDelegate.idMoyaOAuthHandler_DidFailedToRefresh(strongSelf, withResponse: response)
 						completion(false, nil)
 					}
 					strongSelf.isRefreshing = false

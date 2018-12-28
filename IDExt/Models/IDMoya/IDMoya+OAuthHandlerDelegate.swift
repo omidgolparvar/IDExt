@@ -11,21 +11,18 @@ import Alamofire
 
 public protocol IDMoyaOAuthHandlerDelegate {
 	
-	var idMoyaOAuthHandler_LogPrefixString					: String			{ get }
-	
 	// MARK: OAuthHandler Related
 	
-	var idMoyaOAuthHandler_ClientID							: String				{ get }
-	var idMoyaOAuthHandler_BaseURLString					: String				{ get }
-	func idMoyaOAuthHanlder_RefreshTokenEndpoint			(basedOn oauthObject: IDMoya.OAuthObject)						-> IDMoyaEndpointObject
-	func idMoyaOAuthHandler_AdaptURLRequest					(urlRequest: URLRequest, with oauthObject: IDMoya.OAuthObject)	-> URLRequest
-	func idMoyaOAuthHandler_DidSuccessfullyRefreshed		(withNewOAuthObject oauthObject: IDMoya.OAuthObject)
-	func idMoyaOAuthHandler_DidFailedToRefresh				(response: DataResponse<Any>?)
+	func idMoyaOAuthHanlder_RefreshTokenEndpoint			(_ oauthHandler: IDMoya.OAuthHandler)							-> IDMoyaEndpointObject
+	func idMoyaOAuthHandler_AdaptURLRequest					(_ oauthHandler: IDMoya.OAuthHandler, urlRequest: URLRequest)	-> URLRequest
+	func idMoyaOAuthHandler_DidSuccessfullyRefreshed		(_ oauthHandler: IDMoya.OAuthHandler, withNewOAuthObject oauthObject: IDMoya.OAuthObject)
+	func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: DataResponse<Any>?)
+	
+	
 	
 	// MARK: OAuthObject Related
-	var idMoyaOAuthHandler_UserDefaultsForStoringData		: UserDefaults										{ get }
-	var idMoyaOAuthHandler_UserDefaultsKeysForStoringData	: IDMoya.OAuthHandler.OAuthObjectUserDefaultsKeys	{ get }
-	var idMoyaOAuthHandler_StoredOAuthObject				: IDMoya.OAuthObject?								{ get }
+	
+	var idMoyaOAuthHandler_StoredOAuthObject				: IDMoya.OAuthObject?				{ get }
 	func idMoyaOAuthHandler_StoreNewOAuthObject				(_ oauthObject: IDMoya.OAuthObject)
 	func idMoyaOAuthHandler_RemoveCurrentOAuthObject		()
 	
@@ -35,20 +32,16 @@ public protocol IDMoyaOAuthHandlerDelegate {
 
 public extension IDMoyaOAuthHandlerDelegate {
 	
-	public var idMoyaOAuthHandler_LogPrefixString					: String {
-		return "IDMoya.OAuthHandler - "
-	}
-	
-	public func idMoyaOAuthHanlder_RefreshTokenEndpoint				(basedOn oauthObject: IDMoya.OAuthObject) -> IDMoyaEndpointObject {
+	public func idMoyaOAuthHanlder_RefreshTokenEndpoint				(_ oauthHandler: IDMoya.OAuthHandler) -> IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
-			baseURLString	: self.idMoyaOAuthHandler_BaseURLString,
+			baseURLString	: oauthHandler.baseURLString,
 			path			: "api/oauth2/token",
 			method			: .post,
 			encoding		: JSONEncoding.default,
 			parameters		: [
-				"access_token"	: oauthObject.accessToken,
-				"refresh_token"	: oauthObject.refreshToken,
-				"client_id"		: self.idMoyaOAuthHandler_ClientID,
+				"access_token"	: oauthHandler.oauthObject.accessToken,
+				"refresh_token"	: oauthHandler.oauthObject.refreshToken,
+				"client_id"		: oauthHandler.clientID,
 				"grant_type"	: "refresh_token",
 			],
 			headers			: nil,
@@ -56,39 +49,33 @@ public extension IDMoyaOAuthHandlerDelegate {
 		)
 	}
 	
-	public func idMoyaOAuthHandler_AdaptURLRequest					(urlRequest: URLRequest, with oauthObject: IDMoya.OAuthObject)	-> URLRequest {
-		if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(self.idMoyaOAuthHandler_BaseURLString) {
+	public func idMoyaOAuthHandler_AdaptURLRequest					(_ oauthHandler: IDMoya.OAuthHandler, urlRequest: URLRequest) -> URLRequest {
+		if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(oauthHandler.baseURLString) {
 			var urlRequest = urlRequest
-			urlRequest.setValue("Bearer " + oauthObject.accessToken, forHTTPHeaderField: "Authorization")
+			urlRequest.setValue("Bearer " + oauthHandler.oauthObject.accessToken, forHTTPHeaderField: "Authorization")
 			return urlRequest
 		}
 		return urlRequest
 	}
 	
-	public func idMoyaOAuthHandler_DidSuccessfullyRefreshed			(withNewOAuthObject oauthObject: IDMoya.OAuthObject) {
+	public func idMoyaOAuthHandler_DidSuccessfullyRefreshed			(_ oauthHandler: IDMoya.OAuthHandler, withNewOAuthObject oauthObject: IDMoya.OAuthObject) {
 		
 	}
 	
-	public func idMoyaOAuthHandler_DidFailedToRefresh				(response: DataResponse<Any>?) {
+	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, response: DataResponse<Any>?) {
 		
 	}
 	
-	public var idMoyaOAuthHandler_UserDefaultsForStoringData		: UserDefaults {
-		return .standard
-	}
 	
-	public var idMoyaOAuthHandler_UserDefaultsKeysForStoringData	: IDMoya.OAuthHandler.OAuthObjectUserDefaultsKeys {
-		return (
-			"IDAM.UDK.AO.AT",
-			"IDAM.UDK.AO.RT",
-			"IDAM.UDK.AO.EI",
-			"IDAM.UDK.AO.CA"
-		)
-	}
 	
 	public var idMoyaOAuthHandler_StoredOAuthObject					: IDMoya.OAuthObject? {
-		let userDefaults = self.idMoyaOAuthHandler_UserDefaultsForStoringData
-		let userDefaultsKeys = self.idMoyaOAuthHandler_UserDefaultsKeysForStoringData
+		let userDefaults = UserDefaults.standard
+		let userDefaultsKeys = (
+			accessToken		: "IDAM.UDK.AO.AT",
+			refreshToken	: "IDAM.UDK.AO.RT",
+			expiresIn		: "IDAM.UDK.AO.EI",
+			createdAt		: "IDAM.UDK.AO.CA"
+		)
 		guard
 			let _accessToken		= userDefaults.object(forKey: userDefaultsKeys.accessToken) as? String,
 			let _refreshToken		= userDefaults.object(forKey: userDefaultsKeys.refreshToken) as? String,
@@ -104,9 +91,14 @@ public extension IDMoyaOAuthHandlerDelegate {
 		)
 	}
 	
-	public func idMoyaOAuthHandler_StoreNewOAuthObject				(_ oauthObject: IDMoya.OAuthObject) {
-		let userDefaults = self.idMoyaOAuthHandler_UserDefaultsForStoringData
-		let userDefaultsKeys = self.idMoyaOAuthHandler_UserDefaultsKeysForStoringData
+	public func idMoyaOAuthHandler_StoreNewOAuthObject				(oauthObject: IDMoya.OAuthObject) {
+		let userDefaults = UserDefaults.standard
+		let userDefaultsKeys = (
+			accessToken		: "IDAM.UDK.AO.AT",
+			refreshToken	: "IDAM.UDK.AO.RT",
+			expiresIn		: "IDAM.UDK.AO.EI",
+			createdAt		: "IDAM.UDK.AO.CA"
+		)
 		userDefaults.set(oauthObject.accessToken						, forKey: userDefaultsKeys.accessToken)
 		userDefaults.set(oauthObject.refreshToken						, forKey: userDefaultsKeys.refreshToken)
 		userDefaults.set(oauthObject.expiresIn							, forKey: userDefaultsKeys.expiresIn)
@@ -114,15 +106,21 @@ public extension IDMoyaOAuthHandlerDelegate {
 		userDefaults.synchronize()
 	}
 	
-	public func idMoyaOAuthHandler_RemoveCurrentOAuthObject			() {
-		let userDefaults = self.idMoyaOAuthHandler_UserDefaultsForStoringData
-		let userDefaultsKeys = self.idMoyaOAuthHandler_UserDefaultsKeysForStoringData
+	public func idMoyaOAuthHandler_RemoveCurrentOAuthObject			(_ oauthHandler: IDMoya.OAuthHandler) {
+		let userDefaults = UserDefaults.standard
+		let userDefaultsKeys = (
+			accessToken		: "IDAM.UDK.AO.AT",
+			refreshToken	: "IDAM.UDK.AO.RT",
+			expiresIn		: "IDAM.UDK.AO.EI",
+			createdAt		: "IDAM.UDK.AO.CA"
+		)
 		userDefaults.set(nil, forKey: userDefaultsKeys.accessToken)
 		userDefaults.set(nil, forKey: userDefaultsKeys.refreshToken)
 		userDefaults.set(nil, forKey: userDefaultsKeys.expiresIn)
 		userDefaults.set(nil, forKey: userDefaultsKeys.createdAt)
 		userDefaults.synchronize()
 	}
+	
 }
 
 
