@@ -67,20 +67,20 @@ open class IDUser {
 	
 	public init?(fromUserDefaults flag: Bool) {
 		guard flag else { return nil }
-		guard let oauthObject = IDMoya.OAuthHandler.SharedDelegate?.idMoyaOAuthHandler_StoredOAuthObject else { return nil }
+		guard let oauthObject = IDMoya.OAuthHandler.Delegate?.idMoyaOAuthHandler_StoredOAuthObject else { return nil }
 		self.oauthObject = oauthObject
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: oauthObject)
 	}
 	
 	public init(fromOAthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
-		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
+		IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
 	}
 	
 	open func setup(oauthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
-		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
+		IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
 	}
 	
@@ -94,7 +94,7 @@ open class IDUser {
 						case .success:
 							IDUser.current.oauthObject	= nil
 							IDUser.current.isChecked	= false
-							IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
+							IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
 							callback(nil, data)
 						default:
 							callback(IDError.withData(data), data)
@@ -111,7 +111,7 @@ open class IDUser {
 		} else {
 			oauthObject	= nil
 			isChecked	= false
-			IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
+			IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
 		}
 	}
 	

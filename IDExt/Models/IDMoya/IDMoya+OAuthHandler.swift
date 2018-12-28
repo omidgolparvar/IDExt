@@ -14,7 +14,7 @@ public extension IDMoya {
 	
 	public final class OAuthHandler: RequestAdapter, RequestRetrier {
 		
-		public static var SharedDelegate		: IDMoyaOAuthHandlerDelegate?	= nil
+		public static var Delegate		: IDMoyaOAuthHandlerDelegate?	= nil
 		
 		private let sessionManager: SessionManager = {
 			let configuration = URLSessionConfiguration.default
@@ -38,7 +38,7 @@ public extension IDMoya {
 		}
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-			guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+			guard let sharedDelegate = OAuthHandler.Delegate else {
 				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
 			return sharedDelegate.idMoyaOAuthHandler_AdaptURLRequest(self, urlRequest: urlRequest)
@@ -58,7 +58,7 @@ public extension IDMoya {
 			
 			refreshTokens { [weak self] succeeded, oauthObject in
 				guard let strongSelf = self else { return }
-				guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+				guard let sharedDelegate = OAuthHandler.Delegate else {
 					fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
 				}
 				
@@ -78,7 +78,7 @@ public extension IDMoya {
 		}
 		
 		private func refreshTokens(completion: @escaping (_ succeeded: Bool, _ result: OAuthObject?) -> Void) {
-			guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+			guard let sharedDelegate = OAuthHandler.Delegate else {
 				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
 			guard !isRefreshing else { return }
