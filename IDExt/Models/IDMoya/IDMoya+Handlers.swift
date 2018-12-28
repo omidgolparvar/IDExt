@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-extension IDMoya {
+public extension IDMoya {
 	
 	internal static func HandleResponse(request: DataRequest?, response: DataResponse<Any>, endpoint: IDMoyaEndpoint, handler: ResponseHandler) {
 		switch handler {

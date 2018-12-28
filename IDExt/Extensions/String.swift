@@ -14,6 +14,10 @@ public extension String {
 		return self.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 	
+	public var id_AsURL: URL? {
+		return URL(string: self)
+	}
+	
 	public mutating func id_ReplaceFirstOccurrence(ofString target: String, withString replaceString: String) {
 		if let range = self.range(of: target) {
 			self = self.replacingCharacters(in: range, with: replaceString)
@@ -69,5 +73,8 @@ public extension String {
 		return temp
 	}
 	
+	public func id_GenerateQRCodeImage(scale: CGFloat = 2) -> UIImage? {
+		return UIImage.ID_Initialize(generateQRCodeFromString: self, scale: scale)
+	}
 	
 }

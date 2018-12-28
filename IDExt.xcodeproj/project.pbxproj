@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1A00D11621AAD2DB00CA0ED3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00D11521AAD2DB00CA0ED3 /* Error.swift */; };
+		1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */; };
+		1A0C7FA921D254F9001A9A80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7FA821D254F9001A9A80 /* UIImage.swift */; };
+		1A0C7FAB21D25689001A9A80 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7FAA21D25689001A9A80 /* Int.swift */; };
+		1A0C7FAD21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7FAC21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift */; };
+		1A0CE79421C90A21002C4DF0 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79321C90A21002C4DF0 /* CGRect.swift */; };
+		1A0CE79721CA3BE5002C4DF0 /* IDUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79621CA3BE5002C4DF0 /* IDUser.swift */; };
+		1A0CE79921CA3D70002C4DF0 /* IDUser+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79821CA3D70002C4DF0 /* IDUser+Models.swift */; };
+		1A0CE79B21CA3E1D002C4DF0 /* IDJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79A21CA3E1D002C4DF0 /* IDJoin.swift */; };
+		1A0CE79F21CA4AE7002C4DF0 /* IDJoinDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79E21CA4AE7002C4DF0 /* IDJoinDelegate.swift */; };
 		1A1AD70721BD9B5300853CFD /* IDApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1AD70621BD9B5300853CFD /* IDApplication.swift */; };
 		1A1AD70B21BD9BA100853CFD /* IDPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */; };
 		1A3128B921BE6A9B00BB154A /* IDPaginatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3128B821BE6A9B00BB154A /* IDPaginatorDelegate.swift */; };
@@ -17,6 +26,11 @@
 		1A31D9F921A8A0C900017360 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A31D9F821A8A0C900017360 /* Optional.swift */; };
 		1A40F6B121B3C5DD002FA2F5 /* UIToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */; };
 		1A44255821AD728E00672341 /* IDMoya+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A44255721AD728E00672341 /* IDMoya+Handlers.swift */; };
+		1A62AAE721CCEBA500A3D8D9 /* IDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */; };
+		1A62AAE921CCF48A00A3D8D9 /* IDFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAE821CCF48A00A3D8D9 /* IDFont.swift */; };
+		1A62AAED21CEDDB200A3D8D9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAEC21CEDDB200A3D8D9 /* DateFormatter.swift */; };
+		1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAEE21CEE56D00A3D8D9 /* Dictionary.swift */; };
+		1A62AAF121CEE95D00A3D8D9 /* IDJSONInitBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */; };
 		1A720CD82189D2500016A844 /* IDExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A720CD62189D2500016A844 /* IDExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A720CDF2189D26C0016A844 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CDE2189D26C0016A844 /* UIViewController.swift */; };
 		1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CE12189D3410016A844 /* IDTableViewCell.swift */; };
@@ -38,6 +52,7 @@
 		1A83B32821A2AC03000E51EF /* IDPresenter+PrivateMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83B32721A2AC03000E51EF /* IDPresenter+PrivateMethods.swift */; };
 		1A83B32A21A2B6FB000E51EF /* IDHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83B32921A2B6FB000E51EF /* IDHUD.swift */; };
 		1A8714BE219877A600911586 /* IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8714BD219877A600911586 /* IndexPath.swift */; };
+		1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F609121C2D38C002A4E30 /* IDMoya+Uploader.swift */; };
 		1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */; };
 		1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */; };
 		1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */; };
@@ -46,6 +61,8 @@
 		1AB4C6E8218DE247009ECEDF /* IDMessageBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB4C6E4218DE247009ECEDF /* IDMessageBackgroundView.xib */; };
 		1AB4C6E9218DE247009ECEDF /* IDMessageBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB4C6E5218DE247009ECEDF /* IDMessageBackgroundView.swift */; };
 		1AB4C6EB218DE63B009ECEDF /* IDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB4C6EA218DE63B009ECEDF /* IDError.swift */; };
+		1AC76BF121D2E098008B3E68 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC76BF021D2E098008B3E68 /* URL.swift */; };
+		1AC76BF521D5582E008B3E68 /* IDMoya+OAuthHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC76BF421D5582E008B3E68 /* IDMoya+OAuthHandlerDelegate.swift */; };
 		1AC7E752219C5C4300570B5A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC7E751219C5C4300570B5A /* JSON.swift */; };
 		1AD927E721AC004300B63FAB /* IDMoya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD927E621AC004300B63FAB /* IDMoya.swift */; };
 		1AD927E921AC104600B63FAB /* IDMoya+OAuthObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD927E821AC104600B63FAB /* IDMoya+OAuthObject.swift */; };
@@ -68,6 +85,16 @@
 
 /* Begin PBXFileReference section */
 		1A00D11521AAD2DB00CA0ED3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
+		1A0C7FA721D25312001A9A80 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1A0C7FA821D254F9001A9A80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		1A0C7FAA21D25689001A9A80 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		1A0C7FAC21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDDeekLinkHandlerProtocol.swift; sourceTree = "<group>"; };
+		1A0CE79321C90A21002C4DF0 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		1A0CE79621CA3BE5002C4DF0 /* IDUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDUser.swift; sourceTree = "<group>"; };
+		1A0CE79821CA3D70002C4DF0 /* IDUser+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDUser+Models.swift"; sourceTree = "<group>"; };
+		1A0CE79A21CA3E1D002C4DF0 /* IDJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJoin.swift; sourceTree = "<group>"; };
+		1A0CE79E21CA4AE7002C4DF0 /* IDJoinDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJoinDelegate.swift; sourceTree = "<group>"; };
 		1A1AD70621BD9B5300853CFD /* IDApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDApplication.swift; sourceTree = "<group>"; };
 		1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginator.swift; sourceTree = "<group>"; };
 		1A3128B821BE6A9B00BB154A /* IDPaginatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginatorDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +104,11 @@
 		1A31D9F821A8A0C900017360 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToolbar.swift; sourceTree = "<group>"; };
 		1A44255721AD728E00672341 /* IDMoya+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+Handlers.swift"; sourceTree = "<group>"; };
+		1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDImage.swift; sourceTree = "<group>"; };
+		1A62AAE821CCF48A00A3D8D9 /* IDFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDFont.swift; sourceTree = "<group>"; };
+		1A62AAEC21CEDDB200A3D8D9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		1A62AAEE21CEE56D00A3D8D9 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJSONInitBased.swift; sourceTree = "<group>"; };
 		1A720CD32189D2500016A844 /* IDExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IDExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A720CD62189D2500016A844 /* IDExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDExt.h; sourceTree = "<group>"; };
 		1A720CD72189D2500016A844 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +132,7 @@
 		1A83B32721A2AC03000E51EF /* IDPresenter+PrivateMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDPresenter+PrivateMethods.swift"; sourceTree = "<group>"; };
 		1A83B32921A2B6FB000E51EF /* IDHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDHUD.swift; sourceTree = "<group>"; };
 		1A8714BD219877A600911586 /* IndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPath.swift; sourceTree = "<group>"; };
+		1A9F609121C2D38C002A4E30 /* IDMoya+Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+Uploader.swift"; sourceTree = "<group>"; };
 		1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItem.swift; sourceTree = "<group>"; };
 		1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
@@ -108,6 +141,8 @@
 		1AB4C6E4218DE247009ECEDF /* IDMessageBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDMessageBackgroundView.xib; sourceTree = "<group>"; };
 		1AB4C6E5218DE247009ECEDF /* IDMessageBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDMessageBackgroundView.swift; sourceTree = "<group>"; };
 		1AB4C6EA218DE63B009ECEDF /* IDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDError.swift; sourceTree = "<group>"; };
+		1AC76BF021D2E098008B3E68 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		1AC76BF421D5582E008B3E68 /* IDMoya+OAuthHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+OAuthHandlerDelegate.swift"; sourceTree = "<group>"; };
 		1AC7E751219C5C4300570B5A /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		1AD927E621AC004300B63FAB /* IDMoya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDMoya.swift; sourceTree = "<group>"; };
 		1AD927E821AC104600B63FAB /* IDMoya+OAuthObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+OAuthObject.swift"; sourceTree = "<group>"; };
@@ -152,6 +187,24 @@
 			path = IDPaginator;
 			sourceTree = "<group>";
 		};
+		1A62AAE421CC05C500A3D8D9 /* IDUser */ = {
+			isa = PBXGroup;
+			children = (
+				1A0CE79621CA3BE5002C4DF0 /* IDUser.swift */,
+				1A0CE79821CA3D70002C4DF0 /* IDUser+Models.swift */,
+			);
+			path = IDUser;
+			sourceTree = "<group>";
+		};
+		1A62AAE521CC05D700A3D8D9 /* IDJoin */ = {
+			isa = PBXGroup;
+			children = (
+				1A0CE79A21CA3E1D002C4DF0 /* IDJoin.swift */,
+				1A0CE79E21CA4AE7002C4DF0 /* IDJoinDelegate.swift */,
+			);
+			path = IDJoin;
+			sourceTree = "<group>";
+		};
 		1A720CC92189D2500016A844 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +233,7 @@
 				1AFA180F218F1CD700A44D64 /* Other */,
 				1A720CE32189D34C0016A844 /* Protocols */,
 				1AB4C6DF218DE247009ECEDF /* Views */,
+				1A0C7FA721D25312001A9A80 /* Playground.playground */,
 			);
 			path = IDExt;
 			sourceTree = "<group>";
@@ -187,11 +241,16 @@
 		1A720CE02189D2780016A844 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1A3128BD21BEB8B800BB154A /* Array.swift */,
 				1A83B31D21A16853000E51EF /* Bool.swift */,
 				1AFC2B4921A08CEE005735CD /* Calendar.swift */,
+				1A0CE79321C90A21002C4DF0 /* CGRect.swift */,
 				1AFC2B4321A08C44005735CD /* Date.swift */,
+				1A62AAEC21CEDDB200A3D8D9 /* DateFormatter.swift */,
+				1A62AAEE21CEE56D00A3D8D9 /* Dictionary.swift */,
 				1A00D11521AAD2DB00CA0ED3 /* Error.swift */,
 				1A8714BD219877A600911586 /* IndexPath.swift */,
+				1A0C7FAA21D25689001A9A80 /* Int.swift */,
 				1AC7E751219C5C4300570B5A /* JSON.swift */,
 				1AFC2B4521A08CB0005735CD /* Locale.swift */,
 				1AD927F921AC83C600B63FAB /* NSError.swift */,
@@ -203,7 +262,9 @@
 				1A720CF42189EDC00016A844 /* UIColor.swift */,
 				1AFA1800218EE9DB00A44D64 /* UIDevice.swift */,
 				1AFA1814218F42E700A44D64 /* UIFont.swift */,
+				1A0C7FA821D254F9001A9A80 /* UIImage.swift */,
 				1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */,
+				1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */,
 				1AFA1810218F365F00A44D64 /* UISegmentedControl.swift */,
 				1A720CF22189EC400016A844 /* UIStackView.swift */,
 				1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */,
@@ -214,8 +275,8 @@
 				1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */,
 				1A720CE82189E4FF0016A844 /* UIView.swift */,
 				1A720CDE2189D26C0016A844 /* UIViewController.swift */,
+				1AC76BF021D2E098008B3E68 /* URL.swift */,
 				1AFA1809218F194D00A44D64 /* UserDefaults.swift */,
-				1A3128BD21BEB8B800BB154A /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,6 +289,8 @@
 				1A720CFA2189EFED0016A844 /* IDHighlightableCollectionViewCell.swift */,
 				1A720CF02189EA480016A844 /* IDHighlightableTableViewCell.swift */,
 				1A720CE12189D3410016A844 /* IDTableViewCell.swift */,
+				1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */,
+				1A0C7FAC21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -274,11 +337,15 @@
 			children = (
 				1A1AD70621BD9B5300853CFD /* IDApplication.swift */,
 				1AB4C6EA218DE63B009ECEDF /* IDError.swift */,
+				1A62AAE821CCF48A00A3D8D9 /* IDFont.swift */,
 				1A83B32921A2B6FB000E51EF /* IDHUD.swift */,
+				1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */,
 				1AFA1804218F13E700A44D64 /* IDLayouta.swift */,
+				1A62AAE521CC05D700A3D8D9 /* IDJoin */,
 				1AD927EC21AC136400B63FAB /* IDMoya */,
 				1A3128BA21BE6B3100BB154A /* IDPaginator */,
 				1AAFEAED21A4115900BB9F02 /* IDPresenter */,
+				1A62AAE421CC05C500A3D8D9 /* IDUser */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,7 +358,9 @@
 				1AD927E621AC004300B63FAB /* IDMoya.swift */,
 				1AD927E821AC104600B63FAB /* IDMoya+OAuthObject.swift */,
 				1AD927EA21AC114B00B63FAB /* IDMoya+OAuthHandler.swift */,
+				1AC76BF421D5582E008B3E68 /* IDMoya+OAuthHandlerDelegate.swift */,
 				1A44255721AD728E00672341 /* IDMoya+Handlers.swift */,
+				1A9F609121C2D38C002A4E30 /* IDMoya+Uploader.swift */,
 			);
 			path = IDMoya;
 			sourceTree = "<group>";
@@ -430,20 +499,26 @@
 				1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */,
 				1AFA1801218EE9DB00A44D64 /* UIDevice.swift in Sources */,
 				1AFA180C218F1AE900A44D64 /* String.swift in Sources */,
+				1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */,
 				1A83B32A21A2B6FB000E51EF /* IDHUD.swift in Sources */,
+				1A62AAE921CCF48A00A3D8D9 /* IDFont.swift in Sources */,
+				1A62AAE721CCEBA500A3D8D9 /* IDImage.swift in Sources */,
 				1A720CE92189E4FF0016A844 /* UIView.swift in Sources */,
 				1A3128BE21BEB8B800BB154A /* Array.swift in Sources */,
 				1A3128BC21BE6BBE00BB154A /* IDPaginatorModel.swift in Sources */,
 				1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */,
+				1A0CE79421C90A21002C4DF0 /* CGRect.swift in Sources */,
 				1AFA1811218F365F00A44D64 /* UISegmentedControl.swift in Sources */,
 				1A720CEF2189E9F70016A844 /* UITableViewCell.swift in Sources */,
 				1A720CEB2189E56C0016A844 /* UITextView.swift in Sources */,
 				1A720CED2189E9C00016A844 /* UITextField.swift in Sources */,
 				1A720CF92189EF3F0016A844 /* IDCollectionViewCell.swift in Sources */,
 				1AB4C6E9218DE247009ECEDF /* IDMessageBackgroundView.swift in Sources */,
+				1A0CE79721CA3BE5002C4DF0 /* IDUser.swift in Sources */,
 				1A720CFB2189EFED0016A844 /* IDHighlightableCollectionViewCell.swift in Sources */,
 				1AFA1805218F13E700A44D64 /* IDLayouta.swift in Sources */,
 				1AB4C6E6218DE247009ECEDF /* IDWaitingBackgroundView.swift in Sources */,
+				1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */,
 				1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */,
 				1A8714BE219877A600911586 /* IndexPath.swift in Sources */,
 				1AD927F821AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift in Sources */,
@@ -451,24 +526,35 @@
 				1A720CF72189EEFC0016A844 /* UICollectionView.swift in Sources */,
 				1AFA180A218F194D00A44D64 /* UserDefaults.swift in Sources */,
 				1A83B32621A2A7F3000E51EF /* IDPresenter+Configurations.swift in Sources */,
+				1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */,
 				1AFC2B4A21A08CEE005735CD /* Calendar.swift in Sources */,
+				1A0C7FAB21D25689001A9A80 /* Int.swift in Sources */,
 				1A3128C021BEEA6100BB154A /* IDHelper.swift in Sources */,
 				1AD927FA21AC83C600B63FAB /* NSError.swift in Sources */,
+				1A0C7FAD21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift in Sources */,
 				1A31D9F921A8A0C900017360 /* Optional.swift in Sources */,
+				1A0CE79B21CA3E1D002C4DF0 /* IDJoin.swift in Sources */,
 				1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */,
 				1A720CF52189EDC00016A844 /* UIColor.swift in Sources */,
 				1A44255821AD728E00672341 /* IDMoya+Handlers.swift in Sources */,
 				1AC7E752219C5C4300570B5A /* JSON.swift in Sources */,
 				1A83B32421A2A6EB000E51EF /* IDErrorProtocol.swift in Sources */,
 				1AD927E921AC104600B63FAB /* IDMoya+OAuthObject.swift in Sources */,
+				1A0C7FA921D254F9001A9A80 /* UIImage.swift in Sources */,
 				1A720CF32189EC400016A844 /* UIStackView.swift in Sources */,
 				1AD927E721AC004300B63FAB /* IDMoya.swift in Sources */,
 				1A3128B921BE6A9B00BB154A /* IDPaginatorDelegate.swift in Sources */,
 				1A83B31E21A16853000E51EF /* Bool.swift in Sources */,
+				1A62AAF121CEE95D00A3D8D9 /* IDJSONInitBased.swift in Sources */,
 				1A1AD70B21BD9BA100853CFD /* IDPaginator.swift in Sources */,
 				1A00D11621AAD2DB00CA0ED3 /* Error.swift in Sources */,
 				1AFC2B4421A08C44005735CD /* Date.swift in Sources */,
+				1AC76BF121D2E098008B3E68 /* URL.swift in Sources */,
+				1A0CE79F21CA4AE7002C4DF0 /* IDJoinDelegate.swift in Sources */,
 				1AD927F421AC29D900B63FAB /* IDMoya+EndpointProtocol.swift in Sources */,
+				1A62AAED21CEDDB200A3D8D9 /* DateFormatter.swift in Sources */,
+				1AC76BF521D5582E008B3E68 /* IDMoya+OAuthHandlerDelegate.swift in Sources */,
+				1A0CE79921CA3D70002C4DF0 /* IDUser+Models.swift in Sources */,
 				1A1AD70721BD9B5300853CFD /* IDApplication.swift in Sources */,
 				1AFC2B4621A08CB0005735CD /* Locale.swift in Sources */,
 				1A720CF12189EA480016A844 /* IDHighlightableTableViewCell.swift in Sources */,

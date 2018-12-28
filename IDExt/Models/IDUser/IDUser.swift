@@ -19,33 +19,33 @@ open class IDUser {
 	}
 	
 	
-	public var oauthObject			: IDMoya.OAuthObject?	= nil
-	public var isChecked			: Bool					= false
+	public var oauthObject				: IDMoya.OAuthObject?	= nil
+	public var isChecked				: Bool					= false
 	
-	public var isLoggedIn			: Bool { return oauthObject != nil }
-	open var accountingBaseURL		: URL? { fatalError("IDUser.BaseURL not implemented.") }
+	public var isLoggedIn				: Bool { return oauthObject != nil }
+	open var accountingBaseURLString	: String? { fatalError("IDUser.BaseURL not implemented.") }
 	
 	open var checkAccountEndpoint	: IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
-			baseURL		: accountingBaseURL!,
-			path		: "user/account",
-			method		: .get,
-			encoding	: .default,
-			parameters	: nil,
-			headers		: nil,
-			useOAuth	: true
+			baseURLString	: accountingBaseURLString!,
+			path			: "user/account",
+			method			: .get,
+			encoding		: URLEncoding.default,
+			parameters		: nil,
+			headers			: nil,
+			useOAuth		: true
 		)
 	}
 	
 	open var logoutEndpoint			: IDMoyaEndpointObject? {
 		return IDMoyaEndpointObject(
-			baseURL		: accountingBaseURL!,
-			path		: "user/logout",
-			method		: .post,
-			encoding	: .default,
-			parameters	: nil,
-			headers		: nil,
-			useOAuth	: true
+			baseURLString	: accountingBaseURLString!,
+			path			: "user/logout",
+			method			: .post,
+			encoding		: URLEncoding.default,
+			parameters		: nil,
+			headers			: nil,
+			useOAuth		: true
 		)
 	}
 	
@@ -68,20 +68,20 @@ open class IDUser {
 	
 	public init?(fromUserDefaults flag: Bool) {
 		guard flag else { return nil }
-		guard let oauthObject = IDMoya.OAuthObject.StoredObjectFromUserDefaults() else { return nil }
+		guard let oauthObject = IDMoya.OAuthHandler.SharedDelegate?.idMoyaOAuthHandler_StoredOAuthObject else { return nil }
 		self.oauthObject = oauthObject
 		IDMoya.SetupOAuthSessionManager(oauthObject: oauthObject)
 	}
 	
 	public init(fromOAthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
-		IDMoya.OAuthObject.StoreObjectToUserDefaults(object)
+		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
 		IDMoya.SetupOAuthSessionManager(oauthObject: object)
 	}
 	
 	open func setup(oauthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
-		IDMoya.OAuthObject.StoreObjectToUserDefaults(object)
+		IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
 		IDMoya.SetupOAuthSessionManager(oauthObject: object)
 	}
 	
@@ -95,7 +95,7 @@ open class IDUser {
 						case .success:
 							IDUser.current.oauthObject	= nil
 							IDUser.current.isChecked	= false
-							IDMoya.OAuthObject.RemoveCurrentObjectFromUserDefaults()
+							IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
 							callback(nil, data)
 						default:
 							callback(IDError.withData(data), data)
@@ -112,7 +112,7 @@ open class IDUser {
 		} else {
 			oauthObject	= nil
 			isChecked	= false
-			IDMoya.OAuthObject.RemoveCurrentObjectFromUserDefaults()
+			IDMoya.OAuthHandler.SharedDelegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
 		}
 	}
 	

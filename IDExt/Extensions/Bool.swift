@@ -15,4 +15,9 @@ public extension Bool {
 		block()
 	}
 	
+	public func id_CheckAndPerform(ifTrue closure_True: @autoclosure () -> Void, ifFalse closure_False: @autoclosure () -> Void) {
+		if self { closure_True() }
+		else { closure_False() }
+	}
+	
 }

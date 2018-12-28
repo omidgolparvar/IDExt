@@ -8,16 +8,6 @@
 
 import Foundation
 
-public extension Dictionary where Key == String {
-	
-	public var id_AsJSONString: String {
-		return id_AsJSONString(withOptions: [])
-	}
-	
-	public func id_AsJSONString(withOptions options: JSONSerialization.WritingOptions = []) -> String {
-		let jsonData = try! JSONSerialization.data(withJSONObject: self, options: options)
-		let jsonString = String(data: jsonData, encoding: .utf8)!
-		return jsonString
-	}
+public extension Dictionary {
 	
 }

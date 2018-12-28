@@ -9,7 +9,7 @@
 import Foundation
 import SwiftEntryKit
 
-extension IDPresenter {
+public extension IDPresenter {
 	
 	
 	

@@ -11,15 +11,11 @@ import SwiftyJSON
 
 public extension JSON {
 	
-	public func id_As<T: IDJSONIniti>(_ type: T.Type) -> T? {
-		return T(fromJSONObject: self)
-	}
-	
 	public var id_IntFromIntOrString: Int? {
 		return self.int ?? Int(self.string ?? "//")
 	}
 	
-	public var id_DataFromMilisecond: Date? {
+	public var id_DateBasedOnMilisecond: Date? {
 		guard
 			let timeInterval_String = self.string,
 			let timeInterval_Int64 = Int64(timeInterval_String)
@@ -28,7 +24,7 @@ public extension JSON {
 		
 	}
 	
-	public var id_DateFromSecond: Date? {
+	public var id_DateBasedOnSecond: Date? {
 		if	let timeInterval_String = self.string,
 			let timeInterval_Double = Double(timeInterval_String) {
 			return Date(timeIntervalSince1970: timeInterval_Double)
@@ -48,9 +44,18 @@ public extension JSON {
 		return IDImage(from: self)
 	}
 	
+	
+	public func id_As<T: IDJSONInitBased>(_ type: T.Type) -> T? {
+		return T(fromJSONObject: self)
+	}
+	
 	public func id_DateFromString(basedOn dateFormatter: DateFormatter) -> Date? {
 		guard let string = self.string else { return nil }
 		return dateFormatter.date(from: string)
+	}
+	
+	public func id_Print() {
+		print(self)
 	}
 	
 }

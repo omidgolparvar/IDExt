@@ -14,7 +14,7 @@ import SystemConfiguration
 public final class IDMoya {
 	
 	public typealias Method				= Alamofire.HTTPMethod
-	public typealias Encoding			= Alamofire.URLEncoding
+	public typealias Encoding			= Alamofire.ParameterEncoding
 	public typealias Progress			= Alamofire.Progress
 	public typealias Parameters			= Alamofire.Parameters
 	public typealias UploadParameter	= (name: String, data: Data, mimeType: String)
@@ -133,7 +133,7 @@ public final class IDMoya {
 	
 }
 
-extension IDMoya {
+public extension IDMoya {
 	//TODO using IDError instead of raw string
 	
 	public enum ResponseHandler {

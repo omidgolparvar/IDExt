@@ -15,6 +15,17 @@ public extension Optional {
 		closure(_self)
 	}
 	
+	public func id_UnwrapOrThrow(_ error: Error) throws -> Wrapped {
+		guard let value = self else { throw error }
+		return value
+	}
+	
+	public func id_Matching(_ predicate: (Wrapped) -> Bool) -> Wrapped? {
+		guard let value = self else { return nil }
+		guard predicate(value) else { return nil }
+		return value
+	}
+	
 }
 
 public extension Optional where Wrapped: Collection {

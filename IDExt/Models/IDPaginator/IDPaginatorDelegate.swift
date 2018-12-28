@@ -21,7 +21,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	func idPaginator_PageSize					<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> Int
 	func idPaginator_PageParameterName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String
 	func idPaginator_ArrayObjectName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String?
-	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> [String: Any]?
+	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?
 	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
 	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
 	
@@ -34,16 +34,16 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	
 }
 
-extension IDPaginatorDelegate {
+public extension IDPaginatorDelegate {
 	
 	// MARK: Default Implementations
 	
-	func idPaginator_PageSize					<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> Int				{ return 20 }
-	func idPaginator_PageParameterName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String			{ return "index"}
-	func idPaginator_ArrayObjectName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String?			{ return nil}
-	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> [String: Any]?	{ return nil }
-	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?			{ return nil }
-	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?			{ return nil }
+	func idPaginator_PageSize					<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> Int					{ return 20 }
+	func idPaginator_PageParameterName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String				{ return "index"}
+	func idPaginator_ArrayObjectName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String?				{ return nil}
+	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?	{ return nil }
+	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
+	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
 	
 	
 	func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {

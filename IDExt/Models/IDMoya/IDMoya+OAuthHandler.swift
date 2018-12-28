@@ -10,21 +10,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-extension IDMoya {
+public extension IDMoya {
 	
 	public final class OAuthHandler: RequestAdapter, RequestRetrier {
 		
-		private static let LogPrefixString		= "IDMoya.OAuthHandler - "
+		public typealias OAuthObjectUserDefaultsKeys = (accessToken: String, refreshToken: String, expiresIn: String, createdAt: String)
 		
-		private static var ClientID					: String				= ""
-		private static var BaseURLString			: String				= ""
-		private static var RefreshTokenURLString	: String?				= nil
-		
-		private static var LogoutClosure			: () -> Void			= { }
-		private static var OAuthObjectClosure		: (OAuthObject) -> Void	= { _ in }
-		private static var CustomParametersClosure	: () -> [String: Any]?	= { return nil }
-		
-		private typealias RefreshCompletion = (_ succeeded: Bool, _ result: OAuthObject?) -> Void
+		public static var SharedDelegate		: IDMoyaOAuthHandlerDelegate?	= nil
 		
 		private let sessionManager: SessionManager = {
 			let configuration = URLSessionConfiguration.default
@@ -34,8 +26,9 @@ extension IDMoya {
 		
 		private let lock = NSLock()
 		
-		private var oauthObject				: OAuthObject
 		private var isRefreshing			: Bool = false
+		
+		private var oauthObject				: OAuthObject
 		private var requestsToRetry			: [RequestRetryCompletion] = []
 		
 		public init(oauthObject: OAuthObject) {
@@ -43,80 +36,55 @@ extension IDMoya {
 		}
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
-			if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(IDMoya.OAuthHandler.BaseURLString) {
-				var urlRequest = urlRequest
-				urlRequest.setValue("Bearer " + oauthObject.accessToken, forHTTPHeaderField: "Authorization")
-				return urlRequest
+			guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
-			return urlRequest
+			return sharedDelegate.idMoyaOAuthHandler_AdaptURLRequest(urlRequest: urlRequest, with: oauthObject)
 		}
 		
 		public func should(_ manager: SessionManager, retry request: Request, with error: Error, completion: @escaping RequestRetryCompletion) {
-			IDMoya.IsVerbose.id_IfIsTrue {
-				print(OAuthHandler.LogPrefixString + #function)
-			}
-			
 			lock.lock() ; defer { lock.unlock() }
 			
-			if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
-				requestsToRetry.append(completion)
-				
-				if !isRefreshing {
-					refreshTokens { [weak self] succeeded, authObject in
-						IDMoya.IsVerbose.id_IfIsTrue {
-							print(OAuthHandler.LogPrefixString + #function + " - RefreshToken Callback")
-						}
-						guard let strongSelf = self else { return }
-						
-						strongSelf.lock.lock() ; defer { strongSelf.lock.unlock() }
-						
-						if let authObject = authObject {
-							IDMoya.IsVerbose.id_IfIsTrue {
-								print(OAuthHandler.LogPrefixString + #function + " - New Token: \(authObject.accessToken)")
-							}
-							IDMoya.OAuthObject.StoreObjectToUserDefaults(authObject)
-							IDMoya.OAuthHandler.OAuthObjectClosure(authObject)
-							strongSelf.oauthObject = authObject
-						} else {
-							IDMoya.OAuthHandler.LogoutClosure()
-							NotificationCenter.default.post(name: NotificationKeys.RefreshTokenFailed, object: nil)
-						}
-						
-						strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0) }
-						strongSelf.requestsToRetry.removeAll()
-						
-						IDMoya.IsVerbose.id_IfIsTrue {
-							print(OAuthHandler.LogPrefixString + #function + " - RefreshToken Callback Ends.")
-						}
-					}
-				}
-			} else {
+			guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 else {
 				completion(false, 0.0)
+				return
+			}
+			
+			requestsToRetry.append(completion)
+			
+			guard !isRefreshing else { return }
+			
+			refreshTokens { [weak self] succeeded, oauthObject in
+				guard let strongSelf = self else { return }
+				guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+					fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
+				}
+				
+				strongSelf.lock.lock() ; defer { strongSelf.lock.unlock() }
+				
+				if let oauthObject = oauthObject {
+					sharedDelegate.idMoyaOAuthHandler_StoreNewOAuthObject(oauthObject)
+					sharedDelegate.idMoyaOAuthHandler_DidSuccessfullyRefreshed(withNewOAuthObject: oauthObject)
+					strongSelf.oauthObject = oauthObject
+				} else {
+					NotificationCenter.default.post(name: NotificationKeys.RefreshTokenFailed, object: nil)
+				}
+				
+				strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0) }
+				strongSelf.requestsToRetry.removeAll()
 			}
 		}
 		
-		private func refreshTokens(completion: @escaping RefreshCompletion) {
+		private func refreshTokens(completion: @escaping (_ succeeded: Bool, _ result: OAuthObject?) -> Void) {
+			guard let sharedDelegate = OAuthHandler.SharedDelegate else {
+				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
+			}
 			guard !isRefreshing else { return }
-			
 			isRefreshing = true
 			
-			var parameters: [String: Any] = [
-				"access_token"	: oauthObject.accessToken,
-				"refresh_token"	: oauthObject.refreshToken,
-				"client_id"		: IDMoya.OAuthHandler.ClientID,
-				"grant_type"	: "refresh_token",
-				]
-			
-			if let customParameters = IDMoya.OAuthHandler.CustomParametersClosure() {
-				for (key, value) in customParameters {
-					parameters[key] = value
-				}
-			}
-			
-			let refreshTokenURLString = IDMoya.OAuthHandler.RefreshTokenURLString ?? "\(IDMoya.OAuthHandler.BaseURLString)api/oauth2/token"
-			
+			let refreshTokenEndpoint = sharedDelegate.idMoyaOAuthHanlder_RefreshTokenEndpoint(basedOn: oauthObject)
 			sessionManager
-				.request(refreshTokenURLString, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+				.request(refreshTokenEndpoint.fullPath, method: refreshTokenEndpoint.method, parameters: refreshTokenEndpoint.parameters, encoding: refreshTokenEndpoint.encoding)
 				.responseJSON { [weak self] response in
 					guard let strongSelf = self else { return }
 					
@@ -124,39 +92,18 @@ extension IDMoya {
 						let oauthObject = OAuthObject(fromDictionary: json) {
 						completion(true, oauthObject)
 					} else {
-						IDMoya.IsVerbose.id_IfIsTrue {
-							print(IDMoya.OAuthHandler.LogPrefixString + #function + " - Invalid Response.")
-						}
+						sharedDelegate.idMoyaOAuthHandler_DidFailedToRefresh(response: response)
 						completion(false, nil)
 					}
 					strongSelf.isRefreshing = false
 			}
 		}
+		
 	}
 	
 }
 
-extension IDMoya.OAuthHandler {
-	
-	public static func SetupRequiredInfo(
-			clientID				: String,
-			baseURLString			: String,
-			refreshTokenURLString	: String?
-		) {
-		IDMoya.OAuthHandler.ClientID				= clientID
-		IDMoya.OAuthHandler.BaseURLString			= baseURLString
-		IDMoya.OAuthHandler.RefreshTokenURLString	= refreshTokenURLString
-	}
-	
-	public static func SetupClosures(
-			logoutClosure			: @escaping () -> Void,
-			oauthObjectClosure		: @escaping (IDMoya.OAuthObject) -> Void,
-			customParametersClosure	: @escaping () -> [String: Any]?
-		) {
-		IDMoya.OAuthHandler.LogoutClosure			= logoutClosure
-		IDMoya.OAuthHandler.OAuthObjectClosure		= oauthObjectClosure
-		IDMoya.OAuthHandler.CustomParametersClosure	= customParametersClosure
-	}
+public extension IDMoya.OAuthHandler {
 	
 	public final class NotificationKeys {
 		

@@ -1,5 +1,5 @@
 //
-//  IDJSONIniti.swift
+//  IDJSONInitBased.swift
 //  IDExt
 //
 //  Created by Omid Golparvar on 12/23/18.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public protocol IDJSONIniti {
+public protocol IDJSONInitBased {
 	
 	init?(fromJSONObject jsonObject: JSON)
 	

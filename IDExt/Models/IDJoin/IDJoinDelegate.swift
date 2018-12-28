@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import Alamofire
 
 public protocol IDJoinDelegate: NSObjectProtocol {
 	
-	func idJoin_BaseURL						()					-> URL
+	var idJoin_BaseURLString				: String { get }
 	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
 	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
 	
@@ -21,30 +22,30 @@ public protocol IDJoinDelegate: NSObjectProtocol {
 	
 }
 
-extension IDJoinDelegate {
+public extension IDJoinDelegate {
 	
 	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
-			baseURL		: self.idJoin_BaseURL(),
-			path		: "user/mobile-request/0",
-			method		: .post,
-			encoding	: .httpBody,
-			parameters	: [
+			baseURLString	: self.idJoin_BaseURLString,
+			path			: "user/mobile-request/0",
+			method			: .post,
+			encoding		: URLEncoding.httpBody,
+			parameters		: [
 				"mobile"	: idJoin.mobileNumber,
 				"uuid"		: IDApplication.GetUUID()
 			],
-			headers		: nil,
-			useOAuth	: false
+			headers			: nil,
+			useOAuth		: false
 		)
 	}
 	
 	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
-			baseURL		: self.idJoin_BaseURL(),
-			path		: "api/oauth2/token",
-			method		: .post,
-			encoding	: .httpBody,
-			parameters	: [
+			baseURLString	: self.idJoin_BaseURLString,
+			path			: "api/oauth2/token",
+			method			: .post,
+			encoding		: URLEncoding.httpBody,
+			parameters		: [
 				"grant_type"	: "password",
 				"username"		: idJoin.mobileNumber,
 				"password"		: idJoin.oneTimeCode,
@@ -56,8 +57,8 @@ extension IDJoinDelegate {
 				"phone_model"	: "\(UIDevice.current.dc.deviceModel)",
 				"app_version"	: UIApplication.ID_FullVersionAndBuildNumber,
 			],
-			headers		: nil,
-			useOAuth	: false
+			headers			: nil,
+			useOAuth		: false
 		)
 	}
 	

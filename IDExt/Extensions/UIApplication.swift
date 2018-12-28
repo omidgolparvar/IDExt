@@ -38,4 +38,27 @@ public extension UIApplication {
 		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
 	
+	public static func ID_SwitchRootViewController(
+		to viewController	: UIViewController,
+		animated			: Bool = true,
+		duration			: TimeInterval = 0.5,
+		options				: UIView.AnimationOptions = .transitionFlipFromRight,
+		_ completion		: (() -> Void)? = nil) {
+		
+		guard let window = UIApplication.shared.keyWindow else { return }
+		guard animated else {
+			window.rootViewController = viewController
+			completion?()
+			return
+		}
+		
+		UIView.transition(with: window, duration: duration, options: options, animations: {
+			let oldState = UIView.areAnimationsEnabled
+			UIView.setAnimationsEnabled(false)
+			window.rootViewController = viewController
+			UIView.setAnimationsEnabled(oldState)
+		}, completion: { _ in
+			completion?()
+		})
+	}
 }

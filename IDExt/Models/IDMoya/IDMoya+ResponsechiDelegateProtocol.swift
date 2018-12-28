@@ -24,7 +24,7 @@ public protocol IDMoyaResponsechiDelegate: NSObjectProtocol {
 	
 }
 
-extension IDMoyaResponsechiDelegate {
+public extension IDMoyaResponsechiDelegate {
 	
 	var idMoya_HasNoConnectionHandler		: Bool { return false }
 	
