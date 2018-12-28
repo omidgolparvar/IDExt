@@ -64,8 +64,8 @@ public func idMoyaOAuthHanlder_RefreshTokenEndpoint(_ oauthHandler: IDMoya.OAuth
     ],
     headers       : nil,
     useOAuth      : false
-		)
-	}
+  )
+}
 ```
 
 <h3 dir='rtl'>متد <code>idMoyaOAuthHandler_AdaptURLRequest</code></h3>
@@ -177,6 +177,14 @@ public func idMoyaOAuthHandler_RemoveCurrentOAuthObject(_ oauthHandler: IDMoya.O
 }
 ```
 
+<h3 dir='rtl'><b>نکات مهم</b></h3>
+<p dir='rtl'>
+<ul dir='rtl'>
+  <li>هیچ‌کدوم از مشخصه‌های پروتکل، اجباری نیستن؛ چون همه‌شون پیاده‌سازی پیشفرض دارن.</li>
+  <li>مدل <code>OAuthHandler</code> یه مشخصه از نوع <code>static</code> داره، که اون <span style='color:blue;'><b>⚠️ حتما ⚠️</b></span> مقداردهی بشه. پیشنهاد من اینه که مقدارش رو برابر <code>AppDelegate</code> قرار بدین. اینجوری هم مدیریتش آسون‌تره، و هم می‌دونیم که تا وقتی اپ باز هست، مقدار اون مشخصه برابر <code>nil</code> نخواهد شد.
+  </li>
+</ul>
+</p>
 
 
 
