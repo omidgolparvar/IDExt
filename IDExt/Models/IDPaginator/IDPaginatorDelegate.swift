@@ -24,6 +24,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?
 	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
 	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
+	func idPaginator_ShouldLoadNextPage			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: JSON)	-> Bool
 	
 	
 	func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
@@ -38,15 +39,18 @@ public extension IDPaginatorDelegate {
 	
 	// MARK: Default Implementations
 	
-	func idPaginator_PageSize					<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> Int					{ return 20 }
-	func idPaginator_PageParameterName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String				{ return "index"}
-	func idPaginator_ArrayObjectName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String?				{ return nil}
-	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?	{ return nil }
-	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
-	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
+	public func idPaginator_PageSize				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> Int					{ return 20 }
+	public func idPaginator_PageParameterName		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String				{ return "index"}
+	public func idPaginator_ArrayObjectName			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> String?				{ return nil}
+	public func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?	{ return nil }
+	public func idPaginator_ViewForEmptyList		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
+	public func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
 	
+	public func idPaginator_ShouldLoadNextPage		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: JSON)	-> Bool {
+		return lastItemsCount >= self.idPaginator_PageSize(paginator)
+	}
 	
-	func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
+	public func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
 		//TODO check isVerbose and print data
 		let tableView = self.idPaginator_TableView(paginator)
 		
@@ -65,7 +69,7 @@ public extension IDPaginatorDelegate {
 		}
 	}
 	
-	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
+	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
 		//TODO check isVerbose and print data
 		let tableView = self.idPaginator_TableView(paginator)
 		
@@ -95,7 +99,7 @@ public extension IDPaginatorDelegate {
 		tableView.reloadData()
 	}
 	
-	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError) {
+	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError) {
 		//TODO check isVerbose and print data
 		let tableView = self.idPaginator_TableView(paginator)
 		
@@ -110,7 +114,7 @@ public extension IDPaginatorDelegate {
 		}
 	}
 	
-	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON) {
+	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON) {
 		
 	}
 	

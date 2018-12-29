@@ -61,6 +61,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 						_self.appendNewItems(arrayOfItems)
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: arrayOfItems)
 						_self.currentPage += 1
+						_self.setupStatusForLoadingNextPage(lastItems: arrayOfItems, jsonObject: json)
 					} else {
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .requestWithInvalidResponse)
 						_self.status = .shouldContinue
@@ -101,15 +102,18 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 	}
 	
 	private func appendNewItems(_ items: [T]) {
-		guard let delegate = delegate else { return }
 		if self.items == nil {
 			self.items = items
 		} else {
 			self.items!.append(contentsOf: items)
 		}
-		
-		let pageSize = delegate.idPaginator_PageSize(self)
-		status = items.count >= pageSize ? .shouldContinue : .shouldNotContinue
+	}
+	
+	private func setupStatusForLoadingNextPage(lastItems: [T], jsonObject: JSON) {
+		guard let delegate = delegate else { return }
+		status = delegate.idPaginator_ShouldLoadNextPage(self, lastItemsCount: lastItems.count, lastJSONObject: jsonObject) ?
+			.shouldContinue :
+			.shouldNotContinue
 	}
 	
 	
