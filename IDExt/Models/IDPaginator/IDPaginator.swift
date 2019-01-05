@@ -101,6 +101,12 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		return items?.id_SafeItem(at: index)
 	}
 	
+	public func resetToInitialState() {
+		self.items			= nil
+		self.currentPage	= 0
+		self.status			= .shouldContinue
+	}
+	
 	private func appendNewItems(_ items: [T]) {
 		if self.items == nil {
 			self.items = items

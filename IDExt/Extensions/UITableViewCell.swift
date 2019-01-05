@@ -20,4 +20,15 @@ public extension UITableViewCell {
 		}
 	}
 	
+	@objc
+	public dynamic var id_SelectionColor: UIColor? {
+		get { return selectedBackgroundView?.backgroundColor }
+		set {
+			guard selectionStyle != .none else { return }
+			selectedBackgroundView = UIView().id_with {
+				$0.backgroundColor = newValue
+			}
+		}
+	}
+	
 }

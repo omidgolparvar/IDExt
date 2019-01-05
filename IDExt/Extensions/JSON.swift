@@ -8,11 +8,23 @@
 
 import Foundation
 import SwiftyJSON
+import PersianSwift
 
 public extension JSON {
 	
 	public var id_IntFromIntOrString: Int? {
 		return self.int ?? Int(self.string ?? "//")
+	}
+	
+	public var id_DoubleFromDoubleOrString: Double? {
+		return self.double ?? Double(self.string ?? "//")
+	}
+	
+	public var id_BooleanFromBoolOrIntOrString: Bool? {
+		if let boolValue	= self.bool		{ return boolValue }
+		if let intValue		= self.int		{ return intValue == 1 }
+		if let stringValue	= self.string	{ return stringValue == "1" }
+		return nil
 	}
 	
 	public var id_DateBasedOnMilisecond: Date? {
@@ -36,12 +48,19 @@ public extension JSON {
 	}
 	
 	public var id_HasStatusWithSuccessfulValue: Bool {
-		guard let status = self["status"].id_IntFromIntOrString else { return false }
-		return status == 1
+		return self["status"].id_BooleanFromBoolOrIntOrString ?? false
 	}
 	
 	public var id_Image: IDImage? {
 		return IDImage(from: self)
+	}
+	
+	public var id_DynamicJSON: IDDynamicJSON {
+		return IDDynamicJSON(from: self)
+	}
+	
+	public var id_StringWithPersianDigits: String? {
+		return self.string?.ps.withPersianDigits
 	}
 	
 	
@@ -59,3 +78,4 @@ public extension JSON {
 	}
 	
 }
+

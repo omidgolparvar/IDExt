@@ -22,6 +22,14 @@ public final class IDApplication {
 		#endif
 	}
 	
+	public static var IsSimulator: Bool {
+		#if targetEnvironment(simulator)
+			return true
+		#else
+			return false
+		#endif
+	}
+	
 	public static func GetUUID(storedInUserDefaults userDefaults: UserDefaults = UsingUserDefaultsGetter()) -> String {
 		let key = "__ID.Application.UUID"
 		if let uuid = userDefaults.string(forKey: key) {
@@ -45,5 +53,16 @@ public final class IDApplication {
 		guard IsInDebugMode else { return }
 		closure()
 	}
+	
+	public static func OnlyOnSimulator(closure: () -> Void) {
+		guard IsSimulator else { return }
+		closure()
+	}
+	
+	public static func OnlyOnRealDevice(closure: () -> Void) {
+		guard !IsSimulator else { return }
+		closure()
+	}
+	
 	
 }

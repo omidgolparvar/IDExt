@@ -8,6 +8,7 @@
 
 import Foundation
 import UIDeviceComplete
+import UserNotifications
 
 public final class IDHelper {
 	
@@ -24,5 +25,27 @@ public final class IDHelper {
 		UserDefaults.standard.id_Store(isEnable ? nil : false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 	}
 	
+	public static func AddNotification(identifier: String = UUID().uuidString, title: String, body: String, delay: TimeInterval, completionHandler: ((Error?) -> Void)? = nil) {
+		guard !identifier.id_Trimmed.isEmpty else {
+			print("IDHelper.CreateLocalNotification: Identifier is empty; Notification NOT created.")
+			return
+		}
+		let center = UNUserNotificationCenter.current()
+		let content = UNMutableNotificationContent.ID_Initialize(title: title, body: body)
+		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
+		let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+		center.add(request, withCompletionHandler: completionHandler)
+	}
+	
+	public static func AddNotification(content: UNMutableNotificationContent, identifier: String = UUID().uuidString, delay: TimeInterval, completionHandler: ((Error?) -> Void)? = nil) {
+		guard !identifier.id_Trimmed.isEmpty else {
+			print("IDHelper.CreateLocalNotification: Identifier is empty; Notification NOT created.")
+			return
+		}
+		let center = UNUserNotificationCenter.current()
+		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
+		let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+		center.add(request, withCompletionHandler: completionHandler)
+	}
 	
 }

@@ -44,4 +44,15 @@ public extension UITextField {
 		self.id_SetRightPadding(padding)
 	}
 	
+	public func id_SetLeftText(_ text: String, font: UIFont, textColor: UIColor) {
+		let nsString = text as NSString
+		let size = nsString.size(withAttributes: [.font: font])
+		let label = UILabel(frame: .init(x: 0, y: 0, width: size.width + 16, height: self.frame.height))
+		label.text = text
+		label.font = font
+		label.textColor = textColor
+		label.textAlignment = .center
+		self.id_SetLeftView(label)
+	}
+	
 }

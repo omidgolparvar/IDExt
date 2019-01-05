@@ -28,6 +28,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	
 	
 	func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
+	func idPaginator_DidResetToInitialState		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T])
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError)
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON)
@@ -115,6 +116,10 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON) {
+		
+	}
+	
+	public func idPaginator_DidResetToInitialState	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>) {
 		
 	}
 	

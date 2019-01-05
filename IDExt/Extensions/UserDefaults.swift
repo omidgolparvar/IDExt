@@ -11,8 +11,27 @@ import Foundation
 public extension UserDefaults {
 	
 	public func id_Store(_ value: Any?, forKey key: String) {
-		self.set(value, forKey: key)
-		self.synchronize()
+		set(value, forKey: key)
+		synchronize()
+	}
+	
+	public func id_Get<T>(_ key: IDUserDefaultsKey<T?>) -> T? {
+		return self.object(forKey: key.name) as? T
+	}
+	
+	public func id_Set<T>(_ value: T?, forKey key: IDUserDefaultsKey<T?>) {
+		guard let newValue = value else {
+			removeObject(forKey: key.name)
+			synchronize()
+			return
+		}
+		set(newValue, forKey: key.name)
+		synchronize()
+	}
+	
+	public func id_Remove<T>(_ key: IDUserDefaultsKey<T?>) {
+		removeObject(forKey: key.name)
+		synchronize()
 	}
 	
 }

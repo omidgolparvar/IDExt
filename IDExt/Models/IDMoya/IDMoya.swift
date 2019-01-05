@@ -78,7 +78,7 @@ public final class IDMoya {
 		return request
 	}
 	
-	internal static var isConnectedToNetwork: Bool {
+	public static var isConnectedToNetwork: Bool {
 		var zeroAddress = sockaddr_in()
 		zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
 		zeroAddress.sin_family = sa_family_t(AF_INET)
@@ -94,6 +94,20 @@ public final class IDMoya {
 		let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
 		let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
 		return (isReachable && !needsConnection)
+	}
+	
+	public static var isConnectedToVPN: Bool {
+		#warning("not tested.")
+		guard
+			let settings = CFNetworkCopySystemProxySettings()?.takeRetainedValue() as? Dictionary<String, Any>,
+			let scopes = settings["__SCOPED__"] as? [String:Any]
+			else { return false }
+		for (key, _) in scopes {
+			if key.contains("tap") || key.contains("tun") || key.contains("ppp") || key.contains("ipsec") || key.contains("ipsec0") {
+				return true
+			}
+		}
+		return false
 	}
 	
 	public static func SetupOAuthSessionManager(cliendID: String, baseURLString: String, oauthObject: OAuthObject) {
