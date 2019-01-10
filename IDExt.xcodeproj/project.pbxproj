@@ -56,6 +56,10 @@
 		1A83B32821A2AC03000E51EF /* IDPresenter+PrivateMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83B32721A2AC03000E51EF /* IDPresenter+PrivateMethods.swift */; };
 		1A83B32A21A2B6FB000E51EF /* IDHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A83B32921A2B6FB000E51EF /* IDHUD.swift */; };
 		1A8714BE219877A600911586 /* IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8714BD219877A600911586 /* IndexPath.swift */; };
+		1A9BCD7B21E48FD600509B76 /* IDOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9BCD7A21E48FD600509B76 /* IDOperators.swift */; };
+		1A9BCD7D21E4959100509B76 /* IDTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9BCD7C21E4959100509B76 /* IDTableViewHandler.swift */; };
+		1A9BCD7F21E495DF00509B76 /* IDTableViewHandler+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9BCD7E21E495DF00509B76 /* IDTableViewHandler+DataSource.swift */; };
+		1A9BCD8121E495EE00509B76 /* IDTableViewHandler+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9BCD8021E495EE00509B76 /* IDTableViewHandler+Delegate.swift */; };
 		1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9F609121C2D38C002A4E30 /* IDMoya+Uploader.swift */; };
 		1AA0518421E0A8AD004A9F28 /* IDUserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0518321E0A8AD004A9F28 /* IDUserDefaultsKey.swift */; };
 		1AA0518621E0AF28004A9F28 /* IDWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0518521E0AF28004A9F28 /* IDWith.swift */; };
@@ -114,7 +118,6 @@
 		1A3128BD21BEB8B800BB154A /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		1A3128BF21BEEA6100BB154A /* IDHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDHelper.swift; sourceTree = "<group>"; };
 		1A31D9F821A8A0C900017360 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
-		1A3D150D21E0E2250085B17B /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToolbar.swift; sourceTree = "<group>"; };
 		1A44255721AD728E00672341 /* IDMoya+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+Handlers.swift"; sourceTree = "<group>"; };
 		1A5D27D021DE6E2E00074BA7 /* IDDynamicJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDDynamicJSON.swift; sourceTree = "<group>"; };
@@ -147,6 +150,10 @@
 		1A83B32721A2AC03000E51EF /* IDPresenter+PrivateMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDPresenter+PrivateMethods.swift"; sourceTree = "<group>"; };
 		1A83B32921A2B6FB000E51EF /* IDHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDHUD.swift; sourceTree = "<group>"; };
 		1A8714BD219877A600911586 /* IndexPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexPath.swift; sourceTree = "<group>"; };
+		1A9BCD7A21E48FD600509B76 /* IDOperators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDOperators.swift; sourceTree = "<group>"; };
+		1A9BCD7C21E4959100509B76 /* IDTableViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDTableViewHandler.swift; sourceTree = "<group>"; };
+		1A9BCD7E21E495DF00509B76 /* IDTableViewHandler+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDTableViewHandler+DataSource.swift"; sourceTree = "<group>"; };
+		1A9BCD8021E495EE00509B76 /* IDTableViewHandler+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDTableViewHandler+Delegate.swift"; sourceTree = "<group>"; };
 		1A9F609121C2D38C002A4E30 /* IDMoya+Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+Uploader.swift"; sourceTree = "<group>"; };
 		1AA0518321E0A8AD004A9F28 /* IDUserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDUserDefaultsKey.swift; sourceTree = "<group>"; };
 		1AA0518521E0AF28004A9F28 /* IDWith.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDWith.swift; sourceTree = "<group>"; };
@@ -172,6 +179,7 @@
 		1AD927F321AC29D900B63FAB /* IDMoya+EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+EndpointProtocol.swift"; sourceTree = "<group>"; };
 		1AD927F721AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+ResponsechiDelegateProtocol.swift"; sourceTree = "<group>"; };
 		1AD927F921AC83C600B63FAB /* NSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		1AE2D4BB21E1F944004AD84B /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1AFA1800218EE9DB00A44D64 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		1AFA1804218F13E700A44D64 /* IDLayouta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDLayouta.swift; sourceTree = "<group>"; };
 		1AFA1809218F194D00A44D64 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -230,6 +238,7 @@
 		1A720CC92189D2500016A844 = {
 			isa = PBXGroup;
 			children = (
+				1AE2D4BB21E1F944004AD84B /* Playground.playground */,
 				1A720CD52189D2500016A844 /* IDExt */,
 				1A720CD42189D2500016A844 /* Products */,
 				694EF21251614B3B0162C8B4 /* Pods */,
@@ -255,7 +264,6 @@
 				1AFA180F218F1CD700A44D64 /* Other */,
 				1A720CE32189D34C0016A844 /* Protocols */,
 				1AB4C6DF218DE247009ECEDF /* Views */,
-				1A3D150D21E0E2250085B17B /* Playground.playground */,
 			);
 			path = IDExt;
 			sourceTree = "<group>";
@@ -322,6 +330,16 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		1A9BCD8221E495F500509B76 /* IDTableViewHandler */ = {
+			isa = PBXGroup;
+			children = (
+				1A9BCD7C21E4959100509B76 /* IDTableViewHandler.swift */,
+				1A9BCD7E21E495DF00509B76 /* IDTableViewHandler+DataSource.swift */,
+				1A9BCD8021E495EE00509B76 /* IDTableViewHandler+Delegate.swift */,
+			);
+			path = IDTableViewHandler;
+			sourceTree = "<group>";
+		};
 		1AAFEAED21A4115900BB9F02 /* IDPresenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,22 +381,23 @@
 			isa = PBXGroup;
 			children = (
 				1A1AD70621BD9B5300853CFD /* IDApplication.swift */,
+				1AD410EC21DBE37E003EC04A /* IDDarhamer.swift */,
+				1AD410EE21DBE3BE003EC04A /* IDDarhamerDelegate.swift */,
+				1A5D27D021DE6E2E00074BA7 /* IDDynamicJSON.swift */,
 				1AB4C6EA218DE63B009ECEDF /* IDError.swift */,
 				1A62AAE821CCF48A00A3D8D9 /* IDFont.swift */,
+				1A5D27D221DED03F00074BA7 /* IDGradientView.swift */,
 				1A83B32921A2B6FB000E51EF /* IDHUD.swift */,
 				1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */,
 				1AFA1804218F13E700A44D64 /* IDLayouta.swift */,
+				1AA0518321E0A8AD004A9F28 /* IDUserDefaultsKey.swift */,
 				1AD410EA21DBC3BE003EC04A /* TypeAliases.swift */,
 				1A62AAE521CC05D700A3D8D9 /* IDJoin */,
 				1AD927EC21AC136400B63FAB /* IDMoya */,
 				1A3128BA21BE6B3100BB154A /* IDPaginator */,
 				1AAFEAED21A4115900BB9F02 /* IDPresenter */,
+				1A9BCD8221E495F500509B76 /* IDTableViewHandler */,
 				1A62AAE421CC05C500A3D8D9 /* IDUser */,
-				1AD410EC21DBE37E003EC04A /* IDDarhamer.swift */,
-				1AD410EE21DBE3BE003EC04A /* IDDarhamerDelegate.swift */,
-				1A5D27D021DE6E2E00074BA7 /* IDDynamicJSON.swift */,
-				1A5D27D221DED03F00074BA7 /* IDGradientView.swift */,
-				1AA0518321E0A8AD004A9F28 /* IDUserDefaultsKey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				1A3128BF21BEEA6100BB154A /* IDHelper.swift */,
+				1A9BCD7A21E48FD600509B76 /* IDOperators.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -543,10 +563,12 @@
 				1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */,
 				1A0CE79421C90A21002C4DF0 /* CGRect.swift in Sources */,
 				1AFA1811218F365F00A44D64 /* UISegmentedControl.swift in Sources */,
+				1A9BCD7D21E4959100509B76 /* IDTableViewHandler.swift in Sources */,
 				1A720CEF2189E9F70016A844 /* UITableViewCell.swift in Sources */,
 				1A5D27D321DED03F00074BA7 /* IDGradientView.swift in Sources */,
 				1A720CEB2189E56C0016A844 /* UITextView.swift in Sources */,
 				1A720CED2189E9C00016A844 /* UITextField.swift in Sources */,
+				1A9BCD7F21E495DF00509B76 /* IDTableViewHandler+DataSource.swift in Sources */,
 				1A720CF92189EF3F0016A844 /* IDCollectionViewCell.swift in Sources */,
 				1AB4C6E9218DE247009ECEDF /* IDMessageBackgroundView.swift in Sources */,
 				1A0CE79721CA3BE5002C4DF0 /* IDUser.swift in Sources */,
@@ -555,6 +577,7 @@
 				1AB4C6E6218DE247009ECEDF /* IDWaitingBackgroundView.swift in Sources */,
 				1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */,
 				1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */,
+				1A9BCD8121E495EE00509B76 /* IDTableViewHandler+Delegate.swift in Sources */,
 				1A8714BE219877A600911586 /* IndexPath.swift in Sources */,
 				1AA0518621E0AF28004A9F28 /* IDWith.swift in Sources */,
 				1AD927F821AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift in Sources */,
@@ -568,6 +591,7 @@
 				1A3128C021BEEA6100BB154A /* IDHelper.swift in Sources */,
 				1AD927FA21AC83C600B63FAB /* NSError.swift in Sources */,
 				1A0C7FAD21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift in Sources */,
+				1A9BCD7B21E48FD600509B76 /* IDOperators.swift in Sources */,
 				1A31D9F921A8A0C900017360 /* Optional.swift in Sources */,
 				1A0CE79B21CA3E1D002C4DF0 /* IDJoin.swift in Sources */,
 				1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */,

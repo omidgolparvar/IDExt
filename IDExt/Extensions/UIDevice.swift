@@ -14,13 +14,13 @@ public extension UIDevice {
 	public static var ID_DefaultDeviceType: DeviceFamily = .iPhone
 	
 	public static func ID_GetValueBasedOnDeviceType<T>(iPhoneValue: T, iPadValue: T) -> T {
-		let deviceFamily = UIDevice.current.dc.deviceFamily
-		switch deviceFamily {
-		case .iPad		: return iPadValue
-		case .iPhone	: return iPhoneValue
-		case .simulator where ID_DefaultDeviceType == .iPhone	: return iPhoneValue
-		case .simulator where ID_DefaultDeviceType == .iPad		: return iPadValue
-		default			: return iPhoneValue
+		let currentDevice_defaultDevice = (UIDevice.current.dc.deviceFamily, ID_DefaultDeviceType)
+		switch currentDevice_defaultDevice {
+		case (.iPad, _)				: return iPadValue
+		case (.iPhone, _)			: return iPhoneValue
+		case (.simulator, .iPhone)	: return iPhoneValue
+		case (.simulator, .iPad)	: return iPadValue
+		default						: return iPhoneValue
 		}
 	}
 	

@@ -21,7 +21,4 @@ public extension IDType where Self: Any {
 
 extension NSObject: IDType {}
 
-postfix operator <>
-public postfix func <><T: IDType>(lhs: T) -> T.Type {
-	return lhs.__Type
-}
+

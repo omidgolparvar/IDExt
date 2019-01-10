@@ -26,7 +26,7 @@ public extension UIApplication {
 	}
 	
 	public static var ID_TopMostViewController: UIViewController? {
-		return UIApplication.shared.keyWindow?.rootViewController?.id_TopMostViewController()
+		return UIApplication.shared.keyWindow?.rootViewController?.id_TopMostViewController
 	}
 	
 	public static func ID_Open(url: URL, completionHandler: ((Bool) -> Void)? = nil) {
@@ -61,4 +61,5 @@ public extension UIApplication {
 			completion?()
 		})
 	}
+	
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 public extension String {
 	
@@ -58,6 +59,32 @@ public extension String {
 	
 	public var id_Range: NSRange {
 		return NSRange(location: 0, length: count)
+	}
+	
+	public var id_SHA512String: String {
+		var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
+		if let data = self.data(using: String.Encoding.utf8) {
+			let value =  data as NSData
+			CC_SHA512(value.bytes, CC_LONG(data.count), &digest)
+		}
+		var digestHex = ""
+		for index in 0..<Int(CC_SHA512_DIGEST_LENGTH) {
+			digestHex += String(format: "%02x", digest[index])
+		}
+		return digestHex.uppercased()
+	}
+	
+	public var id_MD5String: String {
+		var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
+		if let data = self.data(using: String.Encoding.utf8) {
+			let value =  data as NSData
+			CC_MD5(value.bytes, CC_LONG(data.count), &digest)
+		}
+		var digestHex = ""
+		for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
+			digestHex += String(format: "%02x", digest[index])
+		}
+		return digestHex.uppercased()
 	}
 	
 	
@@ -183,4 +210,32 @@ public extension String {
 		return mutable
 	}
 	
+	public mutating func id_AddStartPadding(count: Int, character: Character) {
+		var result = self
+		guard count > self.count else { return }
+		for _ in 0..<(count - self.count) {
+			result = String(character) + result
+		}
+		self = result
+	}
+	
+	public mutating func id_AddEndPadding(count: Int, character: String) {
+		var result = self
+		guard count > self.count else { return }
+		for _ in 0..<(count - self.count) {
+			result = result + String(character)
+		}
+		self = result
+	}
+	
+	public mutating func id_ConvertToCorrectMobileNumber() {
+		var mobile = self.replacingOccurrences(of: "[^0-9+]", with: "", options: .regularExpression)
+		if mobile.hasPrefix("00989")	{ mobile = mobile.id_ReplacedFirstOccurrence(of: "00989", with: "09") }
+		if mobile.hasPrefix("+989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "+989", with: "09") }
+		if mobile.hasPrefix("989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "989", with: "09") }
+		self = mobile
+	}
+	
+	
 }
+

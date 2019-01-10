@@ -12,9 +12,9 @@ import UserNotifications
 
 public final class IDHelper {
 	
-	public static func DebugPrint(_ items: Any..., separator: String = ", ", terminator: String = "\n") {
+	public static func DebugPrint(_ item: Any) {
 		#if DEBUG
-			print(items, separator: separator, terminator: terminator)
+			print(item)
 			return
 		#else
 			return

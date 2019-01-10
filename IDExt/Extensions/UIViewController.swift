@@ -39,17 +39,17 @@ public extension UIViewController {
 		NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
 	}
 	
-	public func id_TopMostViewController() -> UIViewController {
+	public var id_TopMostViewController: UIViewController {
 		
 		if let navigation = self as? UINavigationController {
-			return navigation.visibleViewController!.id_TopMostViewController()
+			return navigation.visibleViewController!.id_TopMostViewController
 		}
 		
 		if let tab = self as? UITabBarController {
 			if let selectedTab = tab.selectedViewController {
-				return selectedTab.id_TopMostViewController()
+				return selectedTab.id_TopMostViewController
 			}
-			return tab.id_TopMostViewController()
+			return tab.id_TopMostViewController
 		}
 		
 		if self.presentedViewController == nil {
@@ -57,17 +57,17 @@ public extension UIViewController {
 		}
 		
 		if let navigation = self.presentedViewController as? UINavigationController {
-			return navigation.visibleViewController!.id_TopMostViewController()
+			return navigation.visibleViewController!.id_TopMostViewController
 		}
 		
 		if let tab = self.presentedViewController as? UITabBarController {
 			if let selectedTab = tab.selectedViewController {
-				return selectedTab.id_TopMostViewController()
+				return selectedTab.id_TopMostViewController
 			}
-			return tab.id_TopMostViewController()
+			return tab.id_TopMostViewController
 		}
 		
-		return self.presentedViewController!.id_TopMostViewController()
+		return self.presentedViewController!.id_TopMostViewController
 	}
 	
 	public func id_PresentActivityController(forItems array: [Any], customActivities: [UIActivity]? = nil, sourceView: UIView? = nil) {
