@@ -8,19 +8,17 @@
 
 import Foundation
 
+
 public final class IDTableViewHandler: NSObject {
 	
-	weak var tableView	: UITableView!
-	
-	var dataSource						: (
+	public typealias DataSource	= (
 		numberOfSections				: () -> Int,
 		numberOfRowsInSection			: (Int) -> Int,
 		cellForRowAtIndexPath			: (UITableView, IndexPath) -> UITableViewCell,
 		titleForHeaderInSection			: (Int) -> String?,
 		titleForFooterInSection			: (Int) -> String?
 	)
-	
-	var delegate						: (
+	public typealias Delegate	= (
 		heightForRowAtIndexPath			: (IndexPath) -> CGFloat,
 		heightForHeaderInSection		: (Int) -> CGFloat,
 		heightForFooterInSection		: (Int) -> CGFloat,
@@ -32,6 +30,11 @@ public final class IDTableViewHandler: NSObject {
 		didSelectRowAtIndexPath			: (IndexPath) -> Void,
 		didDeselectRowAtIndexPath		: (IndexPath) -> Void
 	)
+	
+	weak var tableView	: UITableView!
+	
+	var dataSource		: DataSource
+	var delegate		: Delegate
 	
 	public init(for tableView: UITableView) {
 		self.tableView = tableView
