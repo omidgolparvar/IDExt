@@ -15,4 +15,8 @@ public extension Array {
 		return self[index]
 	}
 	
+	public func id_Enumerate(_ closure: (Int, Element) -> Void) {
+		self.enumerated().forEach { (index, element) in closure(index, element) }
+	}
+	
 }

@@ -10,6 +10,14 @@ import Foundation
 
 public extension UITableView {
 	
+	public func id_RegisterIDCells<T: IDTableViewCell>(cellTypes: [T.Type]) {
+		cellTypes.forEach { self.id_RegisterIDCell(cellType: $0) }
+	}
+	
+	public func id_RegisterIDCells<T: IDTableViewCell>(cellClasses: [T.Type]) {
+		cellClasses.forEach { self.id_RegisterIDCell(cellClass: $0) }
+	}
+	
 	public func id_RegisterIDCell<T: IDTableViewCell>(cellType: T.Type) {
 		let nib = UINib(nibName: cellType.Identifier, bundle: nil)
 		self.register(nib, forCellReuseIdentifier: cellType.Identifier)
@@ -47,6 +55,11 @@ public extension UITableView {
 			self.numberOfRows(inSection: indexPath.section) >= indexPath.row
 			else { return }
 		self.scrollToRow(at: indexPath, at: position, animated: animated)
+	}
+	
+	public func id_SetDelegateAndDataSource<T: UITableViewDelegate & UITableViewDataSource>(to object: T) {
+		self.delegate	= object
+		self.dataSource	= object
 	}
 	
 	//TODO	Func for PaginationView

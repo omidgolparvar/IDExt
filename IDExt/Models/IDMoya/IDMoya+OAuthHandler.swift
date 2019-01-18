@@ -115,4 +115,8 @@ public extension IDMoya.OAuthHandler {
 	
 }
 
-
+public extension Notification.Name {
+	
+	public static var IDMoya_OAthHandler_RefreshTokenFailed: Notification.Name { return IDMoya.OAuthHandler.NotificationKeys.RefreshTokenFailed }
+	
+}

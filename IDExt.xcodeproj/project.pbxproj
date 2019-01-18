@@ -36,6 +36,8 @@
 		1A62AAED21CEDDB200A3D8D9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAEC21CEDDB200A3D8D9 /* DateFormatter.swift */; };
 		1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAEE21CEE56D00A3D8D9 /* Dictionary.swift */; };
 		1A62AAF121CEE95D00A3D8D9 /* IDJSONInitBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */; };
+		1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */; };
+		1A64E5BE21F232C0005FEFE9 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */; };
 		1A720CD82189D2500016A844 /* IDExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A720CD62189D2500016A844 /* IDExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A720CDF2189D26C0016A844 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CDE2189D26C0016A844 /* UIViewController.swift */; };
 		1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CE12189D3410016A844 /* IDTableViewCell.swift */; };
@@ -130,6 +132,8 @@
 		1A62AAEC21CEDDB200A3D8D9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		1A62AAEE21CEE56D00A3D8D9 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJSONInitBased.swift; sourceTree = "<group>"; };
+		1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		1A720CD32189D2500016A844 /* IDExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IDExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A720CD62189D2500016A844 /* IDExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDExt.h; sourceTree = "<group>"; };
 		1A720CD72189D2500016A844 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 				1AA0518721E0B462004A9F28 /* NSAttributedString.swift */,
 				1ADEA5D521E801E700AD4438 /* UILabel.swift */,
 				1A06A1E821EC6D81006224DC /* Sequence.swift */,
+				1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */,
+				1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				1A83B32821A2AC03000E51EF /* IDPresenter+PrivateMethods.swift in Sources */,
 				1AFA1817218F4DC100A44D64 /* UIApplication.swift in Sources */,
 				1AB4C6EB218DE63B009ECEDF /* IDError.swift in Sources */,
+				1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */,
 				1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */,
 				1AFA1801218EE9DB00A44D64 /* UIDevice.swift in Sources */,
 				1AFA180C218F1AE900A44D64 /* String.swift in Sources */,
@@ -634,6 +641,7 @@
 				1AFC2B4621A08CB0005735CD /* Locale.swift in Sources */,
 				1A720CF12189EA480016A844 /* IDHighlightableTableViewCell.swift in Sources */,
 				1AD410ED21DBE37E003EC04A /* IDDarhamer.swift in Sources */,
+				1A64E5BE21F232C0005FEFE9 /* TimeInterval.swift in Sources */,
 				1AFA1815218F42E700A44D64 /* UIFont.swift in Sources */,
 				1A40F6B121B3C5DD002FA2F5 /* UIToolbar.swift in Sources */,
 				1A83B32221A2A682000E51EF /* IDPresenter.swift in Sources */,

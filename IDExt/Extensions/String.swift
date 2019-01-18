@@ -88,6 +88,11 @@ public extension String {
 	}
 	
 	
+	
+	public func id_ConvertToColor() -> UIColor {
+		return UIColor.ID_Initialize(hexCode: self)
+	}
+	
 	public mutating func id_ReplaceFirstOccurrence(ofString target: String, withString replaceString: String) {
 		if let range = self.range(of: target) {
 			self = self.replacingCharacters(in: range, with: replaceString)
@@ -234,6 +239,10 @@ public extension String {
 		if mobile.hasPrefix("+989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "+989", with: "09") }
 		if mobile.hasPrefix("989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "989", with: "09") }
 		self = mobile
+	}
+	
+	public func id_StringByPrefix(_ maxLength: Int) -> String {
+		return String(self.prefix(maxLength))
 	}
 	
 	

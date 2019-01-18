@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIBarButtonItem {
 	
-	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any], for state: UIControl.State = UIControl.State()) {
+	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any], for state: UIControl.State = .normal) {
 		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: state)
 	}
 	

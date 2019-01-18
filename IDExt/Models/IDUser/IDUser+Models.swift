@@ -24,3 +24,9 @@ public extension IDUser {
 	}
 	
 }
+
+public extension Notification.Name {
+	
+	public static var IDUser_User_LoggedIn: Notification.Name { return IDUser.NotificationKeys.User_LoggedIn }
+	
+}

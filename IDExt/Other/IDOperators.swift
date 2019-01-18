@@ -23,3 +23,26 @@ public func ||| (delay: TimeInterval, closure: @autoclosure @escaping () -> Void
 	DispatchQueue.main.asyncAfter(deadline: .now() + delay) { closure() }
 }
 
+infix operator ???
+public func ??? (condition: Bool, closures: (onTrue: () -> Void, onFalse: () -> Void)) {
+	if condition {
+		closures.onTrue()
+	} else {
+		closures.onFalse()
+	}
+}
+
+infix operator ???+
+public func ???+ (condition: Bool, closure: @autoclosure () -> Void) {
+	guard condition else { return }
+	closure()
+}
+
+infix operator ???-
+public func ???- (condition: Bool, closure: @autoclosure () -> Void) {
+	guard !condition else { return }
+	closure()
+}
+
+
+

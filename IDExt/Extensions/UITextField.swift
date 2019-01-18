@@ -55,4 +55,9 @@ public extension UITextField {
 		self.id_SetLeftView(label)
 	}
 	
+	public func id_GetMobileFromText() -> String? {
+		guard let text = self.text, !text.isEmpty, text.ps.isPersianPhoneNumber else { return nil }
+		return text
+	}
+	
 }

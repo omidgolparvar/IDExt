@@ -20,7 +20,7 @@ public extension UIViewController {
 		self.view.endEditing(true)
 	}
 	
-	public typealias ID_NotificationObserver	= (notificationName: Notification.Name, selector: Selector)
+	public typealias ID_NotificationObserver = (notificationName: Notification.Name, selector: Selector)
 	public func id_AddObservers(_ items: [ID_NotificationObserver]) {
 		items.forEach {
 			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notificationName, object: nil)
@@ -87,5 +87,10 @@ public extension UIViewController {
 		UIApplication.shared.keyWindow?.rootViewController = self
 	}
 	
+	public func id_ChangeLargeTitleDirection() {
+		if #available(iOS 11.0, *) {
+			self.navigationController?.navigationBar.subviews.id_SafeItem(at: 1)?.semanticContentAttribute = .forceRightToLeft
+		}
+	}
 }
 
