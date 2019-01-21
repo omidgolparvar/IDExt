@@ -15,6 +15,8 @@ public final class IDMoya {
 	
 	public typealias Method				= Alamofire.HTTPMethod
 	public typealias Encoding			= Alamofire.ParameterEncoding
+	public typealias URLEncoding		= Alamofire.URLEncoding
+	public typealias JSONEncoding		= Alamofire.JSONEncoding
 	public typealias Progress			= Alamofire.Progress
 	public typealias Parameters			= Alamofire.Parameters
 	public typealias UploadParameter	= (name: String, data: Data, mimeType: String)

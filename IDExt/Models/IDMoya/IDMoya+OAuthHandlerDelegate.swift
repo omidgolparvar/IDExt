@@ -62,7 +62,7 @@ public extension IDMoyaOAuthHandlerDelegate {
 		
 	}
 	
-	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, response: DataResponse<Any>?) {
+	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: DataResponse<Any>?) {
 		
 	}
 	
@@ -91,7 +91,7 @@ public extension IDMoyaOAuthHandlerDelegate {
 		)
 	}
 	
-	public func idMoyaOAuthHandler_StoreNewOAuthObject				(oauthObject: IDMoya.OAuthObject) {
+	public func idMoyaOAuthHandler_StoreNewOAuthObject				(_ oauthObject: IDMoya.OAuthObject) {
 		let userDefaults = UserDefaults.standard
 		let userDefaultsKeys = (
 			accessToken		: "IDAM.UDK.AO.AT",

@@ -71,6 +71,7 @@
 		1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */; };
 		1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */; };
 		1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */; };
+		1AB25F1021F35CBC0064049E /* UIStoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB25F0F21F35CBC0064049E /* UIStoryboardSegue.swift */; };
 		1AB4C6E6218DE247009ECEDF /* IDWaitingBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB4C6E1218DE247009ECEDF /* IDWaitingBackgroundView.swift */; };
 		1AB4C6E7218DE247009ECEDF /* IDWaitingBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB4C6E2218DE247009ECEDF /* IDWaitingBackgroundView.xib */; };
 		1AB4C6E8218DE247009ECEDF /* IDMessageBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AB4C6E4218DE247009ECEDF /* IDMessageBackgroundView.xib */; };
@@ -169,6 +170,7 @@
 		1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItem.swift; sourceTree = "<group>"; };
 		1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
+		1AB25F0F21F35CBC0064049E /* UIStoryboardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegue.swift; sourceTree = "<group>"; };
 		1AB4C6E1218DE247009ECEDF /* IDWaitingBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDWaitingBackgroundView.swift; sourceTree = "<group>"; };
 		1AB4C6E2218DE247009ECEDF /* IDWaitingBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDWaitingBackgroundView.xib; sourceTree = "<group>"; };
 		1AB4C6E4218DE247009ECEDF /* IDMessageBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDMessageBackgroundView.xib; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				1A06A1E821EC6D81006224DC /* Sequence.swift */,
 				1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */,
 				1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */,
+				1AB25F0F21F35CBC0064049E /* UIStoryboardSegue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				1AD410EB21DBC3BE003EC04A /* TypeAliases.swift in Sources */,
 				1AC76BF121D2E098008B3E68 /* URL.swift in Sources */,
 				1A20077021D8FC5D0077DA6B /* UIBezierPath.swift in Sources */,
+				1AB25F1021F35CBC0064049E /* UIStoryboardSegue.swift in Sources */,
 				1A0CE79F21CA4AE7002C4DF0 /* IDJoinDelegate.swift in Sources */,
 				1AD927F421AC29D900B63FAB /* IDMoya+EndpointProtocol.swift in Sources */,
 				1A62AAED21CEDDB200A3D8D9 /* DateFormatter.swift in Sources */,

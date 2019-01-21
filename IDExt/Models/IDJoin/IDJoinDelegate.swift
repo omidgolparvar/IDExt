@@ -12,6 +12,9 @@ import Alamofire
 public protocol IDJoinDelegate: NSObjectProtocol {
 	
 	var idJoin_BaseURLString				: String { get }
+	var idJoin_SubmitMobilePath				: String { get }
+	var idJoin_SubmitOneTimeCodePath		: String { get }
+	
 	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
 	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
 	
@@ -24,10 +27,13 @@ public protocol IDJoinDelegate: NSObjectProtocol {
 
 public extension IDJoinDelegate {
 	
+	var idJoin_SubmitMobilePath				: String { return "api/web/v1/user/mobile-token/0" }
+	var idJoin_SubmitOneTimeCodePath		: String { return "api/oauth2/token" }
+	
 	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
 			baseURLString	: self.idJoin_BaseURLString,
-			path			: "user/mobile-request/0",
+			path			: self.idJoin_SubmitMobilePath,
 			method			: .post,
 			encoding		: URLEncoding.httpBody,
 			parameters		: [
@@ -42,7 +48,7 @@ public extension IDJoinDelegate {
 	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
 		return IDMoyaEndpointObject(
 			baseURLString	: self.idJoin_BaseURLString,
-			path			: "api/oauth2/token",
+			path			: self.idJoin_SubmitOneTimeCodePath,
 			method			: .post,
 			encoding		: URLEncoding.httpBody,
 			parameters		: [
@@ -63,17 +69,13 @@ public extension IDJoinDelegate {
 	}
 	
 	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: AnyObject?) {
-		guard let statusObject = IDMoya.StatusObject(from: data) else {
-			self.idJoin_DidSubmitMobile(idJoin, withError: IDError.withData(data), andData: data)
-			return
-		}
-		
-		switch statusObject {
+		switch result {
 		case .success:
 			self.idJoin_DidSubmitMobile(idJoin, withError: nil, andData: data)
-		case .failedWithSingleMessage(_),
-			 .failedMultipleFieldMessage(_):
-			self.idJoin_DidSubmitMobile(idJoin, withError: IDError.errorWithCustomMessage(statusObject.errorMessage), andData: data)
+		case .noConnection:
+			self.idJoin_DidSubmitMobile(idJoin, withError: IDError.noConnection, andData: data)
+		default:
+			self.idJoin_DidSubmitMobile(idJoin, withError: IDError.withData(data), andData: data)
 		}
 	}
 	
