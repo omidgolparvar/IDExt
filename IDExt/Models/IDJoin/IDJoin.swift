@@ -25,7 +25,7 @@ public class IDJoin {
 		return Calendar.current.dateComponents([.second], from: mobileSubmitDate, to: Date()).second! > minimumRetryInterval
 	}
 	
-	public init(delegate: IDJoinDelegate?) {
+	public init(delegate: IDJoinDelegate) {
 		self.delegate = delegate
 	}
 	

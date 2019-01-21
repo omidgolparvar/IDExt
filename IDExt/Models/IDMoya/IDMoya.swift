@@ -63,12 +63,12 @@ public final class IDMoya {
 		var request: DataRequest?
 		if endpoint.useOAuth {
 			request = OAuthSessionManager?
-				.request(endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
+				.request(endpoint.baseURLString + endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
 				.validate(statusCode: ResultStatus.AllWithoutUnauthorized)
 				.responseJSON { response in HandleResponse(request: request, response: response, endpoint: endpoint, handler: handler) }
 		} else {
 			request = Alamofire
-				.request(endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
+				.request(endpoint.baseURLString + endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
 				.responseJSON { response in HandleResponse(request: request, response: response, endpoint: endpoint, handler: handler) }
 		}
 		
