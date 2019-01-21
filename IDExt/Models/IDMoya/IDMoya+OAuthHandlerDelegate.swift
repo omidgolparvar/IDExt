@@ -106,7 +106,7 @@ public extension IDMoyaOAuthHandlerDelegate {
 		userDefaults.synchronize()
 	}
 	
-	public func idMoyaOAuthHandler_RemoveCurrentOAuthObject			(_ oauthHandler: IDMoya.OAuthHandler) {
+	public func idMoyaOAuthHandler_RemoveCurrentOAuthObject			() {
 		let userDefaults = UserDefaults.standard
 		let userDefaultsKeys = (
 			accessToken		: "IDAM.UDK.AO.AT",
