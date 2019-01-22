@@ -10,7 +10,7 @@ import Foundation
 
 public extension URL {
 	
-	public var queryParameters: [String: String]? {
+	public var id_QueryParameters: [String: String]? {
 		guard
 			let components = URLComponents(url: self, resolvingAgainstBaseURL: false),
 			let queryItems = components.queryItems
