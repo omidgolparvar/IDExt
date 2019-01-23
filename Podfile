@@ -10,5 +10,6 @@ target 'IDExt' do
   pod 'PKHUD', '~> 5.0'
   pod 'SwiftEntryKit', '0.8.4'
   pod 'Moya', '~> 12.0'
+  pod 'Kingfisher'
 
 end

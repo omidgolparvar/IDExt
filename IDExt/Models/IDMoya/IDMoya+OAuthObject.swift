@@ -12,12 +12,19 @@ import SwiftyJSON
 
 public extension IDMoya {
 	
-	public final class OAuthObject {
+	public final class OAuthObject: CustomStringConvertible {
 		
 		public var accessToken	: String
 		public var expiresIn	: Int
 		public var refreshToken	: String
 		public var createdAt	: Date
+		
+		public var description	: String {
+			return """
+			AccessToken  : \(accessToken)
+			RefreshToken : \(refreshToken)
+			"""
+		}
 		
 		public convenience init?(fromJSONObject json: JSON) {
 			guard

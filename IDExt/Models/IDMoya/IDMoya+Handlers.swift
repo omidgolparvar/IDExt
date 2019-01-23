@@ -12,6 +12,7 @@ import Alamofire
 public extension IDMoya {
 	
 	internal static func HandleResponse(request: DataRequest?, response: DataResponse<Any>, endpoint: IDMoyaEndpoint, handler: ResponseHandler) {
+		
 		switch handler {
 		case .callback(let callback)	: HandleResponse(response, endpoint, callback)
 		case .delegate(let delegate)	: HandleResponse(response, endpoint, delegate)
