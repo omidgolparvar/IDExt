@@ -98,7 +98,8 @@ public extension IDMoya {
 						completion(false, nil)
 						
 						if let statusCode = response.response?.statusCode, statusCode == 401 {
-							IDUser.current.logout()
+							IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
+							IDUser.current = IDUser(withInitType: .raw)!
 							sharedDelegate.idMoyaOAuthHandler_ShouldLogoutCurrentUser()
 						}
 					}
