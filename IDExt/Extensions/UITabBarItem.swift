@@ -14,4 +14,12 @@ public extension UITabBarItem {
 		UITabBarItem.appearance().setTitleTextAttributes(attributes, for: state)
 	}
 	
+	public static func ID_SetupAppearance(font: UIFont, textColor: UIColor, for state: UIControl.State) {
+		let attributes: [NSAttributedString.Key: Any] = [
+			.font 				: font,
+			.foregroundColor	: textColor
+		]
+		UITabBarItem.appearance().setTitleTextAttributes(attributes, for: state)
+	}
+	
 }

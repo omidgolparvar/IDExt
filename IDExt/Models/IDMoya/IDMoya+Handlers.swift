@@ -11,7 +11,7 @@ import Alamofire
 
 public extension IDMoya {
 	
-	internal static func HandleResponse(request: DataRequest?, response: DataResponse<Any>, endpoint: IDMoyaEndpoint, handler: ResponseHandler) {
+	internal static func HandleResponse(request: DataRequest?, response: IDMoya.DataResponse<Any>, endpoint: IDMoyaEndpoint, handler: ResponseHandler) {
 		
 		switch handler {
 		case .callback(let callback)	: HandleResponse(response, endpoint, callback)
@@ -26,7 +26,7 @@ public extension IDMoya {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = !RequestsDictionary.isEmpty
 	}
 	
-	internal static func HandleResponse(_ response: DataResponse<Any>, _ endpoint: IDMoyaEndpoint, _ callback: Callback) {
+	internal static func HandleResponse(_ response: IDMoya.DataResponse<Any>, _ endpoint: IDMoyaEndpoint, _ callback: Callback) {
 		switch response.result {
 		case .success(let data):
 			if let result = ResultStatus(rawValue: response.response!.statusCode) {
@@ -47,7 +47,7 @@ public extension IDMoya {
 		}
 	}
 	
-	internal static func HandleResponse(_ response: DataResponse<Any>, _ endpoint: IDMoyaEndpoint, _ delegate: IDMoyaResponsechiDelegate?) {
+	internal static func HandleResponse(_ response: IDMoya.DataResponse<Any>, _ endpoint: IDMoyaEndpoint, _ delegate: IDMoyaResponsechiDelegate?) {
 		switch response.result {
 		case .success(let data):
 			if let result = ResultStatus(rawValue: response.response!.statusCode) {

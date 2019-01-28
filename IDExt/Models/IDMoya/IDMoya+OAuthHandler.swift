@@ -96,6 +96,11 @@ public extension IDMoya {
 					} else {
 						sharedDelegate.idMoyaOAuthHandler_DidFailedToRefresh(strongSelf, withResponse: response)
 						completion(false, nil)
+						
+						if let statusCode = response.response?.statusCode, statusCode == 401 {
+							IDUser.current.logout()
+							sharedDelegate.idMoyaOAuthHandler_ShouldLogoutCurrentUser()
+						}
 					}
 					strongSelf.isRefreshing = false
 			}

@@ -16,8 +16,8 @@ public protocol IDMoyaOAuthHandlerDelegate {
 	func idMoyaOAuthHanlder_RefreshTokenEndpoint			(_ oauthHandler: IDMoya.OAuthHandler)							-> IDMoyaEndpointObject
 	func idMoyaOAuthHandler_AdaptURLRequest					(_ oauthHandler: IDMoya.OAuthHandler, urlRequest: URLRequest)	-> URLRequest
 	func idMoyaOAuthHandler_DidSuccessfullyRefreshed		(_ oauthHandler: IDMoya.OAuthHandler, withNewOAuthObject oauthObject: IDMoya.OAuthObject)
-	func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: DataResponse<Any>?)
-	
+	func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: IDMoya.DataResponse<Any>?)
+	func idMoyaOAuthHandler_ShouldLogoutCurrentUser			()
 	
 	
 	// MARK: OAuthObject Related
@@ -43,6 +43,12 @@ public extension IDMoyaOAuthHandlerDelegate {
 				"refresh_token"	: oauthHandler.oauthObject.refreshToken,
 				"client_id"		: oauthHandler.clientID,
 				"grant_type"	: "refresh_token",
+				"uuid"			: IDApplication.GetUUID(),
+				"pid"			: IDApplication.OneSignalPlayerIDGetter() ?? "",
+				"os"			: "iOS",
+				"os_version"	: UIDevice.current.systemVersion,
+				"phone_model"	: "\(UIDevice.current.dc.deviceModel)",
+				"app_version"	: UIApplication.ID_FullVersionAndBuildNumber,
 			],
 			headers			: nil,
 			useOAuth		: false
@@ -62,7 +68,7 @@ public extension IDMoyaOAuthHandlerDelegate {
 		
 	}
 	
-	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: DataResponse<Any>?) {
+	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: IDMoya.DataResponse<Any>?) {
 		
 	}
 	

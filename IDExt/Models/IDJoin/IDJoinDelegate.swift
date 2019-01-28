@@ -27,7 +27,7 @@ public protocol IDJoinDelegate: NSObjectProtocol {
 
 public extension IDJoinDelegate {
 	
-	var idJoin_SubmitMobilePath				: String { return "api/web/v1/user/mobile-token/0" }
+	var idJoin_SubmitMobilePath				: String { return "api/v1/user/mobile-token/0" }
 	var idJoin_SubmitOneTimeCodePath		: String { return "api/oauth2/token" }
 	
 	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {

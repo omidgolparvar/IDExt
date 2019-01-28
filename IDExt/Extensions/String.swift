@@ -11,6 +11,15 @@ import CommonCrypto
 
 public extension String {
 	
+	public static func ID_Text(bundle: Bundle = .main, fileName: String = "Texts", keyName: String) -> String? {
+		guard
+			let filePath	= bundle.path(forResource: fileName, ofType: "plist"),
+			let dictionary	= NSDictionary(contentsOfFile: filePath),
+			let valueForKey	= dictionary.object(forKey: keyName) as? String
+			else { return nil }
+		return valueForKey
+	}
+	
 	private static let ID_EmailRegEx		= "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
 	private static let ID_NumberRegEx		= "^[0-9]+?$"
 	private static let ID_AlphaRegEx		= "^[A-Za-z]+$"

@@ -14,4 +14,12 @@ public extension UIBarButtonItem {
 		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: state)
 	}
 	
+	public static func ID_SetupAppearance(font: UIFont, normalTextColor: UIColor, highlightedTextColor: UIColor) {
+		let noramlAttributes		: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: normalTextColor]
+		let highlightedAttributes	: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: highlightedTextColor]
+		UIBarButtonItem.appearance().setTitleTextAttributes(noramlAttributes, for: .normal)
+		UIBarButtonItem.appearance().setTitleTextAttributes(highlightedAttributes, for: .highlighted)
+		
+	}
+	
 }

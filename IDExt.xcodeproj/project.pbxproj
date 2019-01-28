@@ -38,7 +38,8 @@
 		1A62AAF121CEE95D00A3D8D9 /* IDJSONInitBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */; };
 		1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */; };
 		1A64E5BE21F232C0005FEFE9 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */; };
-		1A6BAD8321F875E3001154A2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BAD8221F875E3001154A2 /* UIImageView.swift */; };
+		1A6BAD8521F87BCB001154A2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BAD8421F87BCB001154A2 /* UIImageView.swift */; };
+		1A6BAD8721F88B19001154A2 /* IDStoryboardInstanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BAD8621F88B19001154A2 /* IDStoryboardInstanceProtocol.swift */; };
 		1A720CD82189D2500016A844 /* IDExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A720CD62189D2500016A844 /* IDExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A720CDF2189D26C0016A844 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CDE2189D26C0016A844 /* UIViewController.swift */; };
 		1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A720CE12189D3410016A844 /* IDTableViewCell.swift */; };
@@ -136,7 +137,8 @@
 		1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJSONInitBased.swift; sourceTree = "<group>"; };
 		1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
-		1A6BAD8221F875E3001154A2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		1A6BAD8421F87BCB001154A2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		1A6BAD8621F88B19001154A2 /* IDStoryboardInstanceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStoryboardInstanceProtocol.swift; sourceTree = "<group>"; };
 		1A720CD32189D2500016A844 /* IDExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IDExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A720CD62189D2500016A844 /* IDExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDExt.h; sourceTree = "<group>"; };
 		1A720CD72189D2500016A844 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -295,20 +297,27 @@
 				1A0C7FAA21D25689001A9A80 /* Int.swift */,
 				1AC7E751219C5C4300570B5A /* JSON.swift */,
 				1AFC2B4521A08CB0005735CD /* Locale.swift */,
+				1AA0518721E0B462004A9F28 /* NSAttributedString.swift */,
 				1AD927F921AC83C600B63FAB /* NSError.swift */,
+				1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */,
 				1A31D9F821A8A0C900017360 /* Optional.swift */,
+				1A06A1E821EC6D81006224DC /* Sequence.swift */,
 				1AFA180B218F1AE900A44D64 /* String.swift */,
+				1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */,
 				1AFA1816218F4DC100A44D64 /* UIApplication.swift */,
 				1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */,
+				1A20076F21D8FC5D0077DA6B /* UIBezierPath.swift */,
 				1A720CF62189EEFC0016A844 /* UICollectionView.swift */,
 				1A720CF42189EDC00016A844 /* UIColor.swift */,
 				1AFA1800218EE9DB00A44D64 /* UIDevice.swift */,
 				1AFA1814218F42E700A44D64 /* UIFont.swift */,
 				1A0C7FA821D254F9001A9A80 /* UIImage.swift */,
+				1ADEA5D521E801E700AD4438 /* UILabel.swift */,
 				1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */,
 				1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */,
 				1AFA1810218F365F00A44D64 /* UISegmentedControl.swift */,
 				1A720CF22189EC400016A844 /* UIStackView.swift */,
+				1AB25F0F21F35CBC0064049E /* UIStoryboardSegue.swift */,
 				1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */,
 				1A720CE42189D4020016A844 /* UITableView.swift */,
 				1A720CEE2189E9F70016A844 /* UITableViewCell.swift */,
@@ -317,17 +326,10 @@
 				1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */,
 				1A720CE82189E4FF0016A844 /* UIView.swift */,
 				1A720CDE2189D26C0016A844 /* UIViewController.swift */,
+				1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */,
 				1AC76BF021D2E098008B3E68 /* URL.swift */,
 				1AFA1809218F194D00A44D64 /* UserDefaults.swift */,
-				1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */,
-				1A20076F21D8FC5D0077DA6B /* UIBezierPath.swift */,
-				1AA0518721E0B462004A9F28 /* NSAttributedString.swift */,
-				1ADEA5D521E801E700AD4438 /* UILabel.swift */,
-				1A06A1E821EC6D81006224DC /* Sequence.swift */,
-				1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */,
-				1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */,
-				1AB25F0F21F35CBC0064049E /* UIStoryboardSegue.swift */,
-				1A6BAD8221F875E3001154A2 /* UIImageView.swift */,
+				1A6BAD8421F87BCB001154A2 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 				1A0C7FAC21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift */,
 				1AA0518521E0AF28004A9F28 /* IDWith.swift */,
 				1AA0518921E0DC5C004A9F28 /* IDType.swift */,
+				1A6BAD8621F88B19001154A2 /* IDStoryboardInstanceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -580,7 +583,7 @@
 				1A3128BE21BEB8B800BB154A /* Array.swift in Sources */,
 				1A3128BC21BE6BBE00BB154A /* IDPaginatorModel.swift in Sources */,
 				1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */,
-				1A6BAD8321F875E3001154A2 /* UIImageView.swift in Sources */,
+				1A6BAD8521F87BCB001154A2 /* UIImageView.swift in Sources */,
 				1A0CE79421C90A21002C4DF0 /* CGRect.swift in Sources */,
 				1AFA1811218F365F00A44D64 /* UISegmentedControl.swift in Sources */,
 				1A9BCD7D21E4959100509B76 /* IDTableViewHandler.swift in Sources */,
@@ -634,6 +637,7 @@
 				1A1AD70B21BD9BA100853CFD /* IDPaginator.swift in Sources */,
 				1A00D11621AAD2DB00CA0ED3 /* Error.swift in Sources */,
 				1AFC2B4421A08C44005735CD /* Date.swift in Sources */,
+				1A6BAD8721F88B19001154A2 /* IDStoryboardInstanceProtocol.swift in Sources */,
 				1AD410EB21DBC3BE003EC04A /* TypeAliases.swift in Sources */,
 				1AC76BF121D2E098008B3E68 /* URL.swift in Sources */,
 				1A20077021D8FC5D0077DA6B /* UIBezierPath.swift in Sources */,

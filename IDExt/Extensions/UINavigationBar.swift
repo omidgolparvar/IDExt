@@ -14,4 +14,22 @@ public extension UINavigationBar {
 		UINavigationBar.appearance().titleTextAttributes = attributes
 	}
 	
+	public static func ID_SetupTitleAppearance(font: UIFont, textColor: UIColor) {
+		let attributes: [NSAttributedString.Key: Any] = [
+			.font 				: font,
+			.foregroundColor	: textColor
+		]
+		UINavigationBar.appearance().titleTextAttributes = attributes
+	}
+	
+	public static func ID_SetupLargeTitleAppearance(font: UIFont, textColor: UIColor) {
+		if #available(iOS 11.0, *) {
+			let attributes: [NSAttributedString.Key: Any] = [
+				.font 				: font,
+				.foregroundColor	: textColor
+			]
+			UINavigationBar.appearance().largeTitleTextAttributes = attributes
+		}
+	}
+	
 }

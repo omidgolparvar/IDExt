@@ -13,6 +13,9 @@ import SystemConfiguration
 
 public final class IDMoya {
 	
+	public typealias DataRequest		= Alamofire.DataRequest
+	public typealias DataResponse		= Alamofire.DataResponse
+	public typealias UploadRequest		= Alamofire.UploadRequest
 	public typealias Method				= Alamofire.HTTPMethod
 	public typealias Encoding			= Alamofire.ParameterEncoding
 	public typealias URLEncoding		= Alamofire.URLEncoding

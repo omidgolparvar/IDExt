@@ -15,6 +15,15 @@ public extension UIViewController {
 		return UIStoryboard(name: storyboard, bundle: bundle).instantiateViewController(withIdentifier: identifier)
 	}
 	
+	public static func ID_Initialize(bundle: Bundle? = nil, pattern: String) -> UIViewController {
+		let components = pattern.components(separatedBy: "|").map({ $0.id_Trimmed }).filter({ !$0.isEmpty })
+		guard components.count == 2 else { fatalError("IDExt.UIViewController.ID_Initialize: Pattern is wrong.") }
+		let storyboardName = components[0]
+		let identifier = components[1]
+		return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: identifier)
+	}
+	
+	
 	@objc
 	public func id_EndEditing() {
 		self.view.endEditing(true)
