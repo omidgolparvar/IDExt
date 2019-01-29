@@ -50,10 +50,12 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		IDMoya.Perform(endpointObject) { [weak self] (resultStatus, data) in
 			guard let _self = self else { return }
 			
+			_self.delegate?.idPaginator_TableView(_self).id_RemoveBackgroundView()
+			
 			switch resultStatus {
 			case .success:
 				if let d = data {
-					let json = JSON(d)
+					let json = IDMoya.JSON(d)
 					_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: json)
 					let arrayObjectKey = _self.delegate?.idPaginator_ArrayObjectName(_self)
 					let array = arrayObjectKey == nil ? json.array : json[arrayObjectKey!].array
@@ -62,6 +64,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: arrayOfItems)
 						_self.currentPage += 1
 						_self.setupStatusForLoadingNextPage(lastItems: arrayOfItems, jsonObject: json)
+						_self.delegate?.idPaginator_DidFinishLoading(_self, for: _self.currentPage-1)
 					} else {
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .requestWithInvalidResponse)
 						_self.status = .shouldContinue
@@ -115,7 +118,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		}
 	}
 	
-	private func setupStatusForLoadingNextPage(lastItems: [T], jsonObject: JSON) {
+	private func setupStatusForLoadingNextPage(lastItems: [T], jsonObject: IDMoya.JSON) {
 		guard let delegate = delegate else { return }
 		status = delegate.idPaginator_ShouldLoadNextPage(self, lastItemsCount: lastItems.count, lastJSONObject: jsonObject) ?
 			.shouldContinue :

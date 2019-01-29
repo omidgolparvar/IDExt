@@ -37,7 +37,7 @@ public extension IDMoyaOAuthHandlerDelegate {
 			baseURLString	: oauthHandler.baseURLString,
 			path			: "api/oauth2/token",
 			method			: .post,
-			encoding		: JSONEncoding.default,
+			encoding		: IDMoya.JSONEncoding.default,
 			parameters		: [
 				"access_token"	: oauthHandler.oauthObject.accessToken,
 				"refresh_token"	: oauthHandler.oauthObject.refreshToken,

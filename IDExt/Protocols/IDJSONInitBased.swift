@@ -11,6 +11,6 @@ import SwiftyJSON
 
 public protocol IDJSONInitBased {
 	
-	init?(fromJSONObject jsonObject: JSON)
+	init?(fromJSONObject jsonObject: IDMoya.JSON)
 	
 }

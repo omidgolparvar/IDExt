@@ -20,7 +20,7 @@ public final class IDImage {
 	public var ratio		: Double = 1.0
 	public var contentType	: String = ""
 	
-	public init?(from json: JSON) {
+	public init?(from json: IDMoya.JSON) {
 		guard
 			let _id = json["id"].string,
 			let _ratio = json["ratio"].double,

@@ -22,6 +22,7 @@ public final class IDMoya {
 	public typealias JSONEncoding		= Alamofire.JSONEncoding
 	public typealias Progress			= Alamofire.Progress
 	public typealias Parameters			= Alamofire.Parameters
+	public typealias JSON				= SwiftyJSON.JSON
 	public typealias UploadParameter	= (name: String, data: Data, mimeType: String)
 	public typealias Header				= [String: String]
 	public typealias Callback			= (_ result: ResultStatus, _ data: AnyObject?) -> Void
@@ -126,7 +127,7 @@ public final class IDMoya {
 	public static func PrintData(_ data: AnyObject?) {
 		print("IDMoya - " + #function + " : ")
 		guard let data = data else { print("--- NO Data.") ; return }
-		print(JSON(data))
+		print(IDMoya.JSON(data))
 	}
 	
 	public static func CancelRequest(_ request: DataRequest?) {
@@ -176,7 +177,7 @@ public extension IDMoya {
 		
 		public init?(from data: AnyObject?) {
 			guard let data = data else { return nil }
-			let jsonObject = JSON(data)
+			let jsonObject = IDMoya.JSON(data)
 			if let status = jsonObject["status"].bool, status == true { self = .success }
 			else if let status = jsonObject["status"].string, status == "1" { self = .success }
 			else if let status = jsonObject["status"].int, status == 1 { self = .success }

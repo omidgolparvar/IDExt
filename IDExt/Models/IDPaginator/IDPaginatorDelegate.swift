@@ -24,14 +24,15 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	func idPaginator_ExtraQueryParameter		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)	-> IDMoya.Parameters?
 	func idPaginator_ViewForEmptyList			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
 	func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?
-	func idPaginator_ShouldLoadNextPage			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: JSON)	-> Bool
+	func idPaginator_ShouldLoadNextPage			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: IDMoya.JSON)	-> Bool
 	
 	
 	func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
 	func idPaginator_DidResetToInitialState		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T])
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError)
-	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON)
+	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: IDMoya.JSON)
+	func idPaginator_DidFinishLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
 	
 	
 }
@@ -47,7 +48,7 @@ public extension IDPaginatorDelegate {
 	public func idPaginator_ViewForEmptyList		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
 	public func idPaginator_ViewForLoadingFirstPage	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UIView?				{ return nil }
 	
-	public func idPaginator_ShouldLoadNextPage		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: JSON)	-> Bool {
+	public func idPaginator_ShouldLoadNextPage		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, lastItemsCount: Int, lastJSONObject jsonObject: IDMoya.JSON)	-> Bool {
 		return lastItemsCount >= self.idPaginator_PageSize(paginator)
 	}
 	
@@ -70,9 +71,8 @@ public extension IDPaginatorDelegate {
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
 		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithItems(Count): \(items.count)")
 		let tableView = self.idPaginator_TableView(paginator)
-		tableView.id_RemoveBackgroundView()
 		
-		if page == 0, items.count == 0 {
+		if page == 0, items.isEmpty {
 			if let emptyListView = self.idPaginator_ViewForEmptyList(paginator) {
 				tableView.backgroundView = emptyListView
 			}
@@ -85,7 +85,6 @@ public extension IDPaginatorDelegate {
 			case .shouldContinue:
 				let loadingMoreItemsView = IDPaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
 				tableView.tableFooterView = loadingMoreItemsView
-				break
 			case .isLoading:
 				break
 			}
@@ -98,7 +97,6 @@ public extension IDPaginatorDelegate {
 		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithError: \(error.description)")
 		
 		let tableView = self.idPaginator_TableView(paginator)
-		tableView.id_RemoveBackgroundView()
 		
 		if page == 0 {
 			tableView.id_SetBackgroundMessageView(forError: error, withAction: { paginator.loadNextPage() })
@@ -109,11 +107,15 @@ public extension IDPaginatorDelegate {
 		}
 	}
 	
-	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: JSON) {
+	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: IDMoya.JSON) {
 		
 	}
 	
 	public func idPaginator_DidResetToInitialState	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>) {
+		
+	}
+	
+	public func idPaginator_DidFinishLoading		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
 		
 	}
 	

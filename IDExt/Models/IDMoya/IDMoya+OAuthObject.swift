@@ -26,7 +26,7 @@ public extension IDMoya {
 			"""
 		}
 		
-		public convenience init?(fromJSONObject json: JSON) {
+		public convenience init?(fromJSONObject json: IDMoya.JSON) {
 			guard
 				let _accessToken	= json["access_token"].string,
 				let _expiresIn		= json["expires_in"].int,
@@ -46,7 +46,7 @@ public extension IDMoya {
 		
 		public convenience init?(fromJSONData data: AnyObject?) {
 			guard let data = data else { return nil }
-			self.init(fromJSONObject: JSON(data))
+			self.init(fromJSONObject: IDMoya.JSON(data))
 		}
 		
 		public init(accessToken: String, refreshToken: String, expiresIn: Int, createdAt: Date) {

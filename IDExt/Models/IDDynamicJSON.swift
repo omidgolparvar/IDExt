@@ -12,14 +12,14 @@ import SwiftyJSON
 @dynamicMemberLookup
 public final class IDDynamicJSON: IDJSONInitBased {
 	
-	public var json: JSON?
+	public var json: IDMoya.JSON?
 	
-	public init(from json: JSON?) {
+	public init(from json: IDMoya.JSON?) {
 		self.json = json
 		
 	}
 	
-	public convenience init?(fromJSONObject jsonObject: JSON) {
+	public convenience init?(fromJSONObject jsonObject: IDMoya.JSON) {
 		self.init(from: jsonObject)
 	}
 	

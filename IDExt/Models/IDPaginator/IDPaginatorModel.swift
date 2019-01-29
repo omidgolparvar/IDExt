@@ -12,7 +12,7 @@ import Alamofire
 
 public protocol IDPaginatorModel {
 	
-	init?(fromJSONObject json: JSON)
+	init?(fromJSONObject json: IDMoya.JSON)
 	
 }
 

@@ -30,7 +30,7 @@ public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
 			return "ارتباط با سامانه برقرار نشد. لطفا تنظیمات اینترنت را بررسی نمایید"
 		case .withData(let data):
 			guard let data = data else { return IDError.unknownError.description }
-			let jsonObject = JSON(data)
+			let jsonObject = IDMoya.JSON(data)
 			if let array = jsonObject.array {
 				let messages = array.compactMap({ $0["message"].string?.id_Trimmed }).filter({ !$0.isEmpty })
 				return messages.isEmpty ? IDError.unknownError.description : messages.joined(separator: "\n")
