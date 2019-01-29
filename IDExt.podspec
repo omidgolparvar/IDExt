@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'IDExt'
-  s.version               = '2.4.1'
+  s.version               = '2.4.2'
   s.summary               = 'IDExt framework for Swift.'
   s.description           = <<-DESC
                             Written in Swift.
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = [
     'IDExt/*.{h,swift}',
     'IDExt/**/*.swift',
-    'IDExt/**.*.xib',
+    'IDExt/**/*.xib',
   ]
   
   s.public_header_files = 'IDExt/*.h'
