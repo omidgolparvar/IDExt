@@ -12,8 +12,8 @@ import SwiftyJSON
 
 public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 	
-	private var isVerbose		: Bool					= false
-	private var items			: [T]?					= nil
+	internal var isVerbose		: Bool					= false
+	internal var items			: [T]?					= nil
 	
 	public var currentPage		: Int					= 0
 	public var identifier		: String?				= nil

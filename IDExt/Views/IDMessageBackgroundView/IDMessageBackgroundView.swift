@@ -57,17 +57,17 @@ class IDMessageBackgroundView: UIView {
 	private func initialSetup() {
 		label_Icon.isHidden = true
 		
-		label_Title.font = IDMessageBackgroundView.TitleFont ?? UIFont.boldSystemFont(ofSize: 16)
+		label_Title.font = IDMessageBackgroundView.TitleFont ?? .boldSystemFont(ofSize: 16)
 		label_Title.textColor = IDMessageBackgroundView.TitleColor ?? .black
 		
-		label_Message.font = IDMessageBackgroundView.MessageFont ?? UIFont.systemFont(ofSize: 14)
+		label_Message.font = IDMessageBackgroundView.MessageFont ?? .systemFont(ofSize: 14)
 		label_Message.textColor = IDMessageBackgroundView.MessageColor ?? .darkGray
 		
-		button_Action.titleLabel?.font = IDMessageBackgroundView.ActionButtonFont ?? UIFont.boldSystemFont(ofSize: 14)
-		button_Action.backgroundColor = IDMessageBackgroundView.ActionButtonBackgroundColor ?? UIColor.ID_Initialize(hexCode: "#F0F0F0")
+		button_Action.titleLabel?.font = IDMessageBackgroundView.ActionButtonFont ?? .boldSystemFont(ofSize: 14)
+		button_Action.backgroundColor = IDMessageBackgroundView.ActionButtonBackgroundColor ?? .ID_Initialize(hexCode: "#F0F0F0")
 		button_Action.isHidden = true
 		
-		button_Dismiss.titleLabel?.font = IDMessageBackgroundView.DismissButtonFont ?? UIFont.systemFont(ofSize: 11)
+		button_Dismiss.titleLabel?.font = IDMessageBackgroundView.DismissButtonFont ?? .systemFont(ofSize: 11)
 		button_Dismiss.setTitle(IDMessageBackgroundView.DismissButtonText ?? "بستن", for: .normal)
 		button_Dismiss.isHidden = true
 		

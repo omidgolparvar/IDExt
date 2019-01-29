@@ -37,15 +37,7 @@ open class IDUser {
 	}
 	
 	open var logoutEndpoint			: IDMoyaEndpointObject? {
-		return IDMoyaEndpointObject(
-			baseURLString	: baseURLString,
-			path			: "user/logout",
-			method			: .post,
-			encoding		: URLEncoding.default,
-			parameters		: nil,
-			headers			: nil,
-			useOAuth		: true
-		)
+		return nil
 	}
 	
 	public init() {

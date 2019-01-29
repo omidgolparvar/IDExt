@@ -22,6 +22,12 @@
 		1A1AD70B21BD9BA100853CFD /* IDPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */; };
 		1A20076E21D8C1AA0077DA6B /* UNMutableNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */; };
 		1A20077021D8FC5D0077DA6B /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20076F21D8FC5D0077DA6B /* UIBezierPath.swift */; };
+		1A251C0022005F76004B8479 /* IDEndPaginationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A251BFE22005F76004B8479 /* IDEndPaginationView.xib */; };
+		1A251C0122005F76004B8479 /* IDEndPaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A251BFF22005F76004B8479 /* IDEndPaginationView.swift */; };
+		1A251C082200608A004B8479 /* IDPaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A251C032200608A004B8479 /* IDPaginationView.swift */; };
+		1A251C092200608A004B8479 /* IDPaginationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A251C042200608A004B8479 /* IDPaginationView.xib */; };
+		1A251C0A2200608A004B8479 /* IDPaginationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A251C062200608A004B8479 /* IDPaginationMessageView.swift */; };
+		1A251C0B2200608A004B8479 /* IDPaginationMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A251C072200608A004B8479 /* IDPaginationMessageView.xib */; };
 		1A3128B921BE6A9B00BB154A /* IDPaginatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3128B821BE6A9B00BB154A /* IDPaginatorDelegate.swift */; };
 		1A3128BC21BE6BBE00BB154A /* IDPaginatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3128BB21BE6BBE00BB154A /* IDPaginatorModel.swift */; };
 		1A3128BE21BEB8B800BB154A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3128BD21BEB8B800BB154A /* Array.swift */; };
@@ -121,6 +127,12 @@
 		1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginator.swift; sourceTree = "<group>"; };
 		1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNMutableNotificationContent.swift; sourceTree = "<group>"; };
 		1A20076F21D8FC5D0077DA6B /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
+		1A251BFE22005F76004B8479 /* IDEndPaginationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDEndPaginationView.xib; sourceTree = "<group>"; };
+		1A251BFF22005F76004B8479 /* IDEndPaginationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDEndPaginationView.swift; sourceTree = "<group>"; };
+		1A251C032200608A004B8479 /* IDPaginationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDPaginationView.swift; sourceTree = "<group>"; };
+		1A251C042200608A004B8479 /* IDPaginationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPaginationView.xib; sourceTree = "<group>"; };
+		1A251C062200608A004B8479 /* IDPaginationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDPaginationMessageView.swift; sourceTree = "<group>"; };
+		1A251C072200608A004B8479 /* IDPaginationMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPaginationMessageView.xib; sourceTree = "<group>"; };
 		1A3128B821BE6A9B00BB154A /* IDPaginatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginatorDelegate.swift; sourceTree = "<group>"; };
 		1A3128BB21BE6BBE00BB154A /* IDPaginatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginatorModel.swift; sourceTree = "<group>"; };
 		1A3128BD21BEB8B800BB154A /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -221,6 +233,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A251BFD22005F76004B8479 /* IDEndPaginationView */ = {
+			isa = PBXGroup;
+			children = (
+				1A251BFE22005F76004B8479 /* IDEndPaginationView.xib */,
+				1A251BFF22005F76004B8479 /* IDEndPaginationView.swift */,
+			);
+			path = IDEndPaginationView;
+			sourceTree = "<group>";
+		};
+		1A251C022200608A004B8479 /* IDPaginationView */ = {
+			isa = PBXGroup;
+			children = (
+				1A251C032200608A004B8479 /* IDPaginationView.swift */,
+				1A251C042200608A004B8479 /* IDPaginationView.xib */,
+			);
+			path = IDPaginationView;
+			sourceTree = "<group>";
+		};
+		1A251C052200608A004B8479 /* IDPaginationMessageView */ = {
+			isa = PBXGroup;
+			children = (
+				1A251C062200608A004B8479 /* IDPaginationMessageView.swift */,
+				1A251C072200608A004B8479 /* IDPaginationMessageView.xib */,
+			);
+			path = IDPaginationMessageView;
+			sourceTree = "<group>";
+		};
 		1A3128BA21BE6B3100BB154A /* IDPaginator */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +413,9 @@
 		1AB4C6DF218DE247009ECEDF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A251C052200608A004B8479 /* IDPaginationMessageView */,
+				1A251C022200608A004B8479 /* IDPaginationView */,
+				1A251BFD22005F76004B8479 /* IDEndPaginationView */,
 				1AB4C6E3218DE247009ECEDF /* IDMessageBackgroundView */,
 				1AB4C6E0218DE247009ECEDF /* IDWaitingBackgroundView */,
 			);
@@ -535,7 +577,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB4C6E8218DE247009ECEDF /* IDMessageBackgroundView.xib in Resources */,
+				1A251C0022005F76004B8479 /* IDEndPaginationView.xib in Resources */,
 				1AB4C6E7218DE247009ECEDF /* IDWaitingBackgroundView.xib in Resources */,
+				1A251C0B2200608A004B8479 /* IDPaginationMessageView.xib in Resources */,
+				1A251C092200608A004B8479 /* IDPaginationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +617,7 @@
 				1AB4C6EB218DE63B009ECEDF /* IDError.swift in Sources */,
 				1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */,
 				1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */,
+				1A251C082200608A004B8479 /* IDPaginationView.swift in Sources */,
 				1AFA1801218EE9DB00A44D64 /* UIDevice.swift in Sources */,
 				1AFA180C218F1AE900A44D64 /* String.swift in Sources */,
 				1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */,
@@ -580,6 +626,7 @@
 				1A62AAE721CCEBA500A3D8D9 /* IDImage.swift in Sources */,
 				1AD410EF21DBE3BE003EC04A /* IDDarhamerDelegate.swift in Sources */,
 				1A720CE92189E4FF0016A844 /* UIView.swift in Sources */,
+				1A251C0122005F76004B8479 /* IDEndPaginationView.swift in Sources */,
 				1A3128BE21BEB8B800BB154A /* Array.swift in Sources */,
 				1A3128BC21BE6BBE00BB154A /* IDPaginatorModel.swift in Sources */,
 				1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */,
@@ -607,6 +654,7 @@
 				1A720CDF2189D26C0016A844 /* UIViewController.swift in Sources */,
 				1A720CF72189EEFC0016A844 /* UICollectionView.swift in Sources */,
 				1AFA180A218F194D00A44D64 /* UserDefaults.swift in Sources */,
+				1A251C0A2200608A004B8479 /* IDPaginationMessageView.swift in Sources */,
 				1A83B32621A2A7F3000E51EF /* IDPresenter+Configurations.swift in Sources */,
 				1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */,
 				1AFC2B4A21A08CEE005735CD /* Calendar.swift in Sources */,

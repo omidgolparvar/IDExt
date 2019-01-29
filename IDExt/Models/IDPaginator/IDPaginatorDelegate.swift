@@ -52,26 +52,23 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidStartLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
-		//TODO check isVerbose and print data
 		let tableView = self.idPaginator_TableView(paginator)
 		
 		if page == 0 {
 			if let firstPageLoadingView = self.idPaginator_ViewForLoadingFirstPage(paginator) {
 				tableView.backgroundView = firstPageLoadingView
 			} else {
-				//TODO
-				//tableView.setupKipoBackgroundView(isForWaiting: true)
+				tableView.id_SetBackgroundWaitingView(isForWaiting: true)
 			}
 		} else {
-			//TODO
-			//guard tableView.tableFooterView == nil else { return }
-			//let footerWaitingView = PaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-			//tableView.tableFooterView = footerWaitingView
+			guard tableView.tableFooterView == nil else { return }
+			let footerWaitingView = IDPaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
+			tableView.tableFooterView = footerWaitingView
 		}
 	}
 	
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
-		//TODO check isVerbose and print data
+		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithItems(Count): \(items.count)")
 		let tableView = self.idPaginator_TableView(paginator)
 		
 		if page == 0, items.count == 0 {
@@ -83,14 +80,10 @@ public extension IDPaginatorDelegate {
 			tableView.backgroundView = nil
 			switch paginator.status {
 			case .shouldNotContinue:
-				//TODO setup end pagination view
-				//let noMoreItemView = EndPaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-				//tableView.tableFooterView = noMoreItemView
-				break
+				tableView.tableFooterView = IDEndPaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
 			case .shouldContinue:
-				//TODO setup loading pagination view
-				//let loadingMoreItemsView = PaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-				//tableView.tableFooterView = loadingMoreItemsView
+				let loadingMoreItemsView = IDPaginationView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
+				tableView.tableFooterView = loadingMoreItemsView
 				break
 			case .isLoading:
 				break
@@ -101,17 +94,16 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError) {
-		//TODO check isVerbose and print data
+		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithError: \(error.description)")
+		
 		let tableView = self.idPaginator_TableView(paginator)
 		
 		if page == 0 {
-			//TODO setup error view
-			//tableView.setupKipoBackgroundView(with: error, handler: { paginator.closureForRetry() })
+			tableView.id_SetBackgroundMessageView(forError: error, withAction: { paginator.loadNextPage() })
 		} else {
-			//TODO setup pagination error view
-			//let paginationMessageView = PaginationMessageView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-			//paginationMessageView.set(message: error.description, retryClosure: { paginator.closureForRetry() })
-			//tableView.tableFooterView = paginationMessageView
+			let paginationMessageView = IDPaginationMessageView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
+			paginationMessageView.set(message: error.description, retryClosure: { paginator.loadNextPage() })
+			tableView.tableFooterView = paginationMessageView
 		}
 	}
 	

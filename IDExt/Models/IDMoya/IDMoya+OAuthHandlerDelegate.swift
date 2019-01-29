@@ -65,11 +65,13 @@ public extension IDMoyaOAuthHandlerDelegate {
 	}
 	
 	public func idMoyaOAuthHandler_DidSuccessfullyRefreshed			(_ oauthHandler: IDMoya.OAuthHandler, withNewOAuthObject oauthObject: IDMoya.OAuthObject) {
-		
+		>>>"\(#function)"
+		>>>oauthObject
 	}
 	
 	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: IDMoya.DataResponse<Any>?) {
-		
+		>>>"\(#function)"
+		response.id_CheckAndUse { >>>$0.result }
 	}
 	
 	

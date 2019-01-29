@@ -38,7 +38,7 @@ public class IDWaitingBackgroundView: UIView {
 	}
 	
 	private func initialSetup() {
-		label.font = IDWaitingBackgroundView.Font ?? UIFont.systemFont(ofSize: 16)
+		label.font = IDWaitingBackgroundView.Font ?? .systemFont(ofSize: 16)
 		label.textColor = IDWaitingBackgroundView.Color ?? .darkGray
 		activityIndicator.color = IDWaitingBackgroundView.Color ?? .darkGray
 	}

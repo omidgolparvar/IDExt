@@ -62,8 +62,42 @@ public extension UITableView {
 		self.dataSource	= object
 	}
 	
-	//TODO	Func for PaginationView
-	//TODO	Func for BackgroundView (waiting and etc.)
-	//TODO	Func for Display Message (normal message, error message and etc.)
+	public func id_RemoveBackgroundView() {
+		self.backgroundView = nil
+	}
+	
+	public func id_SetBackgroundWaitingView(isForWaiting: Bool) {
+		self.backgroundView = isForWaiting ? IDWaitingBackgroundView(frame: self.frame) : nil
+	}
+	
+	public func id_SetBackgroundMessageView(emoji: String, title: String, message: String, buttonConfig: (title: String, handler: () -> Void)?) {
+		var messageView = IDMessageBackgroundView(frame: self.frame)
+			.setEmoji(emoji)
+			.setTexts(title: title, message: message)
+		
+		if let config = buttonConfig {
+			messageView = messageView.setActionButton(title: config.title, action: config.handler)
+		}
+		
+		self.backgroundView = messageView
+	}
+	
+	public func id_SetBackgroundMessageView(forError error: IDError, withAction action: @escaping () -> Void) {
+		let messageView = IDMessageBackgroundView(frame: self.frame)
+			.setError(error, action: action)
+		
+		self.backgroundView = messageView
+	}
+	
+	public func id_SetPaginationView(hasPagination: Bool) {
+		if hasPagination {
+			let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 80.0)
+			let paginationView = IDPaginationView(frame: frame)
+			self.tableFooterView = paginationView
+		} else {
+			self.tableFooterView = nil
+		}
+	}
+	
 	
 }
