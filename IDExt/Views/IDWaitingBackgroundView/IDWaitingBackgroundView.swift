@@ -9,7 +9,7 @@ public class IDWaitingBackgroundView: UIView {
 	@IBOutlet public weak var label				: UILabel!
 	@IBOutlet public weak var activityIndicator	: UIActivityIndicatorView!
 	
-	var view: UIView!
+	public var view: UIView!
 	
 	func xibSetup() {
 		view = loadViewFromNib()

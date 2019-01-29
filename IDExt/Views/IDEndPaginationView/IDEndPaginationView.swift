@@ -1,13 +1,13 @@
 import UIKit
 
-class IDEndPaginationView: UIView {
+public class IDEndPaginationView: UIView {
 	
 	public static var TitleFont		: UIFont?
 	public static var TitleColor	: UIColor?
 	
-	@IBOutlet weak var label_Title	: UILabel!
+	@IBOutlet public weak var label_Title	: UILabel!
 	
-	var view: UIView!
+	public var view: UIView!
 	
 	func xibSetup() {
 		view = loadViewFromNib()
@@ -26,12 +26,12 @@ class IDEndPaginationView: UIView {
 		return view
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		xibSetup()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		xibSetup()
 	}

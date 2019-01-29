@@ -1,6 +1,6 @@
 import UIKit
 
-class IDPaginationMessageView: UIView {
+public class IDPaginationMessageView: UIView {
 	
 	public static var TitleFont				: UIFont?
 	public static var TitleColor			: UIColor?
@@ -9,12 +9,12 @@ class IDPaginationMessageView: UIView {
 	public static var ButtonTextColor		: UIColor?
 	public static var ButtonBackgroundColor	: UIColor?
 	
-	@IBOutlet weak var labelMessage	: UILabel!
-	@IBOutlet weak var buttonRetry	: UIButton!
+	@IBOutlet public weak var labelMessage	: UILabel!
+	@IBOutlet public weak var buttonRetry	: UIButton!
 	
 	private var retryClosure		: () -> Void = { }
 	
-	var view: UIView!
+	public var view: UIView!
 	
 	func xibSetup() {
 		view = loadViewFromNib()
@@ -39,17 +39,17 @@ class IDPaginationMessageView: UIView {
 		return view
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		xibSetup()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		xibSetup()
 	}
 	
-	func set(message: String, retryClosure: @escaping () -> Void) {
+	public func set(message: String, retryClosure: @escaping () -> Void) {
 		labelMessage.text = message
 		self.retryClosure = retryClosure
 	}

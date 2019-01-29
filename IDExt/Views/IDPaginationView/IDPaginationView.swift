@@ -1,14 +1,14 @@
 import UIKit
 
-class IDPaginationView: UIView {
+public class IDPaginationView: UIView {
 	
 	public static var TitleFont				: UIFont?
 	public static var TitleColor			: UIColor?
 	
-	@IBOutlet weak var activityIndicatorView	: UIActivityIndicatorView!
-	@IBOutlet weak var labelMessage				: UILabel!
+	@IBOutlet public weak var activityIndicatorView	: UIActivityIndicatorView!
+	@IBOutlet public weak var labelMessage				: UILabel!
 	
-	var view: UIView!
+	public var view: UIView!
 	
 	func xibSetup() {
 		view = loadViewFromNib()
@@ -29,17 +29,17 @@ class IDPaginationView: UIView {
 		return view
 	}
 	
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		xibSetup()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		xibSetup()
 	}
 	
-	func startAnimating() {
+	public func startAnimating() {
 		activityIndicatorView.startAnimating()
 	}
 	

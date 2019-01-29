@@ -1,6 +1,6 @@
 import UIKit
 
-class IDMessageBackgroundView: UIView {
+public class IDMessageBackgroundView: UIView {
 	
 	public static var TitleFont						: UIFont?
 	public static var TitleColor					: UIColor?
@@ -26,7 +26,7 @@ class IDMessageBackgroundView: UIView {
 	private var closure_Action	: () -> Void = { }
 	private var closure_Dismiss	: () -> Void = { }
 	
-	var view: UIView!
+	public var view: UIView!
 	
 	func xibSetup() {
 		view = loadViewFromNib()
