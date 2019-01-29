@@ -70,6 +70,7 @@ public extension IDPaginatorDelegate {
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
 		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithItems(Count): \(items.count)")
 		let tableView = self.idPaginator_TableView(paginator)
+		tableView.id_RemoveBackgroundView()
 		
 		if page == 0, items.count == 0 {
 			if let emptyListView = self.idPaginator_ViewForEmptyList(paginator) {
@@ -97,6 +98,7 @@ public extension IDPaginatorDelegate {
 		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithError: \(error.description)")
 		
 		let tableView = self.idPaginator_TableView(paginator)
+		tableView.id_RemoveBackgroundView()
 		
 		if page == 0 {
 			tableView.id_SetBackgroundMessageView(forError: error, withAction: { paginator.loadNextPage() })
