@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'IDExt'
-  s.version               = '2.4.5'
+  s.version               = '2.4.6'
   s.summary               = 'IDExt framework for Swift.'
   s.description           = <<-DESC
                             Written in Swift.

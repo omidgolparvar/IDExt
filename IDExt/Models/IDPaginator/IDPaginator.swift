@@ -13,7 +13,7 @@ import SwiftyJSON
 public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 	
 	internal var isVerbose		: Bool					= false
-	internal var items			: [T]?					= nil
+	public var items			: [T]?					= nil
 	
 	public var currentPage		: Int					= 0
 	public var identifier		: String?				= nil
@@ -61,9 +61,9 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 					let array = arrayObjectKey == nil ? json.array : json[arrayObjectKey!].array
 					if let arrayOfItems = array?.compactMap({ return T(fromJSONObject: $0) }) {
 						_self.appendNewItems(arrayOfItems)
-						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: arrayOfItems)
 						_self.currentPage += 1
 						_self.setupStatusForLoadingNextPage(lastItems: arrayOfItems, jsonObject: json)
+						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage-1, with: arrayOfItems)
 						_self.delegate?.idPaginator_DidFinishLoading(_self, for: _self.currentPage-1)
 					} else {
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .requestWithInvalidResponse)
