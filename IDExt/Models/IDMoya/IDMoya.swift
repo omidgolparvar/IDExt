@@ -151,6 +151,15 @@ public final class IDMoya {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = false
 	}
 	
+	public static func SetupDefaultSessionManager(_ closure: (SessionManager?) -> Void) {
+		let defaultSessionManager = Alamofire.SessionManager.default
+		closure(defaultSessionManager)
+	}
+	
+	public static func SetupOAuthSessionManager(_ closure: (SessionManager?) -> Void) {
+		closure(OAuthSessionManager)
+	}
+	
 }
 
 public extension IDMoya {

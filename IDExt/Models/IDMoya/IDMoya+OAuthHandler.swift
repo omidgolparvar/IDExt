@@ -14,7 +14,7 @@ public extension IDMoya {
 	
 	public final class OAuthHandler: RequestAdapter, RequestRetrier {
 		
-		public static var Delegate		: IDMoyaOAuthHandlerDelegate?	= nil
+		public static weak var Delegate		: IDMoyaOAuthHandlerDelegate?	= nil
 		
 		private let sessionManager: SessionManager = {
 			let configuration = URLSessionConfiguration.default
@@ -98,6 +98,7 @@ public extension IDMoya {
 						completion(false, nil)
 						
 						if let statusCode = response.response?.statusCode, statusCode == 401 {
+							IDMoya.OAuthSessionManager = nil
 							IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_RemoveCurrentOAuthObject()
 							IDUser.current = IDUser(withInitType: .raw)!
 							sharedDelegate.idMoyaOAuthHandler_ShouldLogoutCurrentUser()

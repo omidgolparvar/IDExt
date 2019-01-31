@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-public protocol IDMoyaOAuthHandlerDelegate {
+public protocol IDMoyaOAuthHandlerDelegate: NSObjectProtocol {
 	
 	// MARK: OAuthHandler Related
 	
