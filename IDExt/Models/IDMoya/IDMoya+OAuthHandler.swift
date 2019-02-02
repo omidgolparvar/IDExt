@@ -68,6 +68,7 @@ public extension IDMoya {
 					sharedDelegate.idMoyaOAuthHandler_StoreNewOAuthObject(oauthObject)
 					sharedDelegate.idMoyaOAuthHandler_DidSuccessfullyRefreshed(strongSelf, withNewOAuthObject: oauthObject)
 					strongSelf.oauthObject = oauthObject
+					IDUser.current.oauthObject = oauthObject
 				} else {
 					NotificationCenter.default.post(name: NotificationKeys.RefreshTokenFailed, object: nil)
 				}
