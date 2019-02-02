@@ -46,7 +46,7 @@ public extension IDMoya {
 		
 		private func setupMultipartFormData(_ multipartFormData: MultipartFormData) {
 			for filesParameter in filesParameters {
-				multipartFormData.append(filesParameter.data, withName: filesParameter.name, mimeType: filesParameter.mimeType)
+				multipartFormData.append(filesParameter.data, withName: filesParameter.name, fileName: filesParameter.fileName, mimeType: filesParameter.mimeType)
 			}
 			if let extraParameters = extraParameters {
 				for (key, value) in extraParameters {

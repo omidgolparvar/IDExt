@@ -23,7 +23,7 @@ public final class IDMoya {
 	public typealias Progress			= Alamofire.Progress
 	public typealias Parameters			= Alamofire.Parameters
 	public typealias JSON				= SwiftyJSON.JSON
-	public typealias UploadParameter	= (name: String, data: Data, mimeType: String)
+	public typealias UploadParameter	= (name: String, data: Data, fileName: String, mimeType: String)
 	public typealias Header				= [String: String]
 	public typealias Callback			= (_ result: ResultStatus, _ data: AnyObject?) -> Void
 	
