@@ -44,6 +44,7 @@
 		1A62AAF121CEE95D00A3D8D9 /* IDJSONInitBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */; };
 		1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */; };
 		1A64E5BE21F232C0005FEFE9 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */; };
+		1A6679AA220618DE00E0864C /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6679A9220618DE00E0864C /* UISearchBar.swift */; };
 		1A6BAD8521F87BCB001154A2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BAD8421F87BCB001154A2 /* UIImageView.swift */; };
 		1A6BAD8721F88B19001154A2 /* IDStoryboardInstanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BAD8621F88B19001154A2 /* IDStoryboardInstanceProtocol.swift */; };
 		1A720CD82189D2500016A844 /* IDExt.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A720CD62189D2500016A844 /* IDExt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,6 +150,7 @@
 		1A62AAF021CEE95D00A3D8D9 /* IDJSONInitBased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJSONInitBased.swift; sourceTree = "<group>"; };
 		1A64E5BB21F22F7D005FEFE9 /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		1A64E5BD21F232C0005FEFE9 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		1A6679A9220618DE00E0864C /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		1A6BAD8421F87BCB001154A2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		1A6BAD8621F88B19001154A2 /* IDStoryboardInstanceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStoryboardInstanceProtocol.swift; sourceTree = "<group>"; };
 		1A720CD32189D2500016A844 /* IDExt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IDExt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +371,7 @@
 				1AC76BF021D2E098008B3E68 /* URL.swift */,
 				1AFA1809218F194D00A44D64 /* UserDefaults.swift */,
 				1A6BAD8421F87BCB001154A2 /* UIImageView.swift */,
+				1A6679A9220618DE00E0864C /* UISearchBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				1A0C7FAD21D2584B001A9A80 /* IDDeekLinkHandlerProtocol.swift in Sources */,
 				1A9BCD7B21E48FD600509B76 /* IDOperators.swift in Sources */,
 				1A31D9F921A8A0C900017360 /* Optional.swift in Sources */,
+				1A6679AA220618DE00E0864C /* UISearchBar.swift in Sources */,
 				1A0CE79B21CA3E1D002C4DF0 /* IDJoin.swift in Sources */,
 				1A720CE22189D3410016A844 /* IDTableViewCell.swift in Sources */,
 				1AA0518A21E0DC5C004A9F28 /* IDType.swift in Sources */,

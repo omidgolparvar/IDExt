@@ -100,6 +100,7 @@ public class IDMessageBackgroundView: UIView {
 		return self
 			.setEmoji("😕")
 			.setTexts(title: "بروز خطا", message: error.description)
+			.setActionButton(title: "تلاش مجدد", action: action)
 	}
 	
 	public func setCloseClosure(_ closeClosure: @escaping () -> Void) -> IDMessageBackgroundView {
