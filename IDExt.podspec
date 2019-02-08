@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'IDExt'
-  s.version               = '2.6.2'
+  s.version               = '2.7.0'
   s.summary               = 'IDExt framework for Swift.'
   s.description           = <<-DESC
                             Written in Swift.
@@ -33,5 +33,6 @@ Pod::Spec.new do |s|
   s.dependency 'PKHUD', '~> 5.0'
   s.dependency 'SwiftEntryKit', '0.8.4'
   s.dependency 'Kingfisher'
+  s.dependency 'SPStorkController'
 
 end

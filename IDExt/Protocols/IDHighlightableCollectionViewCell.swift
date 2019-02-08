@@ -14,4 +14,11 @@ public protocol IDHighlightableCollectionViewCell {
 	
 	var originalBackgroundColor		: UIColor { get }
 	
+	var highlightViewTag			: Int? { get }
+}
+
+public extension IDHighlightableCollectionViewCell {
+	
+	var highlightViewTag			: Int? { return nil }
+	
 }

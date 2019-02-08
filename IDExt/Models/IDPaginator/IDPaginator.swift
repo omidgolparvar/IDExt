@@ -108,6 +108,9 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		self.items			= nil
 		self.currentPage	= 0
 		self.status			= .shouldContinue
+		self.delegate?.idPaginator_TableView(self).tableFooterView = nil
+		self.delegate?.idPaginator_TableView(self).reloadData()
+		self.delegate?.idPaginator_DidResetToInitialState(self)
 	}
 	
 	private func appendNewItems(_ items: [T]) {

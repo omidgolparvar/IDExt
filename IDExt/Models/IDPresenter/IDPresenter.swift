@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftEntryKit
+import SPStorkController
 
 public final class IDPresenter {
 	
@@ -290,6 +291,24 @@ public final class IDPresenter {
 		
 	}
 	
+	public static func DisplayStorky(_ source: UIViewController, destination: UIViewController, delegate: IDStorkyPresenterDelegate? = nil) {
+		let transitionDelegate = SPStorkTransitioningDelegate()
+		
+		if let delegate = delegate {
+			transitionDelegate.isSwipeToDismissEnabled = delegate.idStorkyPresenter_IsSwipeToDismissEnabled(for: destination)
+			transitionDelegate.isTapAroundToDismissEnabled = delegate.idStorkyPresenter_isTapAroundToDismissEnabled(for: destination)
+			transitionDelegate.showIndicator = delegate.idStorkyPresenter_ShowIndicator(for: destination)
+			transitionDelegate.indicatorColor = delegate.idStorkyPresenter_IndicatorColor(for: destination)
+			transitionDelegate.customHeight = delegate.idStorkyPresenter_CustomHeight(for: destination)
+		}
+		
+		destination.transitioningDelegate = transitionDelegate
+		destination.modalPresentationStyle = .custom
+		destination.modalPresentationCapturesStatusBarAppearance = true
+		source.present(destination, animated: true, completion: nil)
+	}
+	
 }
+
 
 

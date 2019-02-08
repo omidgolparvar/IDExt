@@ -101,5 +101,9 @@ public extension UIViewController {
 			self.navigationController?.navigationBar.subviews.id_SafeItem(at: 1)?.semanticContentAttribute = .forceRightToLeft
 		}
 	}
+	
+	public func id_StorkyPresent(_ destination: UIViewController, delegate: IDStorkyPresenterDelegate? = nil) {
+		IDPresenter.DisplayStorky(self, destination: destination, delegate: delegate)
+	}
 }
 

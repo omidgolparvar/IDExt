@@ -77,6 +77,9 @@
 		1AA0518621E0AF28004A9F28 /* IDWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0518521E0AF28004A9F28 /* IDWith.swift */; };
 		1AA0518821E0B462004A9F28 /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0518721E0B462004A9F28 /* NSAttributedString.swift */; };
 		1AA0518A21E0DC5C004A9F28 /* IDType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA0518921E0DC5C004A9F28 /* IDType.swift */; };
+		1AA894F4220DBE44000648EA /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA894F3220DBE44000648EA /* UICollectionViewCell.swift */; };
+		1AA894F6220DDB1A000648EA /* IDVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA894F5220DDB1A000648EA /* IDVisualEffectView.swift */; };
+		1AA894F8220DFC5E000648EA /* IDStorkyPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA894F7220DFC5E000648EA /* IDStorkyPresenterDelegate.swift */; };
 		1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */; };
 		1AAFEAE921A40A8F00BB9F02 /* UITabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */; };
 		1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */; };
@@ -185,6 +188,9 @@
 		1AA0518521E0AF28004A9F28 /* IDWith.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDWith.swift; sourceTree = "<group>"; };
 		1AA0518721E0B462004A9F28 /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		1AA0518921E0DC5C004A9F28 /* IDType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDType.swift; sourceTree = "<group>"; };
+		1AA894F3220DBE44000648EA /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
+		1AA894F5220DDB1A000648EA /* IDVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDVisualEffectView.swift; sourceTree = "<group>"; };
+		1AA894F7220DFC5E000648EA /* IDStorkyPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDStorkyPresenterDelegate.swift; sourceTree = "<group>"; };
 		1AAFEAE621A40A2000BB9F02 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		1AAFEAE821A40A8F00BB9F02 /* UITabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItem.swift; sourceTree = "<group>"; };
 		1AAFEAEA21A40B0D00BB9F02 /* UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItem.swift; sourceTree = "<group>"; };
@@ -372,6 +378,7 @@
 				1AFA1809218F194D00A44D64 /* UserDefaults.swift */,
 				1A6BAD8421F87BCB001154A2 /* UIImageView.swift */,
 				1A6679A9220618DE00E0864C /* UISearchBar.swift */,
+				1AA894F3220DBE44000648EA /* UICollectionViewCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,6 +416,7 @@
 				1A83B32121A2A682000E51EF /* IDPresenter.swift */,
 				1A83B32521A2A7F3000E51EF /* IDPresenter+Configurations.swift */,
 				1A83B32721A2AC03000E51EF /* IDPresenter+PrivateMethods.swift */,
+				1AA894F7220DFC5E000648EA /* IDStorkyPresenterDelegate.swift */,
 			);
 			path = IDPresenter;
 			sourceTree = "<group>";
@@ -421,6 +429,7 @@
 				1A251BFD22005F76004B8479 /* IDEndPaginationView */,
 				1AB4C6E3218DE247009ECEDF /* IDMessageBackgroundView */,
 				1AB4C6E0218DE247009ECEDF /* IDWaitingBackgroundView */,
+				1AA894F5220DDB1A000648EA /* IDVisualEffectView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -651,6 +660,7 @@
 				1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */,
 				1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */,
 				1A9BCD8121E495EE00509B76 /* IDTableViewHandler+Delegate.swift in Sources */,
+				1AA894F4220DBE44000648EA /* UICollectionViewCell.swift in Sources */,
 				1A8714BE219877A600911586 /* IndexPath.swift in Sources */,
 				1AA0518621E0AF28004A9F28 /* IDWith.swift in Sources */,
 				1AD927F821AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift in Sources */,
@@ -659,6 +669,7 @@
 				1AFA180A218F194D00A44D64 /* UserDefaults.swift in Sources */,
 				1A251C0A2200608A004B8479 /* IDPaginationMessageView.swift in Sources */,
 				1A83B32621A2A7F3000E51EF /* IDPresenter+Configurations.swift in Sources */,
+				1AA894F8220DFC5E000648EA /* IDStorkyPresenterDelegate.swift in Sources */,
 				1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */,
 				1AFC2B4A21A08CEE005735CD /* Calendar.swift in Sources */,
 				1A06A1E921EC6D81006224DC /* Sequence.swift in Sources */,
@@ -710,6 +721,7 @@
 				1A40F6B121B3C5DD002FA2F5 /* UIToolbar.swift in Sources */,
 				1A83B32221A2A682000E51EF /* IDPresenter.swift in Sources */,
 				1AD927EB21AC114B00B63FAB /* IDMoya+OAuthHandler.swift in Sources */,
+				1AA894F6220DDB1A000648EA /* IDVisualEffectView.swift in Sources */,
 				1A720CE52189D4020016A844 /* UITableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

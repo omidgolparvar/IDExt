@@ -10,6 +10,7 @@ PODS:
   - PKHUD (5.2.0)
   - QuickLayout (2.1.1)
   - Result (4.0.0)
+  - SPStorkController (1.2.5)
   - SwiftEntryKit (0.8.4):
     - QuickLayout (= 2.1.1)
   - SwiftyJSON (4.2.0)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - Moya (~> 12.0)
   - PersianSwift
   - PKHUD (~> 5.0)
+  - SPStorkController
   - SwiftEntryKit (= 0.8.4)
   - SwiftyJSON
   - UIDeviceComplete
@@ -34,6 +36,7 @@ SPEC REPOS:
     - PKHUD
     - QuickLayout
     - Result
+    - SPStorkController
     - SwiftEntryKit
     - SwiftyJSON
     - UIDeviceComplete
@@ -46,10 +49,11 @@ SPEC CHECKSUMS:
   PKHUD: dd5357ac65f26115c35c4a68e9b328053326c5fe
   QuickLayout: 9af2b7fd89a6552828f51a5aba28d1bcdb8b340c
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  SPStorkController: f7209fdde1180507d93a692a226f0651c3d47788
   SwiftEntryKit: f0dd54bb0fb9f234738cd15a32365265cb975be8
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   UIDeviceComplete: 7495560e7f7a8e895d48337bd9aad12f7a400f7a
 
-PODFILE CHECKSUM: 59d8b993948a406df13a4d770efb314fe5b70f16
+PODFILE CHECKSUM: 4103e082b4881c4a24731023da26a13f0f274d54
 
 COCOAPODS: 1.5.3
