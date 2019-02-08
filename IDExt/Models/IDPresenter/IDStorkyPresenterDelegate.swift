@@ -28,7 +28,7 @@ public extension IDStorkyPresenterDelegate {
 		return true
 	}
 	
-	public func idStorkyPresenter_ShowIndicator				(for controller: UIViewController) -> Bool {
+	public func idStorkyPresenter_ShowIndicator					(for controller: UIViewController) -> Bool {
 		return true
 	}
 	

@@ -295,8 +295,8 @@ public final class IDPresenter {
 		let transitionDelegate = SPStorkTransitioningDelegate()
 		
 		if let delegate = delegate {
-			transitionDelegate.isSwipeToDismissEnabled = delegate.idStorkyPresenter_IsSwipeToDismissEnabled(for: destination)
-			transitionDelegate.isTapAroundToDismissEnabled = delegate.idStorkyPresenter_isTapAroundToDismissEnabled(for: destination)
+			transitionDelegate.swipeToDismissEnabled = delegate.idStorkyPresenter_IsSwipeToDismissEnabled(for: destination)
+			transitionDelegate.tapAroundToDismissEnabled = delegate.idStorkyPresenter_isTapAroundToDismissEnabled(for: destination)
 			transitionDelegate.showIndicator = delegate.idStorkyPresenter_ShowIndicator(for: destination)
 			transitionDelegate.indicatorColor = delegate.idStorkyPresenter_IndicatorColor(for: destination)
 			transitionDelegate.customHeight = delegate.idStorkyPresenter_CustomHeight(for: destination)
