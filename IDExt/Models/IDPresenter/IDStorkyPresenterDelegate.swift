@@ -11,7 +11,7 @@ import Foundation
 public protocol IDStorkyPresenterDelegate: NSObjectProtocol {
 	
 	func idStorkyPresenter_IsSwipeToDismissEnabled		(for controller: UIViewController) -> Bool
-	func idStorkyPresenter_isTapAroundToDismissEnabled	(for controller: UIViewController) -> Bool
+	func idStorkyPresenter_IsTapAroundToDismissEnabled	(for controller: UIViewController) -> Bool
 	func idStorkyPresenter_ShowIndicator				(for controller: UIViewController) -> Bool
 	func idStorkyPresenter_IndicatorColor				(for controller: UIViewController) -> UIColor
 	func idStorkyPresenter_CustomHeight					(for controller: UIViewController) -> CGFloat?
@@ -24,7 +24,7 @@ public extension IDStorkyPresenterDelegate {
 		return true
 	}
 	
-	public func idStorkyPresenter_isTapAroundToDismissEnabled	(for controller: UIViewController) -> Bool {
+	public func idStorkyPresenter_IsTapAroundToDismissEnabled	(for controller: UIViewController) -> Bool {
 		return true
 	}
 	

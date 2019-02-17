@@ -96,6 +96,11 @@ public extension String {
 		return digestHex.uppercased()
 	}
 	
+	public var id_IntValue: Int? {
+		let stringValue = self.id_Trimmed.ps.withEasternDigits.replacingOccurrences(of: "٬", with: "")
+		return Int(stringValue)
+	}
+	
 	
 	
 	public func id_ConvertToColor() -> UIColor {

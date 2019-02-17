@@ -296,7 +296,7 @@ public final class IDPresenter {
 		
 		if let delegate = delegate {
 			transitionDelegate.swipeToDismissEnabled = delegate.idStorkyPresenter_IsSwipeToDismissEnabled(for: destination)
-			transitionDelegate.tapAroundToDismissEnabled = delegate.idStorkyPresenter_isTapAroundToDismissEnabled(for: destination)
+			transitionDelegate.tapAroundToDismissEnabled = delegate.idStorkyPresenter_IsTapAroundToDismissEnabled(for: destination)
 			transitionDelegate.showIndicator = delegate.idStorkyPresenter_ShowIndicator(for: destination)
 			transitionDelegate.indicatorColor = delegate.idStorkyPresenter_IndicatorColor(for: destination)
 			transitionDelegate.customHeight = delegate.idStorkyPresenter_CustomHeight(for: destination)

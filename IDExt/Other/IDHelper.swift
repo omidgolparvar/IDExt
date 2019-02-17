@@ -12,6 +12,19 @@ import UserNotifications
 
 public final class IDHelper {
 	
+	public static func DetailedPrint(_ item: Any, file: String = #file, function: String = #function, line: Int = #line) {
+		#if DEBUG
+			let fileName = file.components(separatedBy: "/")
+			print("""
+			[\(fileName.isEmpty ? "" : fileName.last!)] : #\(line) : \(function)
+			\(item)
+			""")
+			return
+		#else
+			return
+		#endif
+	}
+	
 	public static func DebugPrint(_ item: Any) {
 		#if DEBUG
 			print(item)

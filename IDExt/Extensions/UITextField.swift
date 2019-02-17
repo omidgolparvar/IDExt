@@ -14,6 +14,7 @@ public extension UITextField {
 		UITextField.appearance(whenContainedInInstancesOf: containerTypes).defaultTextAttributes = attributes
 	}
 	
+	
 	public func id_SetupDismissInputAccessoryView(viewController: UIViewController, title: String, font: UIFont, color: UIColor) {
 		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, doneButtonTitle: title, font: font, color: color)
 		self.inputAccessoryView = toolbar
@@ -59,5 +60,14 @@ public extension UITextField {
 		guard let text = self.text, !text.isEmpty, text.ps.isPersianPhoneNumber else { return nil }
 		return text
 	}
+	
+	public func id_SetupTextWithPersianDigitsAndCurrencyStyle() {
+		self.text = (self.text ?? "")
+			.ps.withEasternDigits
+			.replacingOccurrences(of: "٬", with: "")
+			.ps.withCurrencyStyle
+	}
+	
+	
 	
 }

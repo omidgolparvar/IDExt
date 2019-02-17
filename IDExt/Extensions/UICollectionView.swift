@@ -55,5 +55,8 @@ public extension UICollectionView {
 		self.backgroundView = messageView
 	}
 	
+	public func id_IDCellForItem<T: IDCollectionViewCell>(at indexPath: IndexPath) -> T {
+		return self.cellForItem(at: indexPath) as! T
+	}
 	
 }

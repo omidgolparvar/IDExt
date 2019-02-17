@@ -99,5 +99,8 @@ public extension UITableView {
 		}
 	}
 	
+	public func id_IDCellForItem<T: IDTableViewCell>(at indexPath: IndexPath) -> T {
+		return self.cellForRow(at: indexPath) as! T
+	}
 	
 }
