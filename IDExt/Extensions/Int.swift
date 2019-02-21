@@ -24,4 +24,8 @@ public extension Int {
 		return array.joined(separator: ":")
 	}
 	
+	public var id_AsNSNumber: NSNumber {
+		return NSNumber(value: self)
+	}
+	
 }

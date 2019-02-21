@@ -68,6 +68,13 @@ public extension UITextField {
 			.ps.withCurrencyStyle
 	}
 	
+	public func id_SetupPlaceholder(color: UIColor, text: String? = nil) {
+		self.attributedPlaceholder = NSAttributedString(string: text ?? self.placeholder ?? "", attributes: [
+			.foregroundColor: color
+			]
+		)
+	}
+	
 	
 	
 }

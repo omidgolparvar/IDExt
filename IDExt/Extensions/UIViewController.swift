@@ -23,6 +23,10 @@ public extension UIViewController {
 		return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: identifier)
 	}
 	
+	public static func ID_Initialize<T: UIViewController & IDStoryboardInstanceProtocol>(_ type: T.Type) -> T {
+		return type.IDStoryboardInstance as! T
+	}
+	
 	
 	@objc
 	public func id_EndEditing() {
@@ -104,6 +108,15 @@ public extension UIViewController {
 	
 	public func id_StorkyPresent(_ destination: UIViewController, delegate: IDStorkyPresenterDelegate? = nil) {
 		IDPresenter.DisplayStorky(self, destination: destination, delegate: delegate)
+	}
+	
+	public func id_SetupTapGestureForEndEditing() {
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(id_EndEditing))
+		self.view.addGestureRecognizer(tapGesture)
+	}
+	
+	public func id_Route(to destination: UIViewController, with type: IDRouter.RoutingType) {
+		IDRouter.Present(source: self, destination: destination, type: type)
 	}
 }
 

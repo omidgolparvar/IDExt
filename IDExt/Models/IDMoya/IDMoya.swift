@@ -103,7 +103,6 @@ public final class IDMoya {
 	}
 	
 	public static var isConnectedToVPN: Bool {
-		#warning("not tested.")
 		guard
 			let settings = CFNetworkCopySystemProxySettings()?.takeRetainedValue() as? Dictionary<String, Any>,
 			let scopes = settings["__SCOPED__"] as? [String:Any]

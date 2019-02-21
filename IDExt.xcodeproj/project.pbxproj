@@ -18,6 +18,7 @@
 		1A0CE79921CA3D70002C4DF0 /* IDUser+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79821CA3D70002C4DF0 /* IDUser+Models.swift */; };
 		1A0CE79B21CA3E1D002C4DF0 /* IDJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79A21CA3E1D002C4DF0 /* IDJoin.swift */; };
 		1A0CE79F21CA4AE7002C4DF0 /* IDJoinDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CE79E21CA4AE7002C4DF0 /* IDJoinDelegate.swift */; };
+		1A0E3717221C05D800852369 /* CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3716221C05D800852369 /* CAShapeLayer.swift */; };
 		1A1AD70721BD9B5300853CFD /* IDApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1AD70621BD9B5300853CFD /* IDApplication.swift */; };
 		1A1AD70B21BD9BA100853CFD /* IDPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */; };
 		1A20076E21D8C1AA0077DA6B /* UNMutableNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */; };
@@ -35,6 +36,10 @@
 		1A31D9F921A8A0C900017360 /* Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A31D9F821A8A0C900017360 /* Optional.swift */; };
 		1A40F6B121B3C5DD002FA2F5 /* UIToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */; };
 		1A44255821AD728E00672341 /* IDMoya+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A44255721AD728E00672341 /* IDMoya+Handlers.swift */; };
+		1A49C984221ACA3C00CB7E23 /* IDRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49C983221ACA3C00CB7E23 /* IDRouter.swift */; };
+		1A49C986221AD07B00CB7E23 /* IDRouter+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49C985221AD07A00CB7E23 /* IDRouter+Models.swift */; };
+		1A49C98A221AEE8A00CB7E23 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49C989221AEE8A00CB7E23 /* Double.swift */; };
+		1A49C98C221AF0FD00CB7E23 /* NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49C98B221AF0FD00CB7E23 /* NSNumber.swift */; };
 		1A5D27D121DE6E2E00074BA7 /* IDDynamicJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D27D021DE6E2E00074BA7 /* IDDynamicJSON.swift */; };
 		1A5D27D321DED03F00074BA7 /* IDGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D27D221DED03F00074BA7 /* IDGradientView.swift */; };
 		1A62AAE721CCEBA500A3D8D9 /* IDImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */; };
@@ -127,6 +132,7 @@
 		1A0CE79821CA3D70002C4DF0 /* IDUser+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDUser+Models.swift"; sourceTree = "<group>"; };
 		1A0CE79A21CA3E1D002C4DF0 /* IDJoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJoin.swift; sourceTree = "<group>"; };
 		1A0CE79E21CA4AE7002C4DF0 /* IDJoinDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDJoinDelegate.swift; sourceTree = "<group>"; };
+		1A0E3716221C05D800852369 /* CAShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayer.swift; sourceTree = "<group>"; };
 		1A1AD70621BD9B5300853CFD /* IDApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDApplication.swift; sourceTree = "<group>"; };
 		1A1AD70A21BD9BA100853CFD /* IDPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDPaginator.swift; sourceTree = "<group>"; };
 		1A20076D21D8C1AA0077DA6B /* UNMutableNotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNMutableNotificationContent.swift; sourceTree = "<group>"; };
@@ -144,6 +150,10 @@
 		1A31D9F821A8A0C900017360 /* Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.swift; sourceTree = "<group>"; };
 		1A40F6B021B3C5DD002FA2F5 /* UIToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToolbar.swift; sourceTree = "<group>"; };
 		1A44255721AD728E00672341 /* IDMoya+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+Handlers.swift"; sourceTree = "<group>"; };
+		1A49C983221ACA3C00CB7E23 /* IDRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDRouter.swift; sourceTree = "<group>"; };
+		1A49C985221AD07A00CB7E23 /* IDRouter+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDRouter+Models.swift"; sourceTree = "<group>"; };
+		1A49C989221AEE8A00CB7E23 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		1A49C98B221AF0FD00CB7E23 /* NSNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNumber.swift; sourceTree = "<group>"; };
 		1A5D27D021DE6E2E00074BA7 /* IDDynamicJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDDynamicJSON.swift; sourceTree = "<group>"; };
 		1A5D27D221DED03F00074BA7 /* IDGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDGradientView.swift; sourceTree = "<group>"; };
 		1A62AAE621CCEBA500A3D8D9 /* IDImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDImage.swift; sourceTree = "<group>"; };
@@ -379,6 +389,9 @@
 				1A6BAD8421F87BCB001154A2 /* UIImageView.swift */,
 				1A6679A9220618DE00E0864C /* UISearchBar.swift */,
 				1AA894F3220DBE44000648EA /* UICollectionViewCell.swift */,
+				1A49C989221AEE8A00CB7E23 /* Double.swift */,
+				1A49C98B221AF0FD00CB7E23 /* NSNumber.swift */,
+				1A0E3716221C05D800852369 /* CAShapeLayer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -473,6 +486,8 @@
 				1AAFEAED21A4115900BB9F02 /* IDPresenter */,
 				1A9BCD8221E495F500509B76 /* IDTableViewHandler */,
 				1A62AAE421CC05C500A3D8D9 /* IDUser */,
+				1A49C983221ACA3C00CB7E23 /* IDRouter.swift */,
+				1A49C985221AD07A00CB7E23 /* IDRouter+Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -630,6 +645,8 @@
 				1A64E5BC21F22F7D005FEFE9 /* Numeric.swift in Sources */,
 				1AAFEAEB21A40B0D00BB9F02 /* UIBarButtonItem.swift in Sources */,
 				1A251C082200608A004B8479 /* IDPaginationView.swift in Sources */,
+				1A49C98C221AF0FD00CB7E23 /* NSNumber.swift in Sources */,
+				1A0E3717221C05D800852369 /* CAShapeLayer.swift in Sources */,
 				1AFA1801218EE9DB00A44D64 /* UIDevice.swift in Sources */,
 				1AFA180C218F1AE900A44D64 /* String.swift in Sources */,
 				1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */,
@@ -647,6 +664,7 @@
 				1AFA1811218F365F00A44D64 /* UISegmentedControl.swift in Sources */,
 				1A9BCD7D21E4959100509B76 /* IDTableViewHandler.swift in Sources */,
 				1A720CEF2189E9F70016A844 /* UITableViewCell.swift in Sources */,
+				1A49C984221ACA3C00CB7E23 /* IDRouter.swift in Sources */,
 				1A5D27D321DED03F00074BA7 /* IDGradientView.swift in Sources */,
 				1A720CEB2189E56C0016A844 /* UITextView.swift in Sources */,
 				1A720CED2189E9C00016A844 /* UITextField.swift in Sources */,
@@ -657,6 +675,7 @@
 				1A720CFB2189EFED0016A844 /* IDHighlightableCollectionViewCell.swift in Sources */,
 				1AFA1805218F13E700A44D64 /* IDLayouta.swift in Sources */,
 				1AB4C6E6218DE247009ECEDF /* IDWaitingBackgroundView.swift in Sources */,
+				1A49C98A221AEE8A00CB7E23 /* Double.swift in Sources */,
 				1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */,
 				1AAFEAE721A40A2000BB9F02 /* UINavigationBar.swift in Sources */,
 				1A9BCD8121E495EE00509B76 /* IDTableViewHandler+Delegate.swift in Sources */,
@@ -669,6 +688,7 @@
 				1AFA180A218F194D00A44D64 /* UserDefaults.swift in Sources */,
 				1A251C0A2200608A004B8479 /* IDPaginationMessageView.swift in Sources */,
 				1A83B32621A2A7F3000E51EF /* IDPresenter+Configurations.swift in Sources */,
+				1A49C986221AD07B00CB7E23 /* IDRouter+Models.swift in Sources */,
 				1AA894F8220DFC5E000648EA /* IDStorkyPresenterDelegate.swift in Sources */,
 				1A62AAEF21CEE56D00A3D8D9 /* Dictionary.swift in Sources */,
 				1AFC2B4A21A08CEE005735CD /* Calendar.swift in Sources */,

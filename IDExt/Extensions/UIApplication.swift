@@ -34,6 +34,14 @@ public extension UIApplication {
 		UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
 	}
 	
+	public static func ID_TryToOpen(url: URL, onFailed failureHandler: (() -> Void)? = nil) {
+		guard UIApplication.shared.canOpenURL(url) else {
+			failureHandler?()
+			return
+		}
+		UIApplication.shared.open(url, options: [:], completionHandler: nil)
+	}
+	
 	public static func ID_RemoveAllNotificationsAndBadge() {
 		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
@@ -61,5 +69,6 @@ public extension UIApplication {
 			completion?()
 		})
 	}
+	
 	
 }
