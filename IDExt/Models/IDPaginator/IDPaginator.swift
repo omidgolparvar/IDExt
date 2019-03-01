@@ -51,6 +51,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 			guard let _self = self else { return }
 			
 			_self.delegate?.idPaginator_TableView(_self).id_RemoveBackgroundView()
+			_self.delegate?.idPaginator_DidGetResponse(_self, for: _self.currentPage, resultStatus: resultStatus, data: data)
 			
 			switch resultStatus {
 			case .success:

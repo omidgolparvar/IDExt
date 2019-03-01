@@ -33,6 +33,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError)
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: IDMoya.JSON)
 	func idPaginator_DidFinishLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
+	func idPaginator_DidGetResponse				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: AnyObject?)
 	
 	
 }
@@ -116,6 +117,10 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidFinishLoading		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
+		
+	}
+	
+	public func idPaginator_DidGetResponse			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: AnyObject?) {
 		
 	}
 	

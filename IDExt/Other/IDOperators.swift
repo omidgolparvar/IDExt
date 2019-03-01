@@ -44,5 +44,10 @@ public func ???- (condition: Bool, closure: @autoclosure () -> Void) {
 	closure()
 }
 
+infix operator <->
+public func <-> (dates: (from: Date, to: Date), components: Set<Calendar.Component>) -> DateComponents {
+	let dateComponents = Calendar.current.dateComponents(components, from: dates.from, to: dates.to)
+	return dateComponents
+}
 
 

@@ -15,8 +15,8 @@ public final class IDRouter {
 		switch type {
 		case .push(let animated):
 			Present_Push(source, destination, animated)
-		case .modal(let animated, let transitionStyle, let presentationStyle):
-			Present_Modal(source, destination, animated, transitionStyle, presentationStyle)
+		case .modal(let isEmbeddedInNavigationController, let animated, let transitionStyle, let presentationStyle):
+			Present_Modal(source, destination, isEmbeddedInNavigationController, animated, transitionStyle, presentationStyle)
 		case .entryKit(let attributes):
 			Present_EntryKit(destination, attributes)
 		case .storky(let delegate):
@@ -34,15 +34,27 @@ public final class IDRouter {
 	}
 	
 	internal static func Present_Modal(
-		_ source			: UIViewController,
-		_ destination		: UIViewController,
-		_ animated			: Bool,
-		_ transitionStyle	: UIModalTransitionStyle,
-		_ presentationStyle	: UIModalPresentationStyle
+		_ source							: UIViewController,
+		_ destination						: UIViewController,
+		_ isEmbeddedInNavigationController	: Bool,
+		_ animated							: Bool,
+		_ transitionStyle					: UIModalTransitionStyle,
+		_ presentationStyle					: UIModalPresentationStyle
 		) {
-		destination.modalTransitionStyle = transitionStyle
-		destination.modalPresentationStyle = presentationStyle
-		source.present(destination, animated: animated, completion: nil)
+		
+		var finalDestinationController: UIViewController
+		if isEmbeddedInNavigationController {
+			let navigationController = UINavigationController(rootViewController: destination)
+			let dismissBarButton = UIBarButtonItem(title: "بازگشت", style: .done, target: destination, action: #selector(destination.id_Dismiss))
+			destination.navigationItem.rightBarButtonItem = dismissBarButton
+			finalDestinationController = navigationController
+		} else {
+			finalDestinationController = destination
+		}
+		
+		finalDestinationController.modalTransitionStyle = transitionStyle
+		finalDestinationController.modalPresentationStyle = presentationStyle
+		source.present(finalDestinationController, animated: animated, completion: nil)
 	}
 	
 	internal static func Present_EntryKit(

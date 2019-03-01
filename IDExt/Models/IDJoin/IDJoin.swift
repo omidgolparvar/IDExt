@@ -52,6 +52,7 @@ public class IDJoin {
 		guard let submitMobileEndpoint = delegate?.idJoin_SubmitMobileEndpoint(self) else { return }
 		IDMoya.Perform(submitMobileEndpoint) { [weak self] (result, data) in
 			guard let _self = self else { return }
+			_self.mobileSubmitDate = .ID_Now
 			_self.delegate?.idJoin_DidSubmitMobile(_self, withResult: result, andData: data)
 		}
 	}

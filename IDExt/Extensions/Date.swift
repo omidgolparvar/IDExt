@@ -10,6 +10,10 @@ import Foundation
 
 public extension Date {
 	
+	public static var ID_Now: Date {
+		return Date()
+	}
+	
 	public func id_AsPersianDateString(dateFormat: String = "yyyy/MM/dd") -> String {
 		return DateFormatter.ID_Initialize(dateFormat: dateFormat).string(from: self)
 	}

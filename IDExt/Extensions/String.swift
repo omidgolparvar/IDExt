@@ -101,6 +101,10 @@ public extension String {
 		return Int(stringValue)
 	}
 	
+	public var id_AsViewController: UIViewController {
+		return UIViewController.ID_Initialize(pattern: self)
+	}
+	
 	
 	
 	public func id_ConvertToColor() -> UIColor {
@@ -259,6 +263,9 @@ public extension String {
 		return String(self.prefix(maxLength))
 	}
 	
+	public func id_AsSpecificViewController<T: UIViewController>(of type: T.Type) -> T {
+		return UIViewController.ID_Initialize(pattern: self) as! T
+	}
 	
 }
 

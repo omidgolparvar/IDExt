@@ -13,7 +13,7 @@ public extension IDRouter {
 	
 	public enum RoutingType {
 		case push(animated: Bool)
-		case modal(animated: Bool, transitionStyle: UIModalTransitionStyle, presentationStyle: UIModalPresentationStyle)
+		case modal(isEmbeddedInNavigationController: Bool, animated: Bool, transitionStyle: UIModalTransitionStyle, presentationStyle: UIModalPresentationStyle)
 		case storky(delegate: IDStorkyPresenterDelegate)
 		case entryKit(attributes: IDPresenter.Attributes)
 		

@@ -23,15 +23,23 @@ public extension UIViewController {
 		return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: identifier)
 	}
 	
-	public static func ID_Initialize<T: UIViewController & IDStoryboardInstanceProtocol>(_ type: T.Type) -> T {
-		return type.IDStoryboardInstance as! T
+	public static func ID_Initialize<T: IDStoryboardInstanceProtocol>(_ type: T.Type) -> T {
+		return type.IDViewControllerInstance
 	}
+	
+	
 	
 	
 	@objc
 	public func id_EndEditing() {
 		self.view.endEditing(true)
 	}
+	
+	@objc
+	public func id_Dismiss() {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
 	
 	public typealias ID_NotificationObserver = (notificationName: Notification.Name, selector: Selector)
 	public func id_AddObservers(_ items: [ID_NotificationObserver]) {
