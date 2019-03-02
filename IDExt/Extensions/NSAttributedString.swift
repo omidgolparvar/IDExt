@@ -17,6 +17,8 @@ public extension NSAttributedString {
 	}
 	
 	public static func +(lhs: NSAttributedString, rhs: String) -> NSMutableAttributedString {
-		return lhs + rhs.id_AttributedString
+		let attribuetes = lhs.attributes(at: 0, effectiveRange: nil)
+		return lhs + rhs.id_MutableAttributedString(with: attribuetes)
 	}
+	
 }
