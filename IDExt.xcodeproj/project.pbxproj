@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A00D11621AAD2DB00CA0ED3 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A00D11521AAD2DB00CA0ED3 /* Error.swift */; };
+		1A037A4B222FBD950056106F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A037A4A222FBD950056106F /* UIButton.swift */; };
 		1A06A1E921EC6D81006224DC /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06A1E821EC6D81006224DC /* Sequence.swift */; };
 		1A0C7F9F21CF9889001A9A80 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */; };
 		1A0C7FA921D254F9001A9A80 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0C7FA821D254F9001A9A80 /* UIImage.swift */; };
@@ -122,6 +123,7 @@
 
 /* Begin PBXFileReference section */
 		1A00D11521AAD2DB00CA0ED3 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		1A037A4A222FBD950056106F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		1A06A1E821EC6D81006224DC /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		1A0C7F9E21CF9889001A9A80 /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		1A0C7FA821D254F9001A9A80 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				1A49C989221AEE8A00CB7E23 /* Double.swift */,
 				1A49C98B221AF0FD00CB7E23 /* NSNumber.swift */,
 				1A0E3716221C05D800852369 /* CAShapeLayer.swift */,
+				1A037A4A222FBD950056106F /* UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				1A20076E21D8C1AA0077DA6B /* UNMutableNotificationContent.swift in Sources */,
 				1A1AD70721BD9B5300853CFD /* IDApplication.swift in Sources */,
 				1AFC2B4621A08CB0005735CD /* Locale.swift in Sources */,
+				1A037A4B222FBD950056106F /* UIButton.swift in Sources */,
 				1A720CF12189EA480016A844 /* IDHighlightableTableViewCell.swift in Sources */,
 				1AD410ED21DBE37E003EC04A /* IDDarhamer.swift in Sources */,
 				1A64E5BE21F232C0005FEFE9 /* TimeInterval.swift in Sources */,

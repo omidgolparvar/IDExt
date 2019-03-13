@@ -36,6 +36,10 @@ public final class IDImage {
 		return baseURLString + id + "/" + type.rawValue.ps.string + contentType
 	}
 	
+	public var jsonString: String {
+		return "{\"id\":\"\(id)\", \"content_type\":\"\(contentType)\", \"ratio\": 1}"
+	}
+	
 	public enum ImageType: Int {
 		case original	= 1
 		case compressed	= 2

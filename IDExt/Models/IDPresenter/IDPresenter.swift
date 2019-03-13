@@ -300,6 +300,7 @@ public final class IDPresenter {
 			transitionDelegate.showIndicator = delegate.idStorkyPresenter_ShowIndicator(for: destination)
 			transitionDelegate.indicatorColor = delegate.idStorkyPresenter_IndicatorColor(for: destination)
 			transitionDelegate.customHeight = delegate.idStorkyPresenter_CustomHeight(for: destination)
+			transitionDelegate.cornerRadius = delegate.idStorkyPresenter_CornerRadius(for: destination)
 		}
 		
 		destination.transitioningDelegate = transitionDelegate

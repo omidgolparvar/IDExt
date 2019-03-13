@@ -15,6 +15,7 @@ public protocol IDStorkyPresenterDelegate: NSObjectProtocol {
 	func idStorkyPresenter_ShowIndicator				(for controller: UIViewController) -> Bool
 	func idStorkyPresenter_IndicatorColor				(for controller: UIViewController) -> UIColor
 	func idStorkyPresenter_CustomHeight					(for controller: UIViewController) -> CGFloat?
+	func idStorkyPresenter_CornerRadius					(for controller: UIViewController) -> CGFloat
 	
 }
 
@@ -38,6 +39,10 @@ public extension IDStorkyPresenterDelegate {
 	
 	public func idStorkyPresenter_CustomHeight					(for controller: UIViewController) -> CGFloat? {
 		return nil
+	}
+	
+	public func idStorkyPresenter_CornerRadius					(for controller: UIViewController) -> CGFloat {
+		return 10
 	}
 	
 }

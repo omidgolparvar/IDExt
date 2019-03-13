@@ -267,5 +267,11 @@ public extension String {
 		return UIViewController.ID_Initialize(pattern: self) as! T
 	}
 	
+	public mutating func id_ConvertToURLString(defaultSchema: String = "http") {
+		if !self.lowercased().hasPrefix("http://") && !self.lowercased().hasPrefix("https://") {
+			self = defaultSchema + "://" + self
+		}
+	}
+	
 }
 

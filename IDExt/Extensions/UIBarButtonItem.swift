@@ -23,6 +23,16 @@ public extension UIBarButtonItem {
 	}
 	
 	
+	public func id_SetupTitleAttributes(font: UIFont, textColor: UIColor? = nil, for state: UIControl.State) {
+		var attributes: [NSAttributedString.Key: Any] = [:]
+		attributes[.font] = font
+		if let color = textColor {
+			attributes[.foregroundColor] = color
+		}
+		self.setTitleTextAttributes(attributes, for: state)
+	}
+	
+	
 	private var _id_BadgeLayer: CAShapeLayer? {
 		guard let b = objc_getAssociatedObject(self, &_id_handle) as AnyObject? else { return nil }
 		return b as? CAShapeLayer
