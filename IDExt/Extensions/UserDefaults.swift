@@ -10,6 +10,8 @@ import Foundation
 
 public extension UserDefaults {
 	
+	#warning("اینا رو احتمالا باید یه تغییراتی توش بدم")
+	
 	public func id_Store(_ value: Any?, forKey key: String) {
 		set(value, forKey: key)
 		synchronize()

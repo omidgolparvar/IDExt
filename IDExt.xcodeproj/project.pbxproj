@@ -108,6 +108,7 @@
 		1AD927F821AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD927F721AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift */; };
 		1AD927FA21AC83C600B63FAB /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD927F921AC83C600B63FAB /* NSError.swift */; };
 		1ADEA5D621E801E700AD4438 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEA5D521E801E700AD4438 /* UILabel.swift */; };
+		1AE24E18225553F600BE53B2 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE24E17225553F600BE53B2 /* Equatable.swift */; };
 		1AFA1801218EE9DB00A44D64 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA1800218EE9DB00A44D64 /* UIDevice.swift */; };
 		1AFA1805218F13E700A44D64 /* IDLayouta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA1804218F13E700A44D64 /* IDLayouta.swift */; };
 		1AFA180A218F194D00A44D64 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFA1809218F194D00A44D64 /* UserDefaults.swift */; };
@@ -225,6 +226,7 @@
 		1AD927F721AC4DE200B63FAB /* IDMoya+ResponsechiDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IDMoya+ResponsechiDelegateProtocol.swift"; sourceTree = "<group>"; };
 		1AD927F921AC83C600B63FAB /* NSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		1ADEA5D521E801E700AD4438 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		1AE24E17225553F600BE53B2 /* Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equatable.swift; sourceTree = "<group>"; };
 		1AE2D4BB21E1F944004AD84B /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1AFA1800218EE9DB00A44D64 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		1AFA1804218F13E700A44D64 /* IDLayouta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDLayouta.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				1A49C98B221AF0FD00CB7E23 /* NSNumber.swift */,
 				1A0E3716221C05D800852369 /* CAShapeLayer.swift */,
 				1A037A4A222FBD950056106F /* UIButton.swift */,
+				1AE24E17225553F600BE53B2 /* Equatable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				1AFA180C218F1AE900A44D64 /* String.swift in Sources */,
 				1A9F609221C2D38C002A4E30 /* IDMoya+Uploader.swift in Sources */,
 				1A83B32A21A2B6FB000E51EF /* IDHUD.swift in Sources */,
+				1AE24E18225553F600BE53B2 /* Equatable.swift in Sources */,
 				1A62AAE921CCF48A00A3D8D9 /* IDFont.swift in Sources */,
 				1A62AAE721CCEBA500A3D8D9 /* IDImage.swift in Sources */,
 				1AD410EF21DBE3BE003EC04A /* IDDarhamerDelegate.swift in Sources */,

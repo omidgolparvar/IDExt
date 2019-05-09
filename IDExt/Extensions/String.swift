@@ -273,5 +273,42 @@ public extension String {
 		}
 	}
 	
+	public var id_IsRTL: Bool {
+		let cleanFile = self.replacingOccurrences(of: "\r", with: "\n")
+		var newLineIndices: [Int] = []
+		
+		for (index, char) in cleanFile.enumerated() {
+			if char == "\n" {
+				newLineIndices.append(index)
+			}
+		}
+		
+		newLineIndices.insert(-1, at: 0)
+		newLineIndices.append(cleanFile.count)
+		
+		let tagschemes = NSArray(objects: NSLinguisticTagScheme.language)
+		let tagger = NSLinguisticTagger(tagSchemes: tagschemes as! [NSLinguisticTagScheme], options: 0)
+		tagger.string = cleanFile
+		
+		for i in 0..<newLineIndices.count - 1 {
+			let language = tagger.tag(
+				at				: newLineIndices[i + 1] - 1,
+				scheme			: NSLinguisticTagScheme.language,
+				tokenRange		: nil,
+				sentenceRange	: nil
+			)
+			
+			if	String(describing: language).range(of: "he") != nil ||
+				String(describing: language).range(of: "ar") != nil ||
+				String(describing: language).range(of: "fa") != nil {
+				return true
+			} else {
+				return false
+			}
+		}
+		
+		return false
+	}
+	
 }
 

@@ -19,4 +19,8 @@ public extension Sequence {
 			}
 		}
 	}
+	
+	public func id_Grouped <T: Hashable> (by keyPath: KeyPath<Element, T>) -> [T: [Element]] {
+		return .init(grouping: self, by: { $0[keyPath: keyPath] })
+	}
 }
