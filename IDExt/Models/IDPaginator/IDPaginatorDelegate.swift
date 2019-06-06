@@ -1,10 +1,4 @@
 //
-//  IDPaginatorDelegate.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 12/10/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import SwiftyJSON
@@ -13,7 +7,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	
 	// MARK: Required
 	
-	func idPaginator_EndpointObject				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> IDMoyaEndpointObject
+	func idPaginator_EndpointObject				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> IDMoyaEndpoint
 	func idPaginator_TableView					<T: IDPaginatorModel>(_ paginator: IDPaginator<T>)					-> UITableView
 	
 	// MARK: Optionals
@@ -33,7 +27,7 @@ public protocol IDPaginatorDelegate: NSObjectProtocol {
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError)
 	func idPaginator_DidEndLoading				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with jsonObject: IDMoya.JSON)
 	func idPaginator_DidFinishLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int)
-	func idPaginator_DidGetResponse				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: AnyObject?)
+	func idPaginator_DidGetResponse				<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: Any?)
 	
 	
 }
@@ -70,7 +64,7 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with items: [T]) {
-		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithItems(Count): \(items.count)")
+		paginator.isVerbose ?+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithItems(Count): \(items.count)")
 		let tableView = self.idPaginator_TableView(paginator)
 		
 		if page == 0, items.isEmpty {
@@ -95,7 +89,7 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidEndLoading			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, with error: IDError) {
-		paginator.isVerbose ???+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithError: \(error.description)")
+		paginator.isVerbose ?+ print("IDPaginator.DidEndLoading:ForPage: \(page), WithError: \(error.description)")
 		
 		let tableView = self.idPaginator_TableView(paginator)
 		
@@ -113,14 +107,14 @@ public extension IDPaginatorDelegate {
 	}
 	
 	public func idPaginator_DidResetToInitialState	<T: IDPaginatorModel>(_ paginator: IDPaginator<T>) {
-		
+		paginator.loadNextPage()
 	}
 	
 	public func idPaginator_DidFinishLoading		<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int) {
 		
 	}
 	
-	public func idPaginator_DidGetResponse			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: AnyObject?) {
+	public func idPaginator_DidGetResponse			<T: IDPaginatorModel>(_ paginator: IDPaginator<T>, for page: Int, resultStatus: IDMoya.ResultStatus, data: Any?) {
 		
 	}
 	

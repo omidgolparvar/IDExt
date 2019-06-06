@@ -10,10 +10,6 @@ import Foundation
 
 public extension UICollectionView {
 	
-	public func id_RegisterIDCells<T: IDCollectionViewCell>(cellTypes: [T.Type]) {
-		cellTypes.forEach { self.id_RegisterIDCell($0) }
-	}
-	
 	public func id_RegisterIDCell(_ cell: IDCollectionViewCell.Type) {
 		let nib = UINib(nibName: cell.Identifier, bundle: nil)
 		self.register(nib, forCellWithReuseIdentifier: cell.Identifier)
@@ -57,6 +53,14 @@ public extension UICollectionView {
 	
 	public func id_IDCellForItem<T: IDCollectionViewCell>(at indexPath: IndexPath) -> T {
 		return self.cellForItem(at: indexPath) as! T
+	}
+	
+	public func id_AddRefreshControl(action: Selector, setupHandler: ((UIRefreshControl) -> Void)? = nil) {
+		let refreshControl = UIRefreshControl()
+		setupHandler?(refreshControl)
+		refreshControl.addTarget(self, action: action, for: .valueChanged)
+		
+		self.refreshControl = refreshControl
 	}
 	
 }

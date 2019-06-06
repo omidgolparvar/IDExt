@@ -16,7 +16,7 @@ public extension UITextField {
 	
 	
 	public func id_SetupDismissInputAccessoryView(viewController: UIViewController, title: String, font: UIFont, color: UIColor) {
-		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, doneButtonTitle: title, font: font, color: color)
+		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, title: title, font: font, color: color)
 		self.inputAccessoryView = toolbar
 	}
 	
@@ -30,19 +30,15 @@ public extension UITextField {
 		self.leftViewMode = mode
 	}
 	
-	public func id_SetRightPadding(_ padding: CGFloat) {
-		let view = UIView(frame: .init(x: 0, y: 0, width: padding, height: self.frame.height))
-		self.id_SetRightView(view)
-	}
-	
-	public func id_SetLeftPadding(_ padding: CGFloat) {
-		let view = UIView(frame: .init(x: 0, y: 0, width: padding, height: self.frame.height))
-		self.id_SetLeftView(view)
+	public func id_SetSidePadding(left: CGFloat, right: CGFloat) {
+		let leftPaddingView = UIView(frame: .init(x: 0, y: 0, width: left, height: self.frame.height))
+		let rightPaddingView = UIView(frame: .init(x: 0, y: 0, width: right, height: self.frame.height))
+		self.id_SetLeftView(leftPaddingView)
+		self.id_SetRightView(rightPaddingView)
 	}
 	
 	public func id_SetSidePadding(_ padding: CGFloat) {
-		self.id_SetLeftPadding(padding)
-		self.id_SetRightPadding(padding)
+		self.id_SetSidePadding(left: padding, right: padding)
 	}
 	
 	public func id_SetLeftText(_ text: String, font: UIFont, textColor: UIColor) {
@@ -56,25 +52,32 @@ public extension UITextField {
 		self.id_SetLeftView(label)
 	}
 	
+	public func id_SetRightText(_ text: String, font: UIFont, textColor: UIColor) {
+		let nsString = text as NSString
+		let size = nsString.size(withAttributes: [.font: font])
+		let label = UILabel(frame: .init(x: 0, y: 0, width: size.width + 16, height: self.frame.height))
+		label.text = text
+		label.font = font
+		label.textColor = textColor
+		label.textAlignment = .center
+		self.id_SetRightView(label)
+	}
+	
 	public func id_GetMobileFromText() -> String? {
-		guard let text = self.text, !text.isEmpty, text.ps.isPersianPhoneNumber else { return nil }
+		guard let text = self.text?.id_Trimmed.ps.withEasternDigits, !text.isEmpty, text.ps.isPersianPhoneNumber else { return nil }
 		return text
 	}
 	
 	public func id_SetupTextWithPersianDigitsAndCurrencyStyle() {
 		self.text = (self.text ?? "")
 			.ps.withEasternDigits
-			.replacingOccurrences(of: "٬", with: "")
+			.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
 			.ps.withCurrencyStyle
 	}
 	
 	public func id_SetupPlaceholder(color: UIColor, text: String? = nil) {
-		self.attributedPlaceholder = NSAttributedString(string: text ?? self.placeholder ?? "", attributes: [
-			.foregroundColor: color
-			]
-		)
+		let placeholderText = text ?? self.placeholder ?? ""
+		self.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [.foregroundColor: color])
 	}
-	
-	
 	
 }

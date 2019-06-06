@@ -14,7 +14,7 @@ public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
 	case requestWithInvalidResponse
 	case errorWithCustomMessage(String)
 	case noConnection
-	case withData(AnyObject?)
+	case withData(Any?)
 	case unAuthorized
 	case unknownError
 	

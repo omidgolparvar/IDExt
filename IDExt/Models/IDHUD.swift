@@ -16,19 +16,19 @@ public final class IDHUD {
 		set { PKHUD.sharedHUD.dimsBackground = newValue }
 	}
 	
-	public static var TitleFont		: UIFont	= UIFont.systemFont(ofSize: 17, weight: .bold)
-	public static var SubtitleFont	: UIFont	= UIFont.systemFont(ofSize: 14, weight: .regular)
-	public static var MessageFont	: UIFont	= UIFont.systemFont(ofSize: 17, weight: .regular)
+	public static var TitleFont		: UIFont	= UIFont.ID_Font(ofSize: 17, weight: .bold)
+	public static var SubtitleFont	: UIFont	= UIFont.ID_Font(ofSize: 14, weight: .regular)
+	public static var MessageFont	: UIFont	= UIFont.ID_Font(ofSize: 17, weight: .regular)
 	
 	public static func Show(_ content: HUDContentType) {
 		PKHUD.sharedHUD.contentView = ContentView(content)
 		PKHUD.sharedHUD.show()
 	}
 	
-	public static func Flash(_ content: HUDContentType, delay: TimeInterval, completion: ((Bool) -> Void)? = nil) {
+	public static func Flash(_ content: HUDContentType, duration: TimeInterval, completion: ((Bool) -> Void)? = nil) {
 		PKHUD.sharedHUD.contentView = ContentView(content)
 		PKHUD.sharedHUD.show()
-		PKHUD.sharedHUD.hide(afterDelay: delay, completion: completion)
+		PKHUD.sharedHUD.hide(afterDelay: duration, completion: completion)
 	}
 	
 	public static func Hide(animated: Bool = true, completion: PKHUD.TimerAction?) {

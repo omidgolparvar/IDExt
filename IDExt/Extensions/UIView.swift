@@ -10,19 +10,11 @@ import Foundation
 
 public extension UIView {
 	
-	public static func ID_Animate(_ animation: @autoclosure @escaping () -> Void, duration: TimeInterval = 0.25) {
-		UIView.animate(withDuration: duration, animations: animation)
-	}
-	
-	public static var ID_WithZeroFrame: UIView {
-		return UIView(frame: .zero)
-	}
-	
-	public func id_Shake() {
+	public func id_Shake(duration: Double = 0.6, shakePattern: [Double] = [-16.0, 16.0, -16.0, 16.0, -8.0, 8.0, -5.0, 5.0, 0.0]) {
 		let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
 		animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-		animation.duration = 0.6
-		animation.values = [-16.0, 16.0, -16.0, 16.0, -8.0, 8.0, -5.0, 5.0, 0.0]
+		animation.duration = duration
+		animation.values = shakePattern
 		self.layer.add(animation, forKey: "shake")
 	}
 	
@@ -32,7 +24,11 @@ public extension UIView {
 	}
 	
 	public func id_RoundCorners() {
-		self.id_SetCornerRadius(self.frame.height / 2.0)
+		if self.frame.width >= self.frame.height {
+			self.id_SetCornerRadius(self.frame.height / 2.0)
+		} else {
+			self.id_SetCornerRadius(self.frame.width / 2.0)
+		}
 	}
 	
 	public func id_SetRadiusForCorners(radius: CGFloat, corners: UIRectCorner) {
@@ -40,14 +36,6 @@ public extension UIView {
 		let mask = CAShapeLayer()
 		mask.path = path.cgPath
 		self.layer.mask = mask
-	}
-	
-	public func id_DisableUserInteraction() {
-		self.isUserInteractionEnabled = false
-	}
-	
-	public func id_EnableUserInteraction() {
-		self.isUserInteractionEnabled = true
 	}
 	
 	public func id_SetRoundedShadow(cornerRadius: CGFloat, fillColor: UIColor, shadowColor: UIColor, shadowOpacity: Float, shadowRadius: CGFloat, shadowOffset: CGSize) {
@@ -63,25 +51,19 @@ public extension UIView {
 		self.layer.insertSublayer(shadowLayer, at: 0)
 	}
 	
-	public func id_SetBorder(color: UIColor?, width: CGFloat) {
-		self.layer.borderColor = color?.cgColor
-		self.layer.borderWidth = width
+	public enum IDBorderStyle {
+		case none
+		case border(color: UIColor, width: CGFloat)
 	}
-	
-	public func id_SetTransform(rotationAngle: CGFloat) {
-		self.transform = CGAffineTransform(rotationAngle: rotationAngle)
-	}
-	
-	public func id_SetTransform(scaleX: CGFloat, y scaleY: CGFloat) {
-		self.transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
-	}
-	
-	public func id_SetTransform(translationX: CGFloat, y translationY: CGFloat) {
-		self.transform = CGAffineTransform(translationX: translationX, y: translationY)
-	}
-	
-	public func id_SetTransformToIdentity() {
-		self.transform = .identity
+	public func id_SetBorder(style: IDBorderStyle) {
+		switch style {
+		case .none:
+			self.layer.borderColor = nil
+			self.layer.borderWidth = 0
+		case .border(let color, let width):
+			self.layer.borderColor = color.cgColor
+			self.layer.borderWidth = width
+		}
 	}
 	
 	public var id_StringID: String? {

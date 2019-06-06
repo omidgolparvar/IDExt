@@ -1,10 +1,4 @@
 //
-//  IDMoya+OAuthObject.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 11/26/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
@@ -44,7 +38,7 @@ public extension IDMoya {
 			self.init(accessToken: _accessToken, refreshToken: _refreshToken, expiresIn: _expiresIn, createdAt: Date())
 		}
 		
-		public convenience init?(fromJSONData data: AnyObject?) {
+		public convenience init?(fromJSONData data: Any?) {
 			guard let data = data else { return nil }
 			self.init(fromJSONObject: IDMoya.JSON(data))
 		}

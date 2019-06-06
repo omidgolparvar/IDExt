@@ -1,10 +1,4 @@
 //
-//  IDMoya+Uploader.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 12/13/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import SwiftyJSON
@@ -65,11 +59,11 @@ public extension IDMoya {
 					switch response.result {
 					case .success(let json):
 						let result = IDMoya.ResultStatus(rawValue: response.response?.statusCode ?? 0) ?? .unknown
-						_self.closure_Callback(result, json as AnyObject)
+						_self.closure_Callback(result, json)
 						
 					case .failure(let error):
 						let nsError = error as NSError
-						IsVerbose.id_IfIsTrue { print(ErrorMessagePrefix.id_Trimmed + " Uploader: " + nsError.id_ErrorStyleDescription) }
+						IsVerbose ?+ print(ErrorMessagePrefix.id_Trimmed + " Uploader: " + nsError.id_ErrorStyleDescription)
 						switch nsError.code {
 						case NSURLErrorCancelled	: _self.closure_Callback(.requestCanceled, nil)
 						default						: _self.closure_Callback(.notRequested, nil)
@@ -82,7 +76,7 @@ public extension IDMoya {
 				}
 				
 			case .failure(let error):
-				IsVerbose.id_IfIsTrue { print(ErrorMessagePrefix.id_Trimmed + " Uploader: " + error.localizedDescription) }
+				IsVerbose ?+ print(ErrorMessagePrefix.id_Trimmed + " Uploader: " + error.localizedDescription)
 				closure_Callback(.notRequested, nil)
 			}
 		}

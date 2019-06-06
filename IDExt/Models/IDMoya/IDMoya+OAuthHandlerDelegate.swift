@@ -1,19 +1,20 @@
 //
-//  IDMoya+OAuthHandlerDelegate.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 12/27/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
+
+fileprivate let UserDefaultsKeys = (
+	accessToken		: "IDAM.UDK.AO.AT",
+	refreshToken	: "IDAM.UDK.AO.RT",
+	expiresIn		: "IDAM.UDK.AO.EI",
+	createdAt		: "IDAM.UDK.AO.CA"
+)
 
 public protocol IDMoyaOAuthHandlerDelegate: NSObjectProtocol {
 	
 	// MARK: OAuthHandler Related
 	
-	func idMoyaOAuthHanlder_RefreshTokenEndpoint			(_ oauthHandler: IDMoya.OAuthHandler)							-> IDMoyaEndpointObject
+	func idMoyaOAuthHanlder_RefreshTokenEndpoint			(_ oauthHandler: IDMoya.OAuthHandler)							-> IDMoyaEndpoint
 	func idMoyaOAuthHandler_AdaptURLRequest					(_ oauthHandler: IDMoya.OAuthHandler, urlRequest: URLRequest)	-> URLRequest
 	func idMoyaOAuthHandler_DidSuccessfullyRefreshed		(_ oauthHandler: IDMoya.OAuthHandler, withNewOAuthObject oauthObject: IDMoya.OAuthObject)
 	func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: IDMoya.DataResponse<Any>?)
@@ -32,8 +33,8 @@ public protocol IDMoyaOAuthHandlerDelegate: NSObjectProtocol {
 
 public extension IDMoyaOAuthHandlerDelegate {
 	
-	public func idMoyaOAuthHanlder_RefreshTokenEndpoint				(_ oauthHandler: IDMoya.OAuthHandler) -> IDMoyaEndpointObject {
-		return IDMoyaEndpointObject(
+	public func idMoyaOAuthHanlder_RefreshTokenEndpoint				(_ oauthHandler: IDMoya.OAuthHandler) -> IDMoyaEndpoint {
+		return IDMoyaEndpoint(
 			baseURLString	: oauthHandler.baseURLString,
 			path			: "api/oauth2/token",
 			method			: .post,
@@ -43,8 +44,8 @@ public extension IDMoyaOAuthHandlerDelegate {
 				"refresh_token"	: oauthHandler.oauthObject.refreshToken,
 				"client_id"		: oauthHandler.clientID,
 				"grant_type"	: "refresh_token",
-				"uuid"			: IDApplication.GetUUID(),
-				"pid"			: IDApplication.OneSignalPlayerIDGetter() ?? "",
+				"uuid"			: UIApplication.ID_UUID,
+				"pid"			: UIApplication.ID_OneSignalPlayerID ?? "",
 				"os"			: "iOS",
 				"os_version"	: UIDevice.current.systemVersion,
 				"phone_model"	: "\(UIDevice.current.dc.deviceModel)",
@@ -71,24 +72,20 @@ public extension IDMoyaOAuthHandlerDelegate {
 	
 	public func idMoyaOAuthHandler_DidFailedToRefresh				(_ oauthHandler: IDMoya.OAuthHandler, withResponse response: IDMoya.DataResponse<Any>?) {
 		>>>"\(#function)"
-		response.id_CheckAndUse { >>>$0.result }
+		
+		response.id_IfIsNotNil { >>>$0.result }
 	}
 	
 	
 	
 	public var idMoyaOAuthHandler_StoredOAuthObject					: IDMoya.OAuthObject? {
 		let userDefaults = UserDefaults.standard
-		let userDefaultsKeys = (
-			accessToken		: "IDAM.UDK.AO.AT",
-			refreshToken	: "IDAM.UDK.AO.RT",
-			expiresIn		: "IDAM.UDK.AO.EI",
-			createdAt		: "IDAM.UDK.AO.CA"
-		)
+		
 		guard
-			let _accessToken		= userDefaults.object(forKey: userDefaultsKeys.accessToken) as? String,
-			let _refreshToken		= userDefaults.object(forKey: userDefaultsKeys.refreshToken) as? String,
-			let _createdAt_Double	= userDefaults.object(forKey: userDefaultsKeys.createdAt) as? Double,
-			let _expiresIn			= userDefaults.object(forKey: userDefaultsKeys.expiresIn) as? Int
+			let _accessToken		= userDefaults.object(forKey: UserDefaultsKeys.accessToken) as? String,
+			let _refreshToken		= userDefaults.object(forKey: UserDefaultsKeys.refreshToken) as? String,
+			let _createdAt_Double	= userDefaults.object(forKey: UserDefaultsKeys.createdAt) as? Double,
+			let _expiresIn			= userDefaults.object(forKey: UserDefaultsKeys.expiresIn) as? Int
 			else { return nil }
 		
 		return IDMoya.OAuthObject(
@@ -101,32 +98,18 @@ public extension IDMoyaOAuthHandlerDelegate {
 	
 	public func idMoyaOAuthHandler_StoreNewOAuthObject				(_ oauthObject: IDMoya.OAuthObject) {
 		let userDefaults = UserDefaults.standard
-		let userDefaultsKeys = (
-			accessToken		: "IDAM.UDK.AO.AT",
-			refreshToken	: "IDAM.UDK.AO.RT",
-			expiresIn		: "IDAM.UDK.AO.EI",
-			createdAt		: "IDAM.UDK.AO.CA"
-		)
-		userDefaults.set(oauthObject.accessToken						, forKey: userDefaultsKeys.accessToken)
-		userDefaults.set(oauthObject.refreshToken						, forKey: userDefaultsKeys.refreshToken)
-		userDefaults.set(oauthObject.expiresIn							, forKey: userDefaultsKeys.expiresIn)
-		userDefaults.set(oauthObject.createdAt.timeIntervalSince1970	, forKey: userDefaultsKeys.createdAt)
-		userDefaults.synchronize()
+		userDefaults.set(oauthObject.accessToken						, forKey: UserDefaultsKeys.accessToken)
+		userDefaults.set(oauthObject.refreshToken						, forKey: UserDefaultsKeys.refreshToken)
+		userDefaults.set(oauthObject.expiresIn							, forKey: UserDefaultsKeys.expiresIn)
+		userDefaults.set(oauthObject.createdAt.timeIntervalSince1970	, forKey: UserDefaultsKeys.createdAt)
 	}
 	
 	public func idMoyaOAuthHandler_RemoveCurrentOAuthObject			() {
 		let userDefaults = UserDefaults.standard
-		let userDefaultsKeys = (
-			accessToken		: "IDAM.UDK.AO.AT",
-			refreshToken	: "IDAM.UDK.AO.RT",
-			expiresIn		: "IDAM.UDK.AO.EI",
-			createdAt		: "IDAM.UDK.AO.CA"
-		)
-		userDefaults.set(nil, forKey: userDefaultsKeys.accessToken)
-		userDefaults.set(nil, forKey: userDefaultsKeys.refreshToken)
-		userDefaults.set(nil, forKey: userDefaultsKeys.expiresIn)
-		userDefaults.set(nil, forKey: userDefaultsKeys.createdAt)
-		userDefaults.synchronize()
+		userDefaults.removeObject(forKey: UserDefaultsKeys.accessToken)
+		userDefaults.removeObject(forKey: UserDefaultsKeys.refreshToken)
+		userDefaults.removeObject(forKey: UserDefaultsKeys.expiresIn)
+		userDefaults.removeObject(forKey: UserDefaultsKeys.createdAt)
 	}
 	
 }

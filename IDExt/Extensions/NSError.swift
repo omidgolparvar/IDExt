@@ -11,7 +11,7 @@ import Foundation
 public extension NSError {
 	
 	public var id_ErrorStyleDescription: String {
-		return "Domain: \(self.domain) - Code: \(self.code) - Description: \(self.description)"
+		return "Domain: \(self.domain) - Code: \(self.code) : \(self.description)"
 	}
 	
 }

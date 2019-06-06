@@ -15,17 +15,17 @@ open class IDUser {
 	public static var current = IDUser(withInitType: .raw)!
 	
 	open class func IsExist() -> Bool {
-		fatalError("IDUser - \(#function): has not been implemented.")
+		fatalError("⚠️ IDUser - \(#function): has not been implemented.")
 	}
 	
 	
 	public var oauthObject	: IDMoya.OAuthObject?	= nil
 	public var isChecked	: Bool					= false
 	public var isLoggedIn	: Bool		{ return oauthObject != nil }
-	open var baseURLString	: String	{ fatalError("IDUser.BaseURL not implemented.") }
+	open var baseURLString	: String	{ fatalError("⚠️ IDUser.BaseURL not implemented.") }
 	
-	open var checkAccountEndpoint	: IDMoyaEndpointObject {
-		return IDMoyaEndpointObject(
+	open var checkAccountEndpoint	: IDMoyaEndpoint {
+		return IDMoyaEndpoint(
 			baseURLString	: baseURLString,
 			path			: "user/account",
 			method			: .get,
@@ -36,11 +36,11 @@ open class IDUser {
 		)
 	}
 	
-	open var logoutEndpoint			: IDMoyaEndpointObject? {
+	open var logoutEndpoint			: IDMoyaEndpoint? {
 		return nil
 	}
 	
-	public init() {
+	internal init() {
 		
 	}
 	
@@ -53,18 +53,18 @@ open class IDUser {
 		}
 	}
 	
-	public init?(fromData data: AnyObject?) {
-		fatalError("IDUser - \(#function): has been not implemented.")
+	internal init?(fromData data: Any?) {
+		fatalError("⚠️ IDUser - \(#function): has been not implemented.")
 	}
 	
-	public init?(fromUserDefaults flag: Bool) {
+	internal init?(fromUserDefaults flag: Bool) {
 		guard flag else { return nil }
 		guard let oauthObject = IDMoya.OAuthHandler.Delegate?.idMoyaOAuthHandler_StoredOAuthObject else { return nil }
 		self.oauthObject = oauthObject
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: oauthObject)
 	}
 	
-	public init(fromOAthObject object: IDMoya.OAuthObject) {
+	internal init(fromOAthObject object: IDMoya.OAuthObject) {
 		self.oauthObject = object
 		IDMoya.OAuthHandler.Delegate!.idMoyaOAuthHandler_StoreNewOAuthObject(object)
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
@@ -76,7 +76,7 @@ open class IDUser {
 		IDMoya.SetupOAuthSessionManager(cliendID: "public-ios", baseURLString: self.baseURLString, oauthObject: object)
 	}
 	
-	open func logout(callback: @escaping (Error?, AnyObject?) -> Void = { _,_  in }) {
+	open func logout(callback: @escaping (Error?, Any?) -> Void = { _,_  in }) {
 		if let logoutEndpoint = logoutEndpoint {
 			IDMoya.Perform(logoutEndpoint) { (result, data) in
 				switch result {
@@ -107,11 +107,11 @@ open class IDUser {
 		}
 	}
 	
-	open func validateCheckAccountResponse(with data: AnyObject?) -> Bool {
-		fatalError("IDUser - \(#function): has not been implemented.")
+	open func validateCheckAccountResponse(with data: Any?) -> Bool {
+		fatalError("⚠️ IDUser - \(#function): has not been implemented.")
 	}
 	
-	open func checkAccount(callback: @escaping (Error?, AnyObject?) -> Void) {
+	open func checkAccount(callback: @escaping (Error?, Any?) -> Void) {
 		IDMoya.Perform(checkAccountEndpoint) { [weak self] (result, data) in
 			guard let _self = self else { return }
 			switch result {

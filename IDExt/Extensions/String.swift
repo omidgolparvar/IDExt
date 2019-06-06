@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CommonCrypto
 
 public extension String {
 	
@@ -33,7 +32,7 @@ public extension String {
 		return id_Match(regex: String.ID_NumberRegEx)
 	}
 	
-	public var id_IsAlpha: Bool {
+	public var id_IsAlphabetic: Bool {
 		return id_Match(regex: String.ID_AlphaRegEx)
 	}
 	
@@ -45,21 +44,13 @@ public extension String {
 		return self.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 	
-	public var id_Base64Encoded: String {
-		return Data(self.utf8).base64EncodedString()
+	public var id_Base64Encoded: String? {
+		return self.data(using: .utf8)?.base64EncodedString()
 	}
 	
 	public var id_Base64Decoded: String? {
 		guard let data = Data(base64Encoded: self) else { return nil }
 		return String(data: data, encoding: .utf8)
-	}
-	
-	public var id_AttributedString: NSAttributedString {
-		return NSAttributedString(string: self)
-	}
-	
-	public var id_MutableAttributedString: NSMutableAttributedString {
-		return NSMutableAttributedString(string: self)
 	}
 	
 	public var id_AsURL: URL? {
@@ -70,39 +61,9 @@ public extension String {
 		return NSRange(location: 0, length: count)
 	}
 	
-	public var id_SHA512String: String {
-		var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
-		if let data = self.data(using: String.Encoding.utf8) {
-			let value =  data as NSData
-			CC_SHA512(value.bytes, CC_LONG(data.count), &digest)
-		}
-		var digestHex = ""
-		for index in 0..<Int(CC_SHA512_DIGEST_LENGTH) {
-			digestHex += String(format: "%02x", digest[index])
-		}
-		return digestHex.uppercased()
-	}
-	
-	public var id_MD5String: String {
-		var digest = [UInt8](repeating: 0, count: Int(CC_SHA512_DIGEST_LENGTH))
-		if let data = self.data(using: String.Encoding.utf8) {
-			let value =  data as NSData
-			CC_MD5(value.bytes, CC_LONG(data.count), &digest)
-		}
-		var digestHex = ""
-		for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
-			digestHex += String(format: "%02x", digest[index])
-		}
-		return digestHex.uppercased()
-	}
-	
 	public var id_IntValue: Int? {
 		let stringValue = self.id_Trimmed.ps.withEasternDigits.replacingOccurrences(of: "٬", with: "")
 		return Int(stringValue)
-	}
-	
-	public var id_AsViewController: UIViewController {
-		return UIViewController.ID_Initialize(pattern: self)
 	}
 	
 	
@@ -111,7 +72,7 @@ public extension String {
 		return UIColor.ID_Initialize(hexCode: self)
 	}
 	
-	public mutating func id_ReplaceFirstOccurrence(ofString target: String, withString replaceString: String) {
+	public mutating func id_ReplaceFirstOccurrence(of target: String, with replaceString: String) {
 		if let range = self.range(of: target) {
 			self = self.replacingCharacters(in: range, with: replaceString)
 		}
@@ -119,20 +80,8 @@ public extension String {
 	
 	public func id_ReplacedFirstOccurrence(of target: String, with replaceString: String) -> String {
 		var temp = self
-		temp.id_ReplaceFirstOccurrence(ofString: target, withString: replaceString)
+		temp.id_ReplaceFirstOccurrence(of: target, with: replaceString)
 		return temp
-	}
-	
-	public func id_EmojiImage() -> UIImage? {
-		let size = CGSize(width: 40, height: 40)
-		UIGraphicsBeginImageContextWithOptions(size, false, 0)
-		UIColor.clear.set()
-		let rect = CGRect(origin: .zero, size: size)
-		UIRectFill(CGRect(origin: .zero, size: size))
-		(self as AnyObject).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: 40)])
-		let image = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		return image
 	}
 	
 	public func id_RegexMatches(for regex: String) -> [String] {
@@ -146,26 +95,6 @@ public extension String {
 		}
 	}
 	
-	public mutating func id_ReplaceAllPrefixes(_ prefixes: [String], with string: String, continueAfterFirstPerform: Bool = false) {
-		for prefix in prefixes {
-			if self.hasPrefix(prefix) {
-				self.id_ReplaceFirstOccurrence(ofString: prefix, withString: string)
-				if !continueAfterFirstPerform { return }
-			}
-		}
-	}
-	
-	public func id_ReplacedAllPrefixes(_ prefixes: [String], with string: String, continueAfterFirstPerform: Bool = false) -> String {
-		var temp = self
-		for prefix in prefixes {
-			if temp.hasPrefix(prefix) {
-				temp.id_ReplaceFirstOccurrence(ofString: prefix, withString: string)
-				if !continueAfterFirstPerform { return temp }
-			}
-		}
-		return temp
-	}
-	
 	public func id_GenerateQRCodeImage(scale: CGFloat = 2) -> UIImage? {
 		return UIImage.ID_Initialize(generateQRCodeFromString: self, scale: scale)
 	}
@@ -174,9 +103,9 @@ public extension String {
 		var indices: [Int] = []
 		var searchStartIndex = self.startIndex
 		
-		while
-			searchStartIndex < self.endIndex,
-			let range = self.range(of: string, range: searchStartIndex..<self.endIndex), !range.isEmpty {
+		while	searchStartIndex < self.endIndex,
+				let range = self.range(of: string, range: searchStartIndex..<self.endIndex),
+				!range.isEmpty {
 			let index = distance(from: self.startIndex, to: range.lowerBound)
 			indices.append(index)
 			searchStartIndex = range.upperBound
@@ -219,43 +148,44 @@ public extension String {
 	}
 	
 	public func id_Match(regex pattern: String) -> Bool {
-		let options: CompareOptions = [.regularExpression]
-		return range(of: pattern, options: options) != nil
+		return range(of: pattern, options: [.regularExpression]) != nil
 	}
 	
-	public mutating func id_RemoveNonNumbericCharacters() {
-		self = self.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+	public func id_MutableAttributedString(with attributes: [NSAttributedString.Key: Any], in range: NSRange? = nil) -> NSMutableAttributedString {
+		let mutableAttributedString = NSMutableAttributedString(string: self)
+		mutableAttributedString.addAttributes(attributes, range: range ?? self.id_Range)
+		return mutableAttributedString
 	}
 	
-	public func id_MutableAttributedString(with attributes: [NSAttributedString.Key: Any], range: NSRange? = nil) -> NSMutableAttributedString {
-		let mutable = id_MutableAttributedString
-		mutable.addAttributes(attributes, range: range ?? self.id_Range)
-		return mutable
-	}
-	
-	public mutating func id_AddStartPadding(count: Int, character: Character) {
+	public mutating func id_AddStartPadding(finalLenght: Int, character: Character = " ") {
 		var result = self
-		guard count > self.count else { return }
-		for _ in 0..<(count - self.count) {
+		guard finalLenght > self.count else { return }
+		for _ in 0..<(finalLenght - self.count) {
 			result = String(character) + result
 		}
 		self = result
 	}
 	
-	public mutating func id_AddEndPadding(count: Int, character: String) {
+	public mutating func id_AddEndPadding(finalLenght: Int, character: Character = " ") {
 		var result = self
-		guard count > self.count else { return }
-		for _ in 0..<(count - self.count) {
+		guard finalLenght > self.count else { return }
+		for _ in 0..<(finalLenght - self.count) {
 			result = result + String(character)
 		}
 		self = result
 	}
 	
 	public mutating func id_ConvertToCorrectMobileNumber() {
-		var mobile = self.replacingOccurrences(of: "[^0-9+]", with: "", options: .regularExpression)
-		if mobile.hasPrefix("00989")	{ mobile = mobile.id_ReplacedFirstOccurrence(of: "00989", with: "09") }
-		if mobile.hasPrefix("+989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "+989", with: "09") }
-		if mobile.hasPrefix("989")		{ mobile = mobile.id_ReplacedFirstOccurrence(of: "989", with: "09") }
+		var mobile = self.ps.withEasternDigits.replacingOccurrences(of: "[^0-9+]", with: "", options: .regularExpression)
+		
+		if mobile.hasPrefix("00989") {
+			mobile = mobile.id_ReplacedFirstOccurrence(of: "00989", with: "09")
+		} else if mobile.hasPrefix("+989") {
+			mobile = mobile.id_ReplacedFirstOccurrence(of: "+989", with: "09")
+		} else if mobile.hasPrefix("989") {
+			mobile = mobile.id_ReplacedFirstOccurrence(of: "989", with: "09")
+		}
+		
 		self = mobile
 	}
 	
@@ -263,13 +193,9 @@ public extension String {
 		return String(self.prefix(maxLength))
 	}
 	
-	public func id_AsSpecificViewController<T: UIViewController>(of type: T.Type) -> T {
-		return UIViewController.ID_Initialize(pattern: self) as! T
-	}
-	
-	public mutating func id_ConvertToURLString(defaultSchema: String = "http") {
-		if !self.lowercased().hasPrefix("http://") && !self.lowercased().hasPrefix("https://") {
-			self = defaultSchema + "://" + self
+	public mutating func id_ConvertToHTTPURLString(with schema: String = "http") {
+		if !self.lowercased().hasPrefix(schema + "://") {
+			self = schema + "://" + self
 		}
 	}
 	
@@ -308,6 +234,40 @@ public extension String {
 		}
 		
 		return false
+	}
+	
+	
+	
+	public subscript(i: Int) -> String {
+		return String(self[index(startIndex, offsetBy: i)])
+	}
+	
+	public subscript(bounds: CountableRange<Int>) -> String {
+		let start = index(startIndex, offsetBy: bounds.lowerBound)
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return String(self[start ..< end])
+	}
+	
+	public subscript(bounds: CountableClosedRange<Int>) -> String {
+		let start = index(startIndex, offsetBy: bounds.lowerBound)
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return String(self[start ... end])
+	}
+	
+	public subscript(bounds: CountablePartialRangeFrom<Int>) -> String {
+		let start = index(startIndex, offsetBy: bounds.lowerBound)
+		let end = index(endIndex, offsetBy: -1)
+		return String(self[start ... end])
+	}
+	
+	public subscript(bounds: PartialRangeThrough<Int>) -> String {
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return String(self[startIndex ... end])
+	}
+	
+	public subscript(bounds: PartialRangeUpTo<Int>) -> String {
+		let end = index(startIndex, offsetBy: bounds.upperBound)
+		return String(self[startIndex ..< end])
 	}
 	
 }

@@ -10,6 +10,8 @@ import Foundation
 
 public extension Locale {
 	
-	public static var ID_Farsi	: Locale { return Locale(identifier: "fa-IR") }
+	public static var ID_Farsi: Locale {
+		return Locale(identifier: "fa-IR")
+	}
 	
 }

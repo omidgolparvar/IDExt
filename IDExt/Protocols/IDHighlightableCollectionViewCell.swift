@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IDHighlightableCollectionViewCell {
+public protocol IDHighlightableCollectionViewCell where Self: UICollectionViewCell {
 	
 	var highlightBackgroundColor	: UIColor { get }
 	

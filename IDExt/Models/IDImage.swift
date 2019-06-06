@@ -10,15 +10,22 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
+public protocol IDImageDelegate: NSObjectProtocol {
+	var idImage_BaseURLString: String { get }
+}
+
 public final class IDImage {
+	
+	public static weak var SharedDelegate: IDImageDelegate?
 	
 	public static var BaseURLString	: () -> String	= {
 		return ""
 	}
 	
-	public var id			: String = ""
-	public var ratio		: Double = 1.0
-	public var contentType	: String = ""
+	public var id				: String = ""
+	public var ratio			: Double = 1.0
+	public var contentType		: String = ""
+	public var baseURLString	: String? = nil
 	
 	public init?(from json: IDMoya.JSON) {
 		guard
@@ -31,13 +38,16 @@ public final class IDImage {
 		contentType = _contentType
 	}
 	
-	public func urlString(baseURLString: String = IDImage.BaseURLString(), type: ImageType, contentTypeIdentifier: String? = nil) -> String {
+	public func urlString(type: ImageType, contentTypeIdentifier: String? = nil) -> String {
+		guard let delegate = IDImage.SharedDelegate else {
+			fatalError("⚠️ IDImage: SharedDelegate is NIL.")
+		}
 		let contentType = contentTypeIdentifier ?? self.contentType.id_ReplacedFirstOccurrence(of: "image", with: "")
-		return baseURLString + id + "/" + type.rawValue.ps.string + contentType
+		return delegate.idImage_BaseURLString + id + "/" + type.rawValue.ps.string + contentType
 	}
 	
 	public var jsonString: String {
-		return "{\"id\":\"\(id)\", \"content_type\":\"\(contentType)\", \"ratio\": 1}"
+		return "{\"id\":\"\(id)\", \"content_type\":\"\(contentType)\", \"ratio\": \(ratio)}"
 	}
 	
 	public enum ImageType: Int {

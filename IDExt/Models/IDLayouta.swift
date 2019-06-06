@@ -18,7 +18,7 @@ public final class IDLayouta {
 		self.required = required
 	}
 	
-	public func checkAndPerform(callback: () -> Void) {
+	public func checkAndPerform(_ callback: () -> Void) {
 		guard !isDone, current == required else {
 			current += 1
 			return

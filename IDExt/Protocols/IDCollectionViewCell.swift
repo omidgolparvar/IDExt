@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IDCollectionViewCell {
+public protocol IDCollectionViewCell where Self: UICollectionViewCell {
 	
 	static var Identifier	: String { get }
 	

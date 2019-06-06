@@ -14,4 +14,8 @@ public extension Equatable {
 		return candidates.contains(self)
 	}
 	
+	public func id_IsAny(of candidates: [Self]) -> Bool {
+		return candidates.contains(self)
+	}
+	
 }

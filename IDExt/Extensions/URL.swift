@@ -17,7 +17,9 @@ public extension URL {
 			else { return nil }
 		var items: [String: String] = [:]
 		for queryItem in queryItems {
-			items[queryItem.name] = queryItem.value
+			if let value = queryItem.value {
+				items[queryItem.name] = value
+			}
 		}
 		return items
 	}

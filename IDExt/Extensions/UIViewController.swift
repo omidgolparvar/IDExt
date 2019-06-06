@@ -11,13 +11,15 @@ import SafariServices
 
 public extension UIViewController {
 	
-	public static func ID_Initialize(bundle: Bundle? = nil, storyboard: String, viewControllerIdentifier identifier: String) -> UIViewController {
+	public static func ID_Initialize(bundle: Bundle? = nil, storyboard: String, identifier: String) -> UIViewController {
 		return UIStoryboard(name: storyboard, bundle: bundle).instantiateViewController(withIdentifier: identifier)
 	}
 	
 	public static func ID_Initialize(bundle: Bundle? = nil, pattern: String) -> UIViewController {
 		let components = pattern.components(separatedBy: "|").map({ $0.id_Trimmed }).filter({ !$0.isEmpty })
-		guard components.count == 2 else { fatalError("IDExt.UIViewController.ID_Initialize: Pattern is wrong.") }
+		guard components.count == 2 else {
+			fatalError("⚠️ IDExt.UIViewController.ID_Initialize: Pattern should be : {StoryboardName}|{ViewControllerIdentifier}")
+		}
 		let storyboardName = components[0]
 		let identifier = components[1]
 		return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: identifier)
@@ -28,37 +30,6 @@ public extension UIViewController {
 	}
 	
 	
-	
-	
-	@objc
-	public func id_EndEditing() {
-		self.view.endEditing(true)
-	}
-	
-	@objc
-	public func id_Dismiss() {
-		self.dismiss(animated: true, completion: nil)
-	}
-	
-	
-	public typealias ID_NotificationObserver = (notificationName: Notification.Name, selector: Selector)
-	public func id_AddObservers(_ items: [ID_NotificationObserver]) {
-		items.forEach {
-			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notificationName, object: nil)
-		}
-	}
-	
-	public func id_ObservationBlock(for notificationName: Notification.Name, closure: @escaping (Notification) -> Void) {
-		NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil, using: closure)
-	}
-	
-	public func id_RemoveAllObservers() {
-		NotificationCenter.default.removeObserver(self)
-	}
-	
-	public func id_RemoveObserver(for notificationName: Notification.Name) {
-		NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
-	}
 	
 	public var id_TopMostViewController: UIViewController {
 		
@@ -91,13 +62,53 @@ public extension UIViewController {
 		return self.presentedViewController!.id_TopMostViewController
 	}
 	
-	public func id_PresentActivityController(forItems array: [Any], customActivities: [UIActivity]? = nil, sourceView: UIView? = nil) {
-		let activityViewController = UIActivityViewController(activityItems: array, applicationActivities: customActivities)
+	@objc
+	public func id_EndEditing() {
+		self.view.endEditing(true)
+	}
+	
+	@objc
+	public func id_Dismiss() {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
+	public typealias IDNotificationObserver = (notificationName: Notification.Name, selector: Selector)
+	public func id_AddObservers(_ items: [IDNotificationObserver]) {
+		items.forEach {
+			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notificationName, object: nil)
+		}
+	}
+	
+	public func id_ObservationBlock(for notificationName: Notification.Name, closure: @escaping (Notification) -> Void) {
+		NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil, using: closure)
+	}
+	
+	public func id_RemoveAllObservers() {
+		NotificationCenter.default.removeObserver(self)
+	}
+	
+	public func id_RemoveObserver(for notificationName: Notification.Name) {
+		NotificationCenter.default.removeObserver(self, name: notificationName, object: nil)
+	}
+	
+	public func id_PresentActivityController(for items: [Any], sourceView: UIView? = nil, permittedArrowDirections: UIPopoverArrowDirection = .unknown) {
+		let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		activityViewController.popoverPresentationController?.sourceView = sourceView ?? self.view
+		activityViewController.popoverPresentationController?.sourceRect = sourceView?.bounds ?? self.view.bounds
+		activityViewController.popoverPresentationController?.permittedArrowDirections = permittedArrowDirections
 		self.present(activityViewController, animated: true, completion: nil)
 	}
 	
-	public func id_OpenSafariViewController(for url: URL, delegate: SFSafariViewControllerDelegate?) {
+	public func id_PresentActivityController(for items: [Any], barButtonItem: UIBarButtonItem) {
+		let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+		activityViewController.popoverPresentationController?.sourceView = self.view
+		activityViewController.popoverPresentationController?.sourceRect = self.view.bounds
+		activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
+		activityViewController.popoverPresentationController?.permittedArrowDirections = .down
+		self.present(activityViewController, animated: true, completion: nil)
+	}
+	
+	public func id_OpenSafariViewController(for url: URL, delegate: SFSafariViewControllerDelegate? = nil) {
 		guard ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { return }
 		let vc = SFSafariViewController(url: url, entersReaderIfAvailable: false)
 		vc.delegate = delegate
@@ -108,23 +119,14 @@ public extension UIViewController {
 		UIApplication.shared.keyWindow?.rootViewController = self
 	}
 	
+	@available(iOS 11.0, *)
 	public func id_ChangeLargeTitleDirection() {
-		if #available(iOS 11.0, *) {
-			self.navigationController?.navigationBar.subviews.id_SafeItem(at: 1)?.semanticContentAttribute = .forceRightToLeft
-		}
-	}
-	
-	public func id_StorkyPresent(_ destination: UIViewController, delegate: IDStorkyPresenterDelegate? = nil) {
-		IDPresenter.DisplayStorky(self, destination: destination, delegate: delegate)
+		self.navigationController?.navigationBar.subviews[safe: 1]?.semanticContentAttribute = .forceRightToLeft
 	}
 	
 	public func id_SetupTapGestureForEndEditing() {
 		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(id_EndEditing))
 		self.view.addGestureRecognizer(tapGesture)
-	}
-	
-	public func id_Route(to destination: UIViewController, with type: IDRouter.RoutingType) {
-		IDRouter.Present(source: self, destination: destination, type: type)
 	}
 	
 	public var id_IsModal: Bool {

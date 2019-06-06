@@ -15,13 +15,13 @@ public protocol IDJoinDelegate: NSObjectProtocol {
 	var idJoin_SubmitMobilePath				: String { get }
 	var idJoin_SubmitOneTimeCodePath		: String { get }
 	
-	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
-	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject
+	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpoint
+	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpoint
 	
-	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: AnyObject?)
-	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withError error: Error?, andData data: AnyObject?)
-	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: AnyObject?)
-	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withError error: Error?, andData data: AnyObject?)
+	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: Any?)
+	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withError error: Error?, andData data: Any?)
+	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: Any?)
+	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withError error: Error?, andData data: Any?)
 	
 }
 
@@ -30,23 +30,23 @@ public extension IDJoinDelegate {
 	var idJoin_SubmitMobilePath				: String { return "api/v1/user/mobile-token/0" }
 	var idJoin_SubmitOneTimeCodePath		: String { return "api/oauth2/token" }
 	
-	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
-		return IDMoyaEndpointObject(
+	func idJoin_SubmitMobileEndpoint		(_ idJoin: IDJoin)	-> IDMoyaEndpoint {
+		return IDMoyaEndpoint(
 			baseURLString	: self.idJoin_BaseURLString,
 			path			: self.idJoin_SubmitMobilePath,
 			method			: .post,
 			encoding		: URLEncoding.httpBody,
 			parameters		: [
 				"mobile"	: idJoin.mobileNumber,
-				"uuid"		: IDApplication.GetUUID()
+				"uuid"		: UIApplication.ID_UUID
 			],
 			headers			: nil,
 			useOAuth		: false
 		)
 	}
 	
-	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpointObject {
-		return IDMoyaEndpointObject(
+	func idJoin_SubmitOneTimeCodeEndpoint	(_ idJoin: IDJoin)	-> IDMoyaEndpoint {
+		return IDMoyaEndpoint(
 			baseURLString	: self.idJoin_BaseURLString,
 			path			: self.idJoin_SubmitOneTimeCodePath,
 			method			: .post,
@@ -56,8 +56,8 @@ public extension IDJoinDelegate {
 				"username"		: idJoin.mobileNumber,
 				"password"		: idJoin.oneTimeCode,
 				"client_id"		: "public-ios",
-				"uuid"			: IDApplication.GetUUID(),
-				"pid"			: IDApplication.OneSignalPlayerIDGetter() ?? "",
+				"uuid"			: UIApplication.ID_UUID,
+				"pid"			: UIApplication.ID_OneSignalPlayerID ?? "",
 				"os"			: "iOS",
 				"os_version"	: UIDevice.current.systemVersion,
 				"phone_model"	: "\(UIDevice.current.dc.deviceModel)",
@@ -68,7 +68,7 @@ public extension IDJoinDelegate {
 		)
 	}
 	
-	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: AnyObject?) {
+	func idJoin_DidSubmitMobile				(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: Any?) {
 		switch result {
 		case .success:
 			self.idJoin_DidSubmitMobile(idJoin, withError: nil, andData: data)
@@ -79,7 +79,7 @@ public extension IDJoinDelegate {
 		}
 	}
 	
-	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: AnyObject?) {
+	func idJoin_DidSubmitOneTimeCode		(_ idJoin: IDJoin, withResult result: IDMoya.ResultStatus, andData data: Any?) {
 		switch result {
 		case .success:
 			if let oauthObject = IDMoya.OAuthObject(fromJSONData: data) {

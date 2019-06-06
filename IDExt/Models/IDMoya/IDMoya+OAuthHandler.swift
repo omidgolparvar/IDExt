@@ -1,10 +1,4 @@
 //
-//  IDMoya+OAuthHandler.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 11/26/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
@@ -39,7 +33,7 @@ public extension IDMoya {
 		
 		public func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
 			guard let sharedDelegate = OAuthHandler.Delegate else {
-				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
+				fatalError("⚠️ IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
 			return sharedDelegate.idMoyaOAuthHandler_AdaptURLRequest(self, urlRequest: urlRequest)
 		}
@@ -59,7 +53,7 @@ public extension IDMoya {
 			refreshTokens { [weak self] succeeded, oauthObject in
 				guard let strongSelf = self else { return }
 				guard let sharedDelegate = OAuthHandler.Delegate else {
-					fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
+					fatalError("⚠️ IDMoya.OAuthHanlder.SharedDelegate is nil.")
 				}
 				
 				strongSelf.lock.lock() ; defer { strongSelf.lock.unlock() }
@@ -70,7 +64,7 @@ public extension IDMoya {
 					strongSelf.oauthObject = oauthObject
 					IDUser.current.oauthObject = oauthObject
 				} else {
-					NotificationCenter.default.post(name: NotificationKeys.RefreshTokenFailed, object: nil)
+					NotificationCenter.default.post(name: .IDMoya_OAthHandler_RefreshTokenFailed, object: nil)
 				}
 				
 				strongSelf.requestsToRetry.forEach { $0(succeeded, 0.0) }
@@ -80,7 +74,7 @@ public extension IDMoya {
 		
 		private func refreshTokens(completion: @escaping (_ succeeded: Bool, _ result: OAuthObject?) -> Void) {
 			guard let sharedDelegate = OAuthHandler.Delegate else {
-				fatalError("IDMoya.OAuthHanlder.SharedDelegate is nil.")
+				fatalError("⚠️ IDMoya.OAuthHanlder.SharedDelegate is nil.")
 			}
 			guard !isRefreshing else { return }
 			isRefreshing = true
@@ -113,18 +107,8 @@ public extension IDMoya {
 	
 }
 
-public extension IDMoya.OAuthHandler {
-	
-	public final class NotificationKeys {
-		
-		public static var RefreshTokenFailed: Notification.Name { return .init("IDAM.NN.RefreshTokenFailed") }
-		
-	}
-	
-}
-
 public extension Notification.Name {
 	
-	public static var IDMoya_OAthHandler_RefreshTokenFailed: Notification.Name { return IDMoya.OAuthHandler.NotificationKeys.RefreshTokenFailed }
+	public static var IDMoya_OAthHandler_RefreshTokenFailed: Notification.Name { return .init("IDAM.NN.RefreshTokenFailed") }
 	
 }

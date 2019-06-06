@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IDTableViewCell: class {
+public protocol IDTableViewCell where Self: UITableViewCell {
 	
 	static var Identifier	: String { get }
 	

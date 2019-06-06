@@ -24,4 +24,12 @@ public extension UIDevice {
 		}
 	}
 	
+	public static var ID_IsSimulator: Bool {
+		#if targetEnvironment(simulator)
+		return true
+		#else
+		return false
+		#endif
+	}
+	
 }

@@ -1,10 +1,4 @@
 //
-//  IDMoya.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 11/26/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
@@ -25,15 +19,14 @@ public final class IDMoya {
 	public typealias JSON				= SwiftyJSON.JSON
 	public typealias UploadParameter	= (name: String, data: Data, fileName: String, mimeType: String)
 	public typealias Header				= [String: String]
-	public typealias Callback			= (_ result: ResultStatus, _ data: AnyObject?) -> Void
+	public typealias Callback			= (_ result: ResultStatus, _ data: Any?) -> Void
 	
 	internal static var RequestsDictionary	: [ObjectIdentifier : DataRequest] = [:]
 	internal static var OAuthSessionManager	: SessionManager?
 	
 	
-	public static var ErrorMessagePrefix	: String			= "⚠️ IDMoya - Error:"
-	public static var IsVerbose				: Bool				= false
-	public static var CurrentApiEnvironment	: APIEnvironment	= .production
+	public static var ErrorMessagePrefix	: String	= "⚠️ IDMoya - Error:"
+	public static var IsVerbose				: Bool		= false
 	
 	@discardableResult
 	public static func Perform(_ endpoint: IDMoyaEndpoint, callback: @escaping Callback) -> DataRequest? {
@@ -46,7 +39,6 @@ public final class IDMoya {
 		return Perform(endpoint, handler: .delegate(weakDelegate))
 	}
 	
-	@discardableResult
 	internal static func Perform(_ endpoint: IDMoyaEndpoint, handler: ResponseHandler) -> DataRequest? {
 		
 		guard isConnectedToNetwork else {
@@ -67,12 +59,24 @@ public final class IDMoya {
 		var request: DataRequest?
 		if endpoint.useOAuth {
 			request = OAuthSessionManager?
-				.request(endpoint.baseURLString + endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
+				.request(
+					endpoint.baseURLString + endpoint.path,
+					method		: endpoint.method,
+					parameters	: endpoint.parameters,
+					encoding	: endpoint.encoding,
+					headers		: endpoint.headers
+				)
 				.validate(statusCode: ResultStatus.AllWithoutUnauthorized)
 				.responseJSON { response in HandleResponse(request: request, response: response, endpoint: endpoint, handler: handler) }
 		} else {
 			request = Alamofire
-				.request(endpoint.baseURLString + endpoint.path, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: endpoint.headers)
+				.request(
+					endpoint.baseURLString + endpoint.path,
+					method		: endpoint.method,
+					parameters	: endpoint.parameters,
+					encoding	: endpoint.encoding,
+					headers		: endpoint.headers
+				)
 				.responseJSON { response in HandleResponse(request: request, response: response, endpoint: endpoint, handler: handler) }
 		}
 		
@@ -123,7 +127,7 @@ public final class IDMoya {
 		OAuthSessionManager = sessionManager
 	}
 	
-	public static func PrintData(_ data: AnyObject?) {
+	public static func PrintData(_ data: Any?) {
 		print("IDMoya - " + #function + " : ")
 		guard let data = data else { print("--- NO Data.") ; return }
 		print(IDMoya.JSON(data))
@@ -151,8 +155,7 @@ public final class IDMoya {
 	}
 	
 	public static func SetupDefaultSessionManager(_ closure: (SessionManager?) -> Void) {
-		let defaultSessionManager = Alamofire.SessionManager.default
-		closure(defaultSessionManager)
+		closure(Alamofire.SessionManager.default)
 	}
 	
 	public static func SetupOAuthSessionManager(_ closure: (SessionManager?) -> Void) {
@@ -170,20 +173,13 @@ public extension IDMoya {
 		
 	}
 	
-	public enum APIEnvironment {
-		case development
-		case production
-	}
-	
 	public enum StatusObject {
-		
-		public static var ErrorPrefixString		= "⚠️"
 		
 		case success
 		case failedMultipleFieldMessage([(field: String, message: String)])
 		case failedWithSingleMessage(String)
 		
-		public init?(from data: AnyObject?) {
+		public init?(from data: Any?) {
 			guard let data = data else { return nil }
 			let jsonObject = IDMoya.JSON(data)
 			if let status = jsonObject["status"].bool, status == true { self = .success }
@@ -230,8 +226,11 @@ public extension IDMoya {
 				return array.map({ (item) -> String in
 					let field = item.field
 					let message = item.message
-					if field.isEmpty { return "\(StatusObject.ErrorPrefixString) " + message }
-					else { return "\(StatusObject.ErrorPrefixString) " + field + ": " + message }
+					if field.isEmpty {
+						return "⚠️ " + message
+					} else {
+						return "⚠️ " + field + ": " + message
+					}
 				}).joined(separator: "\n")
 			}
 		}

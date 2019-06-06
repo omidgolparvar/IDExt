@@ -29,15 +29,6 @@ public extension UIColor {
 		)
 	}
 	
-	
-	/**
-	Construct a UIColor using an HTML/CSS RGB formatted value and an alpha value
-	
-	:param: rgbValue RGB value
-	:param: alpha color alpha value
-	
-	:returns: an UIColor instance that represent the required color
-	*/
 	public static func ID_ColorWithRGB(rgbValue: UInt, alpha: CGFloat = 1.0) -> UIColor {
 		let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255
 		let green = CGFloat((rgbValue & 0xFF00) >> 8) / 255
@@ -46,32 +37,16 @@ public extension UIColor {
 		return UIColor(red: red, green: green, blue: blue, alpha: alpha)
 	}
 	
-	/**
-	Returns a lighter color by the provided percentage
 	
-	:param: lighting percent percentage
-	:returns: lighter UIColor
-	*/
-	public func id_LighterColor(percent : Double) -> UIColor {
+	
+	public func id_LighterColor(percent: Double) -> UIColor {
 		return id_ColorWithBrightnessFactor(factor: CGFloat(1 + percent));
 	}
 	
-	/**
-	Returns a darker color by the provided percentage
-	
-	:param: darking percent percentage
-	:returns: darker UIColor
-	*/
-	public func id_DarkerColor(percent : Double) -> UIColor {
+	public func id_DarkerColor(percent: Double) -> UIColor {
 		return id_ColorWithBrightnessFactor(factor: CGFloat(1 - percent));
 	}
 	
-	/**
-	Return a modified color using the brightness factor provided
-	
-	:param: factor brightness factor
-	:returns: modified color
-	*/
 	public func id_ColorWithBrightnessFactor(factor: CGFloat) -> UIColor {
 		var hue : CGFloat = 0
 		var saturation : CGFloat = 0

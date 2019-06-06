@@ -14,9 +14,14 @@ public final class IDDynamicJSON: IDJSONInitBased {
 	
 	public var json: IDMoya.JSON?
 	
-	public init(from json: IDMoya.JSON?) {
+	public init?(fromData data: Data?) {
+		guard let data = data else { return nil }
+		let jsonObject = IDMoya.JSON(data)
+		self.json = jsonObject
+	}
+	
+	internal init(from json: IDMoya.JSON?) {
 		self.json = json
-		
 	}
 	
 	public convenience init?(fromJSONObject jsonObject: IDMoya.JSON) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IDHighlightableTableViewCell {
+public protocol IDHighlightableTableViewCell where Self: UITableViewCell {
 	
 	var highlightBackgroundColor	: UIColor { get }
 	

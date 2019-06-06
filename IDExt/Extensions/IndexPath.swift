@@ -10,9 +10,7 @@ import Foundation
 
 public extension IndexPath {
 	
-	public static var ID_First: IndexPath { return IndexPath(row: 0, section: 0) }
-	
-	public static func ID_First(inSection section: Int) -> IndexPath {
+	public static func ID_First(in section: Int = 0) -> IndexPath {
 		return IndexPath(row: 0, section: section)
 	}
 	

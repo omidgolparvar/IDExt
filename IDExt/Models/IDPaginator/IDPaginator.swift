@@ -1,23 +1,16 @@
 //
-//  IDPaginator.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 12/9/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
 import SwiftyJSON
 
-public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
+public final class IDPaginator<Model: IDPaginatorModel> : CustomStringConvertible {
 	
-	internal var isVerbose		: Bool					= false
-	public var items			: [T]?					= nil
-	
-	public var currentPage		: Int					= 0
-	public var identifier		: String?				= nil
-	public var status			: PaginationStatus		= .shouldContinue
+	internal var isVerbose		: Bool				= false
+	public var items			: [Model]?			= nil
+	public var currentPage		: Int				= 0
+	public var identifier		: String?			= nil
+	public var status			: PaginationStatus	= .shouldContinue
 	public weak var delegate	: IDPaginatorDelegate?
 	
 	public var description		: String {
@@ -60,7 +53,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 					_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: json)
 					let arrayObjectKey = _self.delegate?.idPaginator_ArrayObjectName(_self)
 					let array = arrayObjectKey == nil ? json.array : json[arrayObjectKey!].array
-					if let arrayOfItems = array?.compactMap({ return T(fromJSONObject: $0) }) {
+					if let arrayOfItems = array?.compactMap({ return Model(fromJSONObject: $0) }) {
 						_self.appendNewItems(arrayOfItems)
 						_self.currentPage += 1
 						_self.setupStatusForLoadingNextPage(lastItems: arrayOfItems, jsonObject: json)
@@ -78,7 +71,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 				_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .noConnection)
 				_self.status = .shouldContinue
 			default:
-				_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .withData(data as AnyObject))
+				_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .withData(data))
 				_self.status = .shouldContinue
 			}
 			
@@ -92,7 +85,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		return items?.count ?? 0
 	}
 	
-	public func item(at index: Int) -> T? {
+	public func item(at index: Int) -> Model? {
 		if isVerbose {
 			if let items = items {
 				if !((0..<items.count) ~= index) {
@@ -102,7 +95,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 				print("- IDPaginator: Items is (nil).")
 			}
 		}
-		return items?.id_SafeItem(at: index)
+		return items?[safe: index]
 	}
 	
 	public func resetToInitialState() {
@@ -114,7 +107,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		self.delegate?.idPaginator_DidResetToInitialState(self)
 	}
 	
-	private func appendNewItems(_ items: [T]) {
+	private func appendNewItems(_ items: [Model]) {
 		if self.items == nil {
 			self.items = items
 		} else {
@@ -122,7 +115,7 @@ public final class IDPaginator<T: IDPaginatorModel> : CustomStringConvertible {
 		}
 	}
 	
-	private func setupStatusForLoadingNextPage(lastItems: [T], jsonObject: IDMoya.JSON) {
+	private func setupStatusForLoadingNextPage(lastItems: [Model], jsonObject: IDMoya.JSON) {
 		guard let delegate = delegate else { return }
 		status = delegate.idPaginator_ShouldLoadNextPage(self, lastItemsCount: lastItems.count, lastJSONObject: jsonObject) ?
 			.shouldContinue :

@@ -14,13 +14,12 @@ public extension UIBarButtonItem {
 		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: state)
 	}
 	
-	public static func ID_SetupAppearance(font: UIFont, normalTextColor: UIColor, highlightedTextColor: UIColor) {
-		let noramlAttributes		: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: normalTextColor]
-		let highlightedAttributes	: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: highlightedTextColor]
-		UIBarButtonItem.appearance().setTitleTextAttributes(noramlAttributes, for: .normal)
-		UIBarButtonItem.appearance().setTitleTextAttributes(highlightedAttributes, for: .highlighted)
-		
+	public static func ID_SetupAppearance(font: UIFont, textColor: UIColor) {
+		let attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: textColor]
+		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
 	}
+	
 	
 	
 	public func id_SetupTitleAttributes(font: UIFont, textColor: UIColor? = nil, for state: UIControl.State) {
@@ -39,8 +38,7 @@ public extension UIBarButtonItem {
 	}
 	
 	public var id_View: UIView? {
-		let view = self.value(forKey: "view") as? UIView
-		return view
+		return self.value(forKey: "view") as? UIView
 	}
 	
 	public func id_SetBadge(
@@ -82,7 +80,10 @@ public extension UIBarButtonItem {
 		let x = view.frame.width - width + offset.x
 		let badgeFrame = CGRect(origin: CGPoint(x: x, y: offset.y), size: CGSize(width: width, height: height))
 		
-		badge.id_DrawRoundedRect(rect: badgeFrame, fillColor: fillColor)
+		badge.fillColor = fillColor.cgColor
+		badge.strokeColor = nil
+		badge.path = UIBezierPath(roundedRect: badgeFrame, cornerRadius: badgeFrame.height / 2.0).cgPath
+		
 		view.layer.addSublayer(badge)
 		
 		let label = BarButtonBadgeTextLayer()

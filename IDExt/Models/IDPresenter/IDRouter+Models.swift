@@ -12,8 +12,8 @@ import UIKit
 public extension IDRouter {
 	
 	public enum RoutingType {
-		case push(animated: Bool)
-		case modal(isEmbeddedInNavigationController: Bool, animated: Bool, transitionStyle: UIModalTransitionStyle, presentationStyle: UIModalPresentationStyle)
+		case push
+		case modal(transitionStyle: UIModalTransitionStyle, presentationStyle: UIModalPresentationStyle)
 		case storky(delegate: IDStorkyPresenterDelegate)
 		case entryKit(attributes: IDPresenter.Attributes)
 		

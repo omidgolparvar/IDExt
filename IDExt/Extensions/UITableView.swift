@@ -10,21 +10,9 @@ import Foundation
 
 public extension UITableView {
 	
-	public func id_RegisterIDCells<T: IDTableViewCell>(cellTypes: [T.Type]) {
-		cellTypes.forEach { self.id_RegisterIDCell(cellType: $0) }
-	}
-	
-	public func id_RegisterIDCells<T: IDTableViewCell>(cellClasses: [T.Type]) {
-		cellClasses.forEach { self.id_RegisterIDCell(cellClass: $0) }
-	}
-	
 	public func id_RegisterIDCell<T: IDTableViewCell>(cellType: T.Type) {
 		let nib = UINib(nibName: cellType.Identifier, bundle: nil)
 		self.register(nib, forCellReuseIdentifier: cellType.Identifier)
-	}
-	
-	public func id_RegisterIDCell<T: IDTableViewCell>(cellClass: T.Type) {
-		self.register(cellClass, forCellReuseIdentifier: cellClass.Identifier)
 	}
 	
 	public func id_DequeueReusableIDCell<T: IDTableViewCell>(_ type: T.Type, for indexPath: IndexPath) -> T {
@@ -32,7 +20,7 @@ public extension UITableView {
 	}
 	
 	public func id_RemoveExtraSeparatorLines() {
-		self.tableFooterView = UIView.ID_WithZeroFrame
+		self.tableFooterView = UIView(frame: .zero)
 	}
 	
 	public func id_SetHeights(rowHeight: CGFloat, estimatedRowHeight: CGFloat) {
@@ -49,7 +37,7 @@ public extension UITableView {
 		self.setContentOffset(.zero, animated: animated)
 	}
 	
-	public func id_SafeScrollToRow(at indexPath: IndexPath, at position: UITableView.ScrollPosition = .top, animated: Bool = true) {
+	public func id_SafelyScrollToRow(at indexPath: IndexPath, at position: UITableView.ScrollPosition = .top, animated: Bool = true) {
 		guard
 			self.numberOfSections >= indexPath.section,
 			self.numberOfRows(inSection: indexPath.section) >= indexPath.row
@@ -95,7 +83,7 @@ public extension UITableView {
 			let paginationView = IDPaginationView(frame: frame)
 			self.tableFooterView = paginationView
 		} else {
-			self.tableFooterView = nil
+			self.tableFooterView = UIView(frame: .zero)
 		}
 	}
 	
@@ -103,4 +91,11 @@ public extension UITableView {
 		return self.cellForRow(at: indexPath) as! T
 	}
 	
+	public func id_AddRefreshControl(action: Selector, setupHandler: ((UIRefreshControl) -> Void)? = nil) {
+		let refreshControl = UIRefreshControl()
+		setupHandler?(refreshControl)
+		refreshControl.addTarget(self, action: action, for: .valueChanged)
+		
+		self.refreshControl = refreshControl
+	}
 }

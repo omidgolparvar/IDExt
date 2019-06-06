@@ -41,6 +41,7 @@ public extension IDPresenter {
 	public static var Notification_TitleFont	: UIFont	= UIFont.boldSystemFont(ofSize: 16)
 	public static var Notification_MessageFont	: UIFont	= UIFont.systemFont(ofSize: 14)
 	
+	
 	public static var Alert_EKAttributes		: EKAttributes = {
 		var attributes = EKAttributes.centerFloat
 		
@@ -79,7 +80,7 @@ public extension IDPresenter {
 	public static var Alert_ButtonFont			: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
 	
 	
-	public static var Sheet_EKAttributes		: EKAttributes = {
+	public static var ActionSheet_EKAttributes	: EKAttributes = {
 		var attributes = EKAttributes.bottomFloat
 		if #available(iOS 11, *) {
 			attributes.entryBackground = .visualEffect(style: .extraLight)
@@ -111,9 +112,9 @@ public extension IDPresenter {
 		
 		return attributes
 	}()
-	public static var Sheet_TitleFont			: UIFont	= UIFont.boldSystemFont(ofSize: 16)
-	public static var Sheet_MessageFont			: UIFont	= UIFont.systemFont(ofSize: 14)
-	public static var Sheet_ButtonFont			: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
+	public static var ActionSheet_TitleFont		: UIFont	= UIFont.boldSystemFont(ofSize: 16)
+	public static var ActionSheet_MessageFont	: UIFont	= UIFont.systemFont(ofSize: 14)
+	public static var ActionSheet_ButtonFont	: UIFont	= UIFont.systemFont(ofSize: 16, weight: .medium)
 	
 	
 	public static var Message_EKAttributes		: EKAttributes = {
@@ -153,8 +154,7 @@ public extension IDPresenter {
 	public static var Message_ButtonTitle		: String	= "بازگشت"
 	
 	
-	
-	public static var DefaultEKAttributes	: EKAttributes = {
+	public static var DefaultEKAttributes		: EKAttributes = {
 		var attributes = EKAttributes()
 		attributes.positionConstraints = .float
 		attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)

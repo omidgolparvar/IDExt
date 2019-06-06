@@ -35,7 +35,7 @@ public final class IDHelper {
 	}
 	
 	public static func SetupAutolayoutMessages(isEnable: Bool) {
-		UserDefaults.standard.id_Store(isEnable ? nil : false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+		UserDefaults.standard.set(isEnable ? nil : false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 	}
 	
 	public static func AddNotification(identifier: String = UUID().uuidString, title: String, body: String, delay: TimeInterval, completionHandler: ((Error?) -> Void)? = nil) {
@@ -44,7 +44,10 @@ public final class IDHelper {
 			return
 		}
 		let center = UNUserNotificationCenter.current()
-		let content = UNMutableNotificationContent.ID_Initialize(title: title, body: body)
+		let content = UNMutableNotificationContent()
+		content.title = title
+		content.body = body
+		content.sound = .default
 		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: delay, repeats: false)
 		let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 		center.add(request, withCompletionHandler: completionHandler)

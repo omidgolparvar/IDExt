@@ -12,15 +12,21 @@ import PersianSwift
 
 public extension JSON {
 	
-	public var id_IntFromIntOrString: Int? {
+	public static func ID_Initialize(from data: Data?) -> JSON? {
+		guard let data = data else { return nil }
+		return JSON(data)
+	}
+	
+	
+	public var id_IntValue: Int? {
 		return self.int ?? Int(self.string ?? "//")
 	}
 	
-	public var id_DoubleFromDoubleOrString: Double? {
+	public var id_DoubleValue: Double? {
 		return self.double ?? Double(self.string ?? "//")
 	}
 	
-	public var id_BooleanFromBoolOrIntOrString: Bool? {
+	public var id_BooleanValue: Bool? {
 		if let boolValue	= self.bool		{ return boolValue }
 		if let intValue		= self.int		{ return intValue == 1 }
 		if let stringValue	= self.string	{ return stringValue == "1" }
@@ -33,7 +39,6 @@ public extension JSON {
 			let timeInterval_Int64 = Int64(timeInterval_String)
 			else { return nil }
 		return Date(timeIntervalSince1970: TimeInterval(timeInterval_Int64 / 1000))
-		
 	}
 	
 	public var id_DateBasedOnSecond: Date? {
@@ -48,7 +53,7 @@ public extension JSON {
 	}
 	
 	public var id_HasStatusWithSuccessfulValue: Bool {
-		return self["status"].id_BooleanFromBoolOrIntOrString ?? false
+		return self["status"].id_BooleanValue ?? false
 	}
 	
 	public var id_Image: IDImage? {
@@ -68,8 +73,12 @@ public extension JSON {
 		return T(fromJSONObject: self)
 	}
 	
-	public func id_DateFromString(basedOn dateFormatter: DateFormatter) -> Date? {
+	public func id_DateFromString(with format: String, calendar: Calendar = .current, locale: Locale = .current) -> Date? {
 		guard let string = self.string else { return nil }
+		let dateFormatter = DateFormatter()
+		dateFormatter.calendar = calendar
+		dateFormatter.locale = locale
+		dateFormatter.dateFormat = format
 		return dateFormatter.date(from: string)
 	}
 	

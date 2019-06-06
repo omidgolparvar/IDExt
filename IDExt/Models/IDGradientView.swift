@@ -87,7 +87,7 @@ public class GradientView: UIView {
 	
 	public func animate(duration: TimeInterval, newTopColor: UIColor, newBottomColor: UIColor) {
 		let fromColors = self.gradientLayer?.colors
-		let toColors: [AnyObject] = [ newTopColor.cgColor, newBottomColor.cgColor]
+		let toColors: [Any] = [ newTopColor.cgColor, newBottomColor.cgColor]
 		self.gradientLayer?.colors = toColors
 		let animation : CABasicAnimation = CABasicAnimation(keyPath: "colors")
 		animation.fromValue = fromColors

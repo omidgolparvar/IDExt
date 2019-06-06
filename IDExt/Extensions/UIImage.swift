@@ -12,8 +12,8 @@ import UIKit
 public extension UIImage {
 	
 	public static func ID_Initialize(generateQRCodeFromString string: String, scale: CGFloat = 3) -> UIImage? {
-		let base64Data = string.data(using: .ascii)
 		guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
+		let base64Data = string.data(using: .ascii)
 		filter.setValue(base64Data, forKey: "inputMessage")
 		let transform = CGAffineTransform(scaleX: scale, y: scale)
 		guard let output = filter.outputImage?.transformed(by: transform) else { return nil }

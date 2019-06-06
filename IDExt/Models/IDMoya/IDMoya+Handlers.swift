@@ -1,10 +1,4 @@
 //
-//  IDMoya+Handlers.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 11/27/18.
-//  Copyright © 2018 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
 import Alamofire
@@ -30,13 +24,13 @@ public extension IDMoya {
 		switch response.result {
 		case .success(let data):
 			if let result = ResultStatus(rawValue: response.response!.statusCode) {
-				callback(result, data as AnyObject)
+				callback(result, data)
 			} else {
-				callback(.unknown, data as AnyObject)
+				callback(.unknown, data)
 			}
 		case .failure(let error):
 			let nsError = error as NSError
-			IsVerbose.id_IfIsTrue { print(ErrorMessagePrefix.id_Trimmed + " " + nsError.id_ErrorStyleDescription) }
+			IsVerbose ?+ print(ErrorMessagePrefix.id_Trimmed + " " + nsError.id_ErrorStyleDescription)
 			
 			switch nsError.code {
 			case NSURLErrorCancelled:
@@ -65,7 +59,7 @@ public extension IDMoya {
 			}
 		case .failure(let error):
 			let nsError = error as NSError
-			IsVerbose.id_IfIsTrue { print(ErrorMessagePrefix.id_Trimmed + " " + nsError.id_ErrorStyleDescription) }
+			IsVerbose ?+ print(ErrorMessagePrefix.id_Trimmed + " " + nsError.id_ErrorStyleDescription)
 			
 			if	(error as NSError).code == NSURLErrorCancelled {
 				delegate?.idMoya_RequestCanceled(endpoint: endpoint)

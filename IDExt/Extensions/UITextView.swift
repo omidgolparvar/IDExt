@@ -11,7 +11,7 @@ import Foundation
 public extension UITextView {
 	
 	public func id_SetupDismissInputAccessoryView(viewController: UIViewController, title: String, font: UIFont, color: UIColor) {
-		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, doneButtonTitle: title, font: font, color: color)
+		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, title: title, font: font, color: color)
 		self.inputAccessoryView = toolbar
 	}
 	

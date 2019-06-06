@@ -12,21 +12,16 @@ public extension IDUser {
 	
 	public enum InitType {
 		case raw
-		case data(AnyObject?)
+		case data(Any?)
 		case userDefaults
 		case authObject(IDMoya.OAuthObject)
-	}
-	
-	public final class NotificationKeys {
-		
-		public static var User_LoggedIn: Notification.Name { return .init("IDUser.NN.User_LoggedIn") }
-		
 	}
 	
 }
 
 public extension Notification.Name {
 	
-	public static var IDUser_User_LoggedIn: Notification.Name { return IDUser.NotificationKeys.User_LoggedIn }
+	public static var IDUser_User_LoggedIn	: Notification.Name { return .init("IDUser.NN.User_LoggedIn") }
+	public static var IDUser_User_LoggedOut	: Notification.Name { return .init("IDUser.NN.User_LoggedOut") }
 	
 }
