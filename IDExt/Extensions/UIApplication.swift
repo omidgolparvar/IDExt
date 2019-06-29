@@ -9,13 +9,13 @@
 import Foundation
 
 public protocol IDApplicationDelegate: NSObjectProtocol {
-	var idApplication_DefaultUserDefaults	: UserDefaults	{ get }
-	var idApplication_OneSignalPlayerID		: String?		{ get }
+	var idApplication_UsingUserDefaults	: UserDefaults	{ get }
+	var idApplication_OneSignalPlayerID	: String?		{ get }
 }
 
 public extension IDApplicationDelegate {
-	var idApplication_DefaultUserDefaults	: UserDefaults	{ return .standard }
-	var idApplication_OneSignalPlayerID		: String?		{ return nil }
+	var idApplication_UsingUserDefaults	: UserDefaults	{ return .standard }
+	var idApplication_OneSignalPlayerID	: String?		{ return nil }
 }
 
 public extension UIApplication {
@@ -47,7 +47,7 @@ public extension UIApplication {
 		guard let delegate = UIApplication.SharedDelegate else {
 			fatalError("⚠️ UIApplication: SharedDelegate is NIL.")
 		}
-		let userDefaults = delegate.idApplication_DefaultUserDefaults
+		let userDefaults = delegate.idApplication_UsingUserDefaults
 		let key = "__ID.Application.UUID"
 		if let uuid = userDefaults.string(forKey: key) {
 			return uuid
@@ -102,7 +102,7 @@ public extension UIApplication {
 		UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
 	}
 	
-	public static func ID_TryToOpen(url: URL, onFailed failureHandler: (() -> Void)? = nil) {
+	public static func ID_TryToOpen(url: URL, onFailure failureHandler: (() -> Void)? = nil) {
 		guard UIApplication.shared.canOpenURL(url) else {
 			failureHandler?()
 			return
