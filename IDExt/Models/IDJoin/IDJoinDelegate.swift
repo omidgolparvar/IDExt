@@ -38,7 +38,7 @@ public extension IDJoinDelegate {
 			encoding		: URLEncoding.httpBody,
 			parameters		: [
 				"mobile"	: idJoin.mobileNumber,
-				"uuid"		: UIApplication.ID_UUID
+				"uuid"		: UIApplication.SharedDelegate?.idApplication_UUID ?? ""
 			],
 			headers			: nil,
 			useOAuth		: false
@@ -56,8 +56,8 @@ public extension IDJoinDelegate {
 				"username"		: idJoin.mobileNumber,
 				"password"		: idJoin.oneTimeCode,
 				"client_id"		: "public-ios",
-				"uuid"			: UIApplication.ID_UUID,
-				"pid"			: UIApplication.ID_OneSignalPlayerID ?? "",
+				"uuid"			: UIApplication.SharedDelegate?.idApplication_UUID ?? "",
+				"pid"			: UIApplication.SharedDelegate?.idApplication_OneSignalPlayerID ?? "",
 				"os"			: "iOS",
 				"os_version"	: UIDevice.current.systemVersion,
 				"phone_model"	: "\(UIDevice.current.dc.deviceModel)",

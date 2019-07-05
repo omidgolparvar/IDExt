@@ -29,14 +29,13 @@ public extension UIColor {
 		)
 	}
 	
-	public static func ID_ColorWithRGB(rgbValue: UInt, alpha: CGFloat = 1.0) -> UIColor {
-		let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 255
-		let green = CGFloat((rgbValue & 0xFF00) >> 8) / 255
-		let blue = CGFloat(rgbValue & 0xFF) / 255
+	public static func ID_Initialize(hexCode: UInt) -> UIColor {
+		let red = CGFloat((hexCode & 0xFF0000) >> 16) / 255
+		let green = CGFloat((hexCode & 0xFF00) >> 8) / 255
+		let blue = CGFloat(hexCode & 0xFF) / 255
 		
-		return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+		return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
 	}
-	
 	
 	
 	public func id_LighterColor(percent: Double) -> UIColor {

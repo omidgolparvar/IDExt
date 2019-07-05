@@ -10,7 +10,7 @@ public protocol IDPaginatorModel {
 	
 }
 
-public protocol IDPaginatorTableViewCell: IDTableViewCell {
+public protocol IDPaginatorTableViewCell where Self: IDTableViewCell {
 	
 	func idPaginatorTableViewCell_Setup<Model: IDPaginatorModel>(model: Model, indexPath: IndexPath)
 	

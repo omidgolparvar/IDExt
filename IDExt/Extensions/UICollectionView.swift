@@ -29,11 +29,11 @@ public extension UICollectionView {
 	}
 	
 	public func id_SetBackgroundWaitingView(isForWaiting: Bool) {
-		self.backgroundView = isForWaiting ? IDWaitingBackgroundView(frame: self.frame) : nil
+		self.backgroundView = isForWaiting ? IDWaitingBackgroundView(frame: self.frame.id_SameWidthAndHight()) : nil
 	}
 	
 	public func id_SetBackgroundMessageView(emoji: String, title: String, message: String, buttonConfig: (title: String, handler: () -> Void)?) {
-		var messageView = IDMessageBackgroundView(frame: self.frame)
+		var messageView = IDMessageBackgroundView(frame: self.frame.id_SameWidthAndHight())
 			.setEmoji(emoji)
 			.setTexts(title: title, message: message)
 		
@@ -45,7 +45,7 @@ public extension UICollectionView {
 	}
 	
 	public func id_SetBackgroundMessageView(forError error: IDError, withAction action: @escaping () -> Void) {
-		let messageView = IDMessageBackgroundView(frame: self.frame)
+		let messageView = IDMessageBackgroundView(frame: self.frame.id_SameWidthAndHight())
 			.setError(error, action: action)
 		
 		self.backgroundView = messageView

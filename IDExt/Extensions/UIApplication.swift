@@ -11,11 +11,28 @@ import Foundation
 public protocol IDApplicationDelegate: NSObjectProtocol {
 	var idApplication_UsingUserDefaults	: UserDefaults	{ get }
 	var idApplication_OneSignalPlayerID	: String?		{ get }
+	var idApplication_UUID				: String		{ get }
 }
 
 public extension IDApplicationDelegate {
-	var idApplication_UsingUserDefaults	: UserDefaults	{ return .standard }
-	var idApplication_OneSignalPlayerID	: String?		{ return nil }
+	var idApplication_UsingUserDefaults	: UserDefaults	{
+		return .standard
+	}
+	var idApplication_OneSignalPlayerID	: String?		{
+		return nil
+	}
+	var idApplication_UUID				: String		{
+		let userDefaults = idApplication_UsingUserDefaults
+		let key = "__ID.Application.UUID"
+		
+		if let uuid = userDefaults.string(forKey: key) {
+			return uuid
+		}
+		
+		let uuid = UUID().uuidString
+		userDefaults.set(uuid, forKey: key)
+		return uuid
+	}
 }
 
 public extension UIApplication {
@@ -25,14 +42,14 @@ public extension UIApplication {
 	public typealias ApplicationVersion = (version: String, buildNumber: String)
 	public static var ID_ApplicationVersion: ApplicationVersion {
 		let infoDictionary = Bundle.main.infoDictionary
-		let version = infoDictionary?["CFBundleShortVersionString"] as? String
-		let buildNumber = infoDictionary?["CFBundleVersion"] as? String
-		return (version ?? "", buildNumber ?? "")
+		let version = infoDictionary!["CFBundleShortVersionString"] as! String
+		let buildNumber = infoDictionary!["CFBundleVersion"] as! String
+		return (version, buildNumber)
 	}
 	
 	public static var ID_FullVersionAndBuildNumber: String {
 		let version = ID_ApplicationVersion
-		return version.version + "[\(version.buildNumber)]"
+		return version.version + " [\(version.buildNumber)]"
 	}
 	
 	public static var ID_IsDebugMode: Bool {
@@ -41,27 +58,6 @@ public extension UIApplication {
 		#else
 		return false
 		#endif
-	}
-	
-	public static var ID_UUID: String {
-		guard let delegate = UIApplication.SharedDelegate else {
-			fatalError("⚠️ UIApplication: SharedDelegate is NIL.")
-		}
-		let userDefaults = delegate.idApplication_UsingUserDefaults
-		let key = "__ID.Application.UUID"
-		if let uuid = userDefaults.string(forKey: key) {
-			return uuid
-		}
-		let uuid = UUID().uuidString
-		userDefaults.set(uuid, forKey: key)
-		return uuid
-	}
-	
-	public static var ID_OneSignalPlayerID: String? {
-		guard let delegate = UIApplication.SharedDelegate else {
-			fatalError("⚠️ UIApplication: SharedDelegate is NIL.")
-		}
-		return delegate.idApplication_OneSignalPlayerID
 	}
 	
 	public static func ID_Value<T>(development: T?, production: T?) -> T? {
@@ -88,7 +84,6 @@ public extension UIApplication {
 		closure()
 	}
 	
-	
 	public static var ID_StatusBarView: UIView? {
 		return UIApplication.shared.value(forKey: "statusBar") as? UIView
 	}
@@ -97,9 +92,9 @@ public extension UIApplication {
 		return UIApplication.shared.keyWindow?.rootViewController?.id_TopMostViewController
 	}
 	
-	public static func ID_Open(url: URL, completionHandler: ((Bool) -> Void)? = nil) {
+	public static func ID_Open(url: URL) {
 		guard UIApplication.shared.canOpenURL(url) else { return }
-		UIApplication.shared.open(url, options: [:], completionHandler: completionHandler)
+		UIApplication.shared.open(url, options: [:], completionHandler: nil)
 	}
 	
 	public static func ID_TryToOpen(url: URL, onFailure failureHandler: (() -> Void)? = nil) {
@@ -114,31 +109,19 @@ public extension UIApplication {
 		UIApplication.shared.applicationIconBadgeNumber = 0
 	}
 	
-	public enum IDSwitchRootViewControllerTransition {
-		case instantly
-		case animated(duration: TimeInterval, options: UIView.AnimationOptions)
-	}
-	public static func ID_SwitchRootViewController(target: UIViewController, transition: IDSwitchRootViewControllerTransition, completion: (() -> Void)? = nil) {
+	public static func ID_SwitchRootViewController(target: UIViewController, transitionOptions: UIView.AnimationOptions?) {
 		guard let window = UIApplication.shared.keyWindow else { return }
 		
-		switch transition {
-		case .instantly:
-			window.rootViewController = target
-			completion?()
-		case .animated(let duration, let options):
-			UIView.transition(with: window, duration: duration, options: options, animations: {
+		if let options = transitionOptions {
+			UIView.transition(with: window, duration: 0.3, options: options, animations: {
 				let oldState = UIView.areAnimationsEnabled
 				UIView.setAnimationsEnabled(false)
 				window.rootViewController = target
 				UIView.setAnimationsEnabled(oldState)
-			}, completion: { _ in
-				completion?()
-			})
+			}, completion: nil)
+		} else {
+			window.rootViewController = target
 		}
 	}
-	
-	
-	
-	
 	
 }

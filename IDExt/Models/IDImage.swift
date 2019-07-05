@@ -18,10 +18,6 @@ public final class IDImage {
 	
 	public static weak var SharedDelegate: IDImageDelegate?
 	
-	public static var BaseURLString	: () -> String	= {
-		return ""
-	}
-	
 	public var id				: String = ""
 	public var ratio			: Double = 1.0
 	public var contentType		: String = ""

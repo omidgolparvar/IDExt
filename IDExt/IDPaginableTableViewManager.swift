@@ -50,14 +50,6 @@ open class IDPaginableTableViewManager <Model: IDPaginatorModel, Cell: IDPaginat
 	
 	//MARK: UITableViewDelegate
 	
-	open func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-		tableView.cellForRow(at: indexPath)?.id_ModifyBackgroundColor(isHighlighted: true)
-	}
-	
-	open func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-		tableView.cellForRow(at: indexPath)?.id_ModifyBackgroundColor(isHighlighted: false)
-	}
-	
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		guard case let .objective(object) = self.initializeStyle else { return }
 		let model = self.paginatorObject!.item(at: indexPath.row)!

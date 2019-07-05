@@ -15,20 +15,6 @@ public extension UIViewController {
 		return UIStoryboard(name: storyboard, bundle: bundle).instantiateViewController(withIdentifier: identifier)
 	}
 	
-	public static func ID_Initialize(bundle: Bundle? = nil, pattern: String) -> UIViewController {
-		let components = pattern.components(separatedBy: "|").map({ $0.id_Trimmed }).filter({ !$0.isEmpty })
-		guard components.count == 2 else {
-			fatalError("⚠️ IDExt.UIViewController.ID_Initialize: Pattern should be : {StoryboardName}|{ViewControllerIdentifier}")
-		}
-		let storyboardName = components[0]
-		let identifier = components[1]
-		return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: identifier)
-	}
-	
-	public static func ID_Initialize<T: IDStoryboardInstanceProtocol>(_ type: T.Type) -> T {
-		return type.IDViewControllerInstance
-	}
-	
 	
 	
 	public var id_TopMostViewController: UIViewController {
@@ -73,7 +59,7 @@ public extension UIViewController {
 	}
 	
 	public typealias IDNotificationObserver = (notificationName: Notification.Name, selector: Selector)
-	public func id_AddObservers(_ items: [IDNotificationObserver]) {
+	public func id_AddObservers(_ items: IDNotificationObserver...) {
 		items.forEach {
 			NotificationCenter.default.addObserver(self, selector: $0.selector, name: $0.notificationName, object: nil)
 		}
@@ -104,7 +90,7 @@ public extension UIViewController {
 		activityViewController.popoverPresentationController?.sourceView = self.view
 		activityViewController.popoverPresentationController?.sourceRect = self.view.bounds
 		activityViewController.popoverPresentationController?.barButtonItem = barButtonItem
-		activityViewController.popoverPresentationController?.permittedArrowDirections = .down
+		activityViewController.popoverPresentationController?.permittedArrowDirections = [.up, .down]
 		self.present(activityViewController, animated: true, completion: nil)
 	}
 	

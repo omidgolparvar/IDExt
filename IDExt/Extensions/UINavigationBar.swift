@@ -10,10 +10,6 @@ import Foundation
 
 public extension UINavigationBar {
 	
-	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any]) {
-		UINavigationBar.appearance().titleTextAttributes = attributes
-	}
-	
 	public static func ID_SetupTitleAppearance(font: UIFont, textColor: UIColor) {
 		let attributes: [NSAttributedString.Key: Any] = [
 			.font 				: font,

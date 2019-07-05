@@ -1,18 +1,15 @@
 //
-//  IDDynamicJSON.swift
-//  IDExt
-//
-//  Created by Omid Golparvar on 1/3/19.
-//  Copyright © 2019 Omid Golparvar. All rights reserved.
-//
 
 import Foundation
-import SwiftyJSON
 
 @dynamicMemberLookup
-public final class IDDynamicJSON: IDJSONInitBased {
+public final class IDDynamicJSON: IDJSONInitBased, CustomStringConvertible {
 	
 	public var json: IDMoya.JSON?
+	
+	public var description: String {
+		return json?.description ?? ""
+	}
 	
 	public init?(fromData data: Data?) {
 		guard let data = data else { return nil }
@@ -34,10 +31,3 @@ public final class IDDynamicJSON: IDJSONInitBased {
 	
 }
 
-extension IDDynamicJSON: CustomStringConvertible {
-	
-	public var description: String {
-		return json?.description ?? ""
-	}
-	
-}

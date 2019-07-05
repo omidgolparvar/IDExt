@@ -25,19 +25,19 @@ public extension String {
 	private static let ID_AlphaNumericRegEx	= "^[A-Za-z0-9]+$"
 	
 	public var id_IsEmail: Bool {
-		return id_Match(regex: String.ID_EmailRegEx)
+		return id_IsMatching(regex: String.ID_EmailRegEx)
 	}
 	
-	public var id_IsNumber: Bool {
-		return id_Match(regex: String.ID_NumberRegEx)
+	public var id_IsNumeric: Bool {
+		return id_IsMatching(regex: String.ID_NumberRegEx)
 	}
 	
 	public var id_IsAlphabetic: Bool {
-		return id_Match(regex: String.ID_AlphaRegEx)
+		return id_IsMatching(regex: String.ID_AlphaRegEx)
 	}
 	
 	public var id_IsAlphaNumeric: Bool {
-		return id_Match(regex: String.ID_AlphaNumericRegEx)
+		return id_IsMatching(regex: String.ID_AlphaNumericRegEx)
 	}
 	
 	public var id_Trimmed: String {
@@ -54,21 +54,22 @@ public extension String {
 	}
 	
 	public var id_AsURL: URL? {
-		return URL(string: self)
+		return URL(string: self.id_Trimmed)
 	}
 	
 	public var id_Range: NSRange {
 		return NSRange(location: 0, length: count)
 	}
 	
-	public var id_IntValue: Int? {
-		let stringValue = self.id_Trimmed.ps.withEasternDigits.replacingOccurrences(of: "٬", with: "")
-		return Int(stringValue)
+	public var id_StringWithoutNonDigits: String {
+		return self.ps.withEasternDigits.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 	}
 	
+	public var id_IntValue: Int? {
+		return Int(self.id_StringWithoutNonDigits)
+	}
 	
-	
-	public func id_ConvertToColor() -> UIColor {
+	public var id_AsColor: UIColor {
 		return UIColor.ID_Initialize(hexCode: self)
 	}
 	
@@ -147,14 +148,8 @@ public extension String {
 		return prefix(length) + trailing
 	}
 	
-	public func id_Match(regex pattern: String) -> Bool {
+	public func id_IsMatching(regex pattern: String) -> Bool {
 		return range(of: pattern, options: [.regularExpression]) != nil
-	}
-	
-	public func id_MutableAttributedString(with attributes: [NSAttributedString.Key: Any], in range: NSRange? = nil) -> NSMutableAttributedString {
-		let mutableAttributedString = NSMutableAttributedString(string: self)
-		mutableAttributedString.addAttributes(attributes, range: range ?? self.id_Range)
-		return mutableAttributedString
 	}
 	
 	public mutating func id_AddStartPadding(finalLenght: Int, character: Character = " ") {

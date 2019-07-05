@@ -8,32 +8,32 @@ public extension Date {
 		return Date()
 	}
 	
-	public func id_AsPersianDateString(with dateFormat: String = "yyyy/MM/dd") -> String {
+	public func id_PersianDateString(with dateFormat: String = "yyyy/MM/dd") -> String {
 		return DateFormatter.ID_Initialize(dateFormat: dateFormat).string(from: self)
 	}
 	
-	public func id_IsToday(in calendar: Calendar = .current) -> Bool {
-		return calendar.isDateInToday(self)
+	public var id_IsToday: Bool {
+		return Calendar.ID_Persian.isDateInToday(self)
 	}
 	
-	public func id_IsYesterday(in calendar: Calendar = .current) -> Bool {
-		return calendar.isDateInYesterday(self)
+	public var id_IsYesterday: Bool {
+		return Calendar.ID_Persian.isDateInYesterday(self)
 	}
 	
-	public func id_IsTomorrow(in calendar: Calendar = .current) -> Bool {
-		return calendar.isDateInTomorrow(self)
+	public var id_IsTomorrow: Bool {
+		return Calendar.ID_Persian.isDateInTomorrow(self)
 	}
 	
 	public var id_BeautifulPersianDateString: String {
-		if self.id_IsYesterday() {
+		if self.id_IsYesterday {
 			return DateFormatter.ID_Initialize(dateFormat: "دیروز، HH:mm").string(from: self)
 		}
 		
-		if self.id_IsToday() {
+		if self.id_IsToday {
 			return DateFormatter.ID_Initialize(dateFormat: "امروز، HH:mm").string(from: self)
 		}
 		
-		if self.id_IsTomorrow() {
+		if self.id_IsTomorrow {
 			return DateFormatter.ID_Initialize(dateFormat: "فردا، HH:mm").string(from: self)
 		}
 		

@@ -60,11 +60,11 @@ public final class IDPaginator<Model: IDPaginatorModel> : CustomStringConvertibl
 						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage-1, with: arrayOfItems)
 						_self.delegate?.idPaginator_DidFinishLoading(_self, for: _self.currentPage-1)
 					} else {
-						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .requestWithInvalidResponse)
+						_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .invalidResponse)
 						_self.status = .shouldContinue
 					}
 				} else {
-					_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .requestWithInvalidResponse)
+					_self.delegate?.idPaginator_DidEndLoading(_self, for: _self.currentPage, with: .invalidResponse)
 					_self.status = .shouldContinue
 				}
 			case .noConnection:

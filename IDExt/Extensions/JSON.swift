@@ -73,11 +73,10 @@ public extension JSON {
 		return T(fromJSONObject: self)
 	}
 	
-	public func id_DateFromString(with format: String, calendar: Calendar = .current, locale: Locale = .current) -> Date? {
+	public func id_DateFromString(with format: String, calendar: Calendar = .current) -> Date? {
 		guard let string = self.string else { return nil }
 		let dateFormatter = DateFormatter()
 		dateFormatter.calendar = calendar
-		dateFormatter.locale = locale
 		dateFormatter.dateFormat = format
 		return dateFormatter.date(from: string)
 	}

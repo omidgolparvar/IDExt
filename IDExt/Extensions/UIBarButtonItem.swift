@@ -10,16 +10,11 @@ import Foundation
 
 public extension UIBarButtonItem {
 	
-	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any], for state: UIControl.State = .normal) {
-		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: state)
-	}
-	
 	public static func ID_SetupAppearance(font: UIFont, textColor: UIColor) {
 		let attributes: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: textColor]
 		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
 		UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
 	}
-	
 	
 	
 	public func id_SetupTitleAttributes(font: UIFont, textColor: UIColor? = nil, for state: UIControl.State) {

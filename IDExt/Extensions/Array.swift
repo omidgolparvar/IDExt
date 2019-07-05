@@ -5,7 +5,9 @@ import Foundation
 public extension Array {
 	
 	public func id_Enumerate(_ closure: (Int, Element) -> Void) {
-		self.enumerated().forEach { (index, element) in closure(index, element) }
+		self.enumerated().forEach { (index, element) in
+			closure(index, element)
+		}
 	}
 	
 	

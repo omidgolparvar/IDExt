@@ -10,11 +10,7 @@ import Foundation
 
 public extension UITabBarItem {
 	
-	public static func ID_SetTitleTextAttributes(_ attributes: [NSAttributedString.Key: Any], for state: UIControl.State = .normal) {
-		UITabBarItem.appearance().setTitleTextAttributes(attributes, for: state)
-	}
-	
-	public static func ID_SetTitleTextAttributes(font: UIFont, textColor: UIColor, for state: UIControl.State) {
+	public static func ID_SetTitleAppearance(font: UIFont, textColor: UIColor, for state: UIControl.State) {
 		let attributes: [NSAttributedString.Key: Any] = [
 			.font 				: font,
 			.foregroundColor	: textColor

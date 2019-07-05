@@ -7,12 +7,15 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
+public protocol IDErrorProtocol: Error {
+	var message: String { get }
+}
+
+public enum IDError: IDErrorProtocol, CustomStringConvertible {
 	
-	case requestWithInvalidResponse
-	case errorWithCustomMessage(String)
+	case invalidResponse
+	case customMessage(String)
 	case noConnection
 	case withData(Any?)
 	case unAuthorized
@@ -20,11 +23,11 @@ public enum IDError: Error, CustomStringConvertible, IDErrorProtocol {
 	
 	public var description: String {
 		switch self {
-		case .requestWithInvalidResponse:
+		case .invalidResponse:
 			return "اطلاعات دریافتی معتبر نمی‌باشد"
 		case .unknownError:
 			return "خطای غیر منتظره‌ای رخ داده است. کمی صبر کنید، و مجدد تلاش نمایید"
-		case .errorWithCustomMessage(let message):
+		case .customMessage(let message):
 			return message
 		case .noConnection:
 			return "ارتباط با سامانه برقرار نشد. لطفا تنظیمات اینترنت را بررسی نمایید"

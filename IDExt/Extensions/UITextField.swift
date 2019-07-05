@@ -15,7 +15,11 @@ public extension UITextField {
 	}
 	
 	
-	public func id_SetupDismissInputAccessoryView(viewController: UIViewController, title: String, font: UIFont, color: UIColor) {
+	public func id_SetupDismissInputAccessoryView(
+		viewController	: UIViewController,
+		title			: String = "تمام",
+		font			: UIFont = UIFont.ID_Medium.withSize(18),
+		color			: UIColor = .black) {
 		let toolbar = UIToolbar(dismissToolbarForViewController: viewController, title: title, font: font, color: color)
 		self.inputAccessoryView = toolbar
 	}
@@ -63,15 +67,18 @@ public extension UITextField {
 		self.id_SetRightView(label)
 	}
 	
-	public func id_GetMobileFromText() -> String? {
-		guard let text = self.text?.id_Trimmed.ps.withEasternDigits, !text.isEmpty, text.ps.isPersianPhoneNumber else { return nil }
+	public var id_MobileFromText: String? {
+		guard
+			let text = self.text?.id_StringWithoutNonDigits.ps.withEasternDigits,
+			!text.isEmpty,
+			text.ps.isPersianPhoneNumber
+			else { return nil }
 		return text
 	}
 	
 	public func id_SetupTextWithPersianDigitsAndCurrencyStyle() {
-		self.text = (self.text ?? "")
-			.ps.withEasternDigits
-			.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+		self.text = self.text?
+			.id_StringWithoutNonDigits
 			.ps.withCurrencyStyle
 	}
 	

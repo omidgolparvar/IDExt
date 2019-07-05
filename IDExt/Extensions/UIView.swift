@@ -66,23 +66,5 @@ public extension UIView {
 		}
 	}
 	
-	public var id_StringID: String? {
-		get { return self.accessibilityIdentifier }
-		set { self.accessibilityIdentifier = newValue }
-	}
-	
-	public func id_ViewByStringID(_ stringID: String) -> UIView? {
-		if self.id_StringID == stringID {
-			return self
-		}
-		for view in self.subviews {
-			if let view = view.id_ViewByStringID(stringID) {
-				return view
-			}
-		}
-		return nil
-	}
-	
-	
 }
 
