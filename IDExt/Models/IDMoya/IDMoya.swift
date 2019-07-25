@@ -151,6 +151,7 @@ public final class IDMoya {
 			uploadData.forEach { $0.cancel() }
 			downloadData.forEach { $0.cancel() }
 		}
+		RequestsDictionary.removeAll()
 		UIApplication.shared.isNetworkActivityIndicatorVisible = false
 	}
 	

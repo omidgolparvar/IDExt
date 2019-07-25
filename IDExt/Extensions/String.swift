@@ -61,6 +61,11 @@ public extension String {
 		return NSRange(location: 0, length: count)
 	}
 	
+	public func id_NSRange(of text: String) -> NSRange? {
+		guard let range = self.range(of: text) else { return nil }
+		return NSRange(range, in: self)
+	}
+	
 	public var id_StringWithoutNonDigits: String {
 		return self.ps.withEasternDigits.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
 	}

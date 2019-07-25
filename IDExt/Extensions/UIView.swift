@@ -51,6 +51,13 @@ public extension UIView {
 		self.layer.insertSublayer(shadowLayer, at: 0)
 	}
 	
+	public func id_SetupShadow(color: UIColor, offset: CGSize, radius: CGFloat, opacity: Float) {
+		self.layer.shadowColor		= color.cgColor
+		self.layer.shadowOffset		= offset
+		self.layer.shadowRadius		= radius
+		self.layer.shadowOpacity	= opacity
+	}
+	
 	public enum IDBorderStyle {
 		case none
 		case border(color: UIColor, width: CGFloat)

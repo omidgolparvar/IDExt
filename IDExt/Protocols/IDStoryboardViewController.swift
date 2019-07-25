@@ -5,16 +5,16 @@ import UIKit
 
 public protocol IDStoryboardViewController where Self: UIViewController {
 	
-	static var StoryboardName			: String	{ get }
-	static var ViewControllerIdentifer	: String	{ get }
-	static var ViewControllerInstance	: Self		{ get }
+	static var Storyboard				: UIStoryboard	{ get }
+	static var ViewControllerIdentifer	: String		{ get }
+	static var ViewControllerInstance	: Self			{ get }
 	
 }
 
 public extension IDStoryboardViewController {
 	
-	public static var StoryboardName: String {
-		return "Main"
+	public static var Storyboard: UIStoryboard {
+		return UIStoryboard(name: "Main", bundle: .main)
 	}
 	
 	public static var ViewControllerIdentifer: String {
@@ -22,7 +22,7 @@ public extension IDStoryboardViewController {
 	}
 	
 	public static var ViewControllerInstance: Self {
-		return UIStoryboard(name: self.StoryboardName, bundle: nil)
+		return Storyboard
 			.instantiateViewController(withIdentifier: self.ViewControllerIdentifer) as! Self
 	}
 	
